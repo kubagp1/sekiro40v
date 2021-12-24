@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Sekiro40v": {
+      "commandName": "Project",
+      "remoteDebugEnabled": false
+    }
+  }
+}
