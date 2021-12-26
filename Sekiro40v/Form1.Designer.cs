@@ -31,6 +31,14 @@ namespace Sekiro40v
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.generalTab = new System.Windows.Forms.TabPage();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.GeneralStatusMemoryHookInput = new System.Windows.Forms.TextBox();
+            this.GeneralStatusWebserverInput = new System.Windows.Forms.TextBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.webServerPortInput = new System.Windows.Forms.NumericUpDown();
+            this.label11 = new System.Windows.Forms.Label();
             this.memoryHookTab = new System.Windows.Forms.TabPage();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.label10 = new System.Windows.Forms.Label();
@@ -55,9 +63,25 @@ namespace Sekiro40v
             this.label9 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.DeathCounterColorButton = new System.Windows.Forms.Button();
+            this.DeathCounterFontFamilyInput = new System.Windows.Forms.TextBox();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.DeathCounterAlignToRightRadio = new System.Windows.Forms.RadioButton();
+            this.DeathCounterAlignToLeftRadio = new System.Windows.Forms.RadioButton();
+            this.DeathCounterCounterInput = new System.Windows.Forms.NumericUpDown();
+            this.DeathCounterDecrementButton = new System.Windows.Forms.Button();
+            this.DeathCounterIncrementButton = new System.Windows.Forms.Button();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.tabControl1.SuspendLayout();
+            this.generalTab.SuspendLayout();
+            this.groupBox5.SuspendLayout();
+            this.groupBox4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.webServerPortInput)).BeginInit();
             this.memoryHookTab.SuspendLayout();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.totalDamageInput)).BeginInit();
@@ -67,6 +91,9 @@ namespace Sekiro40v
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.memoryOffsetInput)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.maxReadsPerMinuteInput)).BeginInit();
+            this.tabPage1.SuspendLayout();
+            this.groupBox6.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DeathCounterCounterInput)).BeginInit();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -74,6 +101,7 @@ namespace Sekiro40v
             // 
             this.tabControl1.Controls.Add(this.generalTab);
             this.tabControl1.Controls.Add(this.memoryHookTab);
+            this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Top;
             this.tabControl1.Location = new System.Drawing.Point(3, 3);
             this.tabControl1.Name = "tabControl1";
@@ -83,6 +111,8 @@ namespace Sekiro40v
             // 
             // generalTab
             // 
+            this.generalTab.Controls.Add(this.groupBox5);
+            this.generalTab.Controls.Add(this.groupBox4);
             this.generalTab.Location = new System.Drawing.Point(4, 24);
             this.generalTab.Name = "generalTab";
             this.generalTab.Padding = new System.Windows.Forms.Padding(3);
@@ -90,6 +120,98 @@ namespace Sekiro40v
             this.generalTab.TabIndex = 0;
             this.generalTab.Text = "General";
             this.generalTab.UseVisualStyleBackColor = true;
+            // 
+            // groupBox5
+            // 
+            this.groupBox5.Controls.Add(this.GeneralStatusMemoryHookInput);
+            this.groupBox5.Controls.Add(this.GeneralStatusWebserverInput);
+            this.groupBox5.Controls.Add(this.label13);
+            this.groupBox5.Controls.Add(this.label12);
+            this.groupBox5.Dock = System.Windows.Forms.DockStyle.Top;
+            this.groupBox5.Location = new System.Drawing.Point(3, 57);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(284, 85);
+            this.groupBox5.TabIndex = 1;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "Status";
+            // 
+            // GeneralStatusMemoryHookInput
+            // 
+            this.GeneralStatusMemoryHookInput.Enabled = false;
+            this.GeneralStatusMemoryHookInput.Location = new System.Drawing.Point(178, 51);
+            this.GeneralStatusMemoryHookInput.Name = "GeneralStatusMemoryHookInput";
+            this.GeneralStatusMemoryHookInput.Size = new System.Drawing.Size(100, 23);
+            this.GeneralStatusMemoryHookInput.TabIndex = 1;
+            // 
+            // GeneralStatusWebserverInput
+            // 
+            this.GeneralStatusWebserverInput.Enabled = false;
+            this.GeneralStatusWebserverInput.Location = new System.Drawing.Point(178, 22);
+            this.GeneralStatusWebserverInput.Name = "GeneralStatusWebserverInput";
+            this.GeneralStatusWebserverInput.Size = new System.Drawing.Size(100, 23);
+            this.GeneralStatusWebserverInput.TabIndex = 1;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(6, 54);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(81, 15);
+            this.label13.TabIndex = 0;
+            this.label13.Text = "MemoryHook";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(6, 25);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(63, 15);
+            this.label12.TabIndex = 0;
+            this.label12.Text = "WebServer";
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.webServerPortInput);
+            this.groupBox4.Controls.Add(this.label11);
+            this.groupBox4.Dock = System.Windows.Forms.DockStyle.Top;
+            this.groupBox4.Location = new System.Drawing.Point(3, 3);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(284, 54);
+            this.groupBox4.TabIndex = 0;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Settings";
+            // 
+            // webServerPortInput
+            // 
+            this.webServerPortInput.Location = new System.Drawing.Point(178, 22);
+            this.webServerPortInput.Maximum = new decimal(new int[] {
+            65535,
+            0,
+            0,
+            0});
+            this.webServerPortInput.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.webServerPortInput.Name = "webServerPortInput";
+            this.webServerPortInput.Size = new System.Drawing.Size(100, 23);
+            this.webServerPortInput.TabIndex = 1;
+            this.webServerPortInput.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.webServerPortInput.ValueChanged += new System.EventHandler(this.webServerPortInput_ValueChanged);
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(6, 24);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(88, 15);
+            this.label11.TabIndex = 0;
+            this.label11.Text = "WebServer port";
             // 
             // memoryHookTab
             // 
@@ -349,6 +471,133 @@ namespace Sekiro40v
             this.label1.TabIndex = 0;
             this.label1.Text = "Process name";
             // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.groupBox6);
+            this.tabPage1.Controls.Add(this.DeathCounterCounterInput);
+            this.tabPage1.Controls.Add(this.DeathCounterDecrementButton);
+            this.tabPage1.Controls.Add(this.DeathCounterIncrementButton);
+            this.tabPage1.Location = new System.Drawing.Point(4, 24);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(290, 401);
+            this.tabPage1.TabIndex = 2;
+            this.tabPage1.Text = "DeathCounter";
+            // 
+            // groupBox6
+            // 
+            this.groupBox6.Controls.Add(this.DeathCounterColorButton);
+            this.groupBox6.Controls.Add(this.DeathCounterFontFamilyInput);
+            this.groupBox6.Controls.Add(this.label15);
+            this.groupBox6.Controls.Add(this.label14);
+            this.groupBox6.Controls.Add(this.DeathCounterAlignToRightRadio);
+            this.groupBox6.Controls.Add(this.DeathCounterAlignToLeftRadio);
+            this.groupBox6.Location = new System.Drawing.Point(7, 36);
+            this.groupBox6.Name = "groupBox6";
+            this.groupBox6.Size = new System.Drawing.Size(277, 109);
+            this.groupBox6.TabIndex = 2;
+            this.groupBox6.TabStop = false;
+            this.groupBox6.Text = "Appearance";
+            // 
+            // DeathCounterColorButton
+            // 
+            this.DeathCounterColorButton.BackColor = System.Drawing.Color.Transparent;
+            this.DeathCounterColorButton.Location = new System.Drawing.Point(171, 78);
+            this.DeathCounterColorButton.Name = "DeathCounterColorButton";
+            this.DeathCounterColorButton.Size = new System.Drawing.Size(100, 23);
+            this.DeathCounterColorButton.TabIndex = 5;
+            this.DeathCounterColorButton.Text = "Change";
+            this.DeathCounterColorButton.UseVisualStyleBackColor = false;
+            this.DeathCounterColorButton.Click += new System.EventHandler(this.DeathCounterColorButton_Click);
+            // 
+            // DeathCounterFontFamilyInput
+            // 
+            this.DeathCounterFontFamilyInput.Location = new System.Drawing.Point(171, 48);
+            this.DeathCounterFontFamilyInput.Name = "DeathCounterFontFamilyInput";
+            this.DeathCounterFontFamilyInput.Size = new System.Drawing.Size(100, 23);
+            this.DeathCounterFontFamilyInput.TabIndex = 4;
+            this.DeathCounterFontFamilyInput.TextChanged += new System.EventHandler(this.DeathCounterFontFamilyInput_TextChanged);
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(6, 82);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(36, 15);
+            this.label15.TabIndex = 3;
+            this.label15.Text = "Color";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(6, 51);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(67, 15);
+            this.label14.TabIndex = 3;
+            this.label14.Text = "Font family";
+            // 
+            // DeathCounterAlignToRightRadio
+            // 
+            this.DeathCounterAlignToRightRadio.AutoSize = true;
+            this.DeathCounterAlignToRightRadio.Location = new System.Drawing.Point(176, 23);
+            this.DeathCounterAlignToRightRadio.Name = "DeathCounterAlignToRightRadio";
+            this.DeathCounterAlignToRightRadio.Size = new System.Drawing.Size(95, 19);
+            this.DeathCounterAlignToRightRadio.TabIndex = 1;
+            this.DeathCounterAlignToRightRadio.TabStop = true;
+            this.DeathCounterAlignToRightRadio.Text = "Align to right";
+            this.DeathCounterAlignToRightRadio.UseVisualStyleBackColor = true;
+            this.DeathCounterAlignToRightRadio.CheckedChanged += new System.EventHandler(this.DeathCounterAlignToRightRadio_CheckedChanged);
+            // 
+            // DeathCounterAlignToLeftRadio
+            // 
+            this.DeathCounterAlignToLeftRadio.AutoSize = true;
+            this.DeathCounterAlignToLeftRadio.Location = new System.Drawing.Point(6, 23);
+            this.DeathCounterAlignToLeftRadio.Name = "DeathCounterAlignToLeftRadio";
+            this.DeathCounterAlignToLeftRadio.Size = new System.Drawing.Size(87, 19);
+            this.DeathCounterAlignToLeftRadio.TabIndex = 0;
+            this.DeathCounterAlignToLeftRadio.TabStop = true;
+            this.DeathCounterAlignToLeftRadio.Text = "Align to left";
+            this.DeathCounterAlignToLeftRadio.UseVisualStyleBackColor = true;
+            this.DeathCounterAlignToLeftRadio.CheckedChanged += new System.EventHandler(this.DeathCounterAlignToLeftRadio_CheckedChanged);
+            // 
+            // DeathCounterCounterInput
+            // 
+            this.DeathCounterCounterInput.Location = new System.Drawing.Point(87, 6);
+            this.DeathCounterCounterInput.Maximum = new decimal(new int[] {
+            -1,
+            -1,
+            -1,
+            0});
+            this.DeathCounterCounterInput.Minimum = new decimal(new int[] {
+            -1,
+            -1,
+            -1,
+            -2147483648});
+            this.DeathCounterCounterInput.Name = "DeathCounterCounterInput";
+            this.DeathCounterCounterInput.Size = new System.Drawing.Size(116, 23);
+            this.DeathCounterCounterInput.TabIndex = 1;
+            this.DeathCounterCounterInput.ValueChanged += new System.EventHandler(this.DeathCounterCounterInput_ValueChanged);
+            // 
+            // DeathCounterDecrementButton
+            // 
+            this.DeathCounterDecrementButton.Location = new System.Drawing.Point(6, 6);
+            this.DeathCounterDecrementButton.Name = "DeathCounterDecrementButton";
+            this.DeathCounterDecrementButton.Size = new System.Drawing.Size(75, 23);
+            this.DeathCounterDecrementButton.TabIndex = 0;
+            this.DeathCounterDecrementButton.Text = "Decrement";
+            this.DeathCounterDecrementButton.UseVisualStyleBackColor = true;
+            this.DeathCounterDecrementButton.Click += new System.EventHandler(this.DeathCounterDecrementButton_Click);
+            // 
+            // DeathCounterIncrementButton
+            // 
+            this.DeathCounterIncrementButton.Location = new System.Drawing.Point(209, 6);
+            this.DeathCounterIncrementButton.Name = "DeathCounterIncrementButton";
+            this.DeathCounterIncrementButton.Size = new System.Drawing.Size(75, 23);
+            this.DeathCounterIncrementButton.TabIndex = 0;
+            this.DeathCounterIncrementButton.Text = "Increment";
+            this.DeathCounterIncrementButton.UseVisualStyleBackColor = true;
+            this.DeathCounterIncrementButton.Click += new System.EventHandler(this.DeathCounterIncrementButton_Click);
+            // 
             // statusStrip1
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -366,6 +615,10 @@ namespace Sekiro40v
             this.toolStripStatusLabel1.Text = "sekiro40v by kubagp";
             this.toolStripStatusLabel1.Click += new System.EventHandler(this.toolStripStatusLabel1_Click);
             // 
+            // colorDialog1
+            // 
+            this.colorDialog1.AnyColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -379,6 +632,12 @@ namespace Sekiro40v
             this.Padding = new System.Windows.Forms.Padding(3);
             this.Text = "Sekiro40v";
             this.tabControl1.ResumeLayout(false);
+            this.generalTab.ResumeLayout(false);
+            this.groupBox5.ResumeLayout(false);
+            this.groupBox5.PerformLayout();
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.webServerPortInput)).EndInit();
             this.memoryHookTab.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
@@ -391,6 +650,10 @@ namespace Sekiro40v
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.memoryOffsetInput)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.maxReadsPerMinuteInput)).EndInit();
+            this.tabPage1.ResumeLayout(false);
+            this.groupBox6.ResumeLayout(false);
+            this.groupBox6.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DeathCounterCounterInput)).EndInit();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -428,6 +691,26 @@ namespace Sekiro40v
         private System.Windows.Forms.Button resetStatisticsButton;
         private System.Windows.Forms.NumericUpDown totalDamageInput;
         private System.Windows.Forms.NumericUpDown totalDeathsInput;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.NumericUpDown DeathCounterCounterInput;
+        private System.Windows.Forms.Button DeathCounterDecrementButton;
+        private System.Windows.Forms.Button DeathCounterIncrementButton;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.NumericUpDown webServerPortInput;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.GroupBox groupBox5;
+        private System.Windows.Forms.TextBox GeneralStatusWebserverInput;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.TextBox GeneralStatusMemoryHookInput;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.GroupBox groupBox6;
+        private System.Windows.Forms.RadioButton DeathCounterAlignToRightRadio;
+        private System.Windows.Forms.RadioButton DeathCounterAlignToLeftRadio;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Button DeathCounterColorButton;
+        private System.Windows.Forms.TextBox DeathCounterFontFamilyInput;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.ColorDialog colorDialog1;
     }
 }
 

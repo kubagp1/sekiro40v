@@ -20,7 +20,30 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="EmbedIO" Version="3.4.3" />
     <PackageReference Include="Reloaded.Memory" Version="4.1.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="webserver_static\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="webserver_static\counter\counter.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="webserver_static\counter\index.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="webserver_static\counter\index.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="webserver_static\counter\index.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="webserver_static\placeholder.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

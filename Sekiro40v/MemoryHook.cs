@@ -60,7 +60,7 @@ namespace Sekiro40v
 
         public MemoryHook()
         {
-            processName = "sekir";
+            processName = "sekiro";
             offset = 64535204;
             status = MemoryHookStatus.Starting;
 

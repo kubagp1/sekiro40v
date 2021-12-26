@@ -1,0 +1,10 @@
+body {
+  margin:0;
+  padding:0;
+}
+
+#counter {
+  font-size: 100vh;
+  line-height: 100vh;
+  height: 100%;
+}
