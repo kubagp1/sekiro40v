@@ -5,6 +5,18 @@
     <TargetFramework>net5.0-windows</TargetFramework>
     <UseWindowsForms>true</UseWindowsForms>
     <ApplicationManifest>app.manifest</ApplicationManifest>
+    <EnforceCodeStyleInBuild>false</EnforceCodeStyleInBuild>
+    <Authors>kubagp</Authors>
+    <Company />
+    <PackageProjectUrl>https://github.com/kubagp1/sekiro40v</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/kubagp1/sekiro40v</RepositoryUrl>
+    <RepositoryType />
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DebugType>none</DebugType>
+    <DebugSymbols>false</DebugSymbols>
   </PropertyGroup>
 
   <ItemGroup>
