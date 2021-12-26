@@ -1,18 +1,26 @@
-﻿using System;
+﻿using Reloaded.Memory.Sources;
+using System;
 using System.Diagnostics;
+using System.Threading;
 using System.Threading.Tasks;
-using Reloaded.Memory.Sources;
 
 namespace Sekiro40v
 {
-    public class MemoryHook
+    public enum MemoryHookStatus
+    {
+        Searching,
+        Ready,
+        Starting
+    }
+
+    public partial class MemoryHook
     {
         public Process process;
-        public ExternalMemory externalMemory;
-        public IntPtr baseAddress;
+        private ExternalMemory externalMemory;
+        private IntPtr baseAddress;
         private Task currentSearchingTask;
 
-        public int offset = 64535204;
+        public int offset;
 
         private string _processName;
 
@@ -35,42 +43,68 @@ namespace Sekiro40v
             }
         }
 
+        public event EventHandler StatusChanged;
+
+        private MemoryHookStatus _status;
+
+        public MemoryHookStatus status
+        {
+            get { return _status; }
+            set
+            {
+                _status = value;
+
+                StatusChanged?.Invoke(this, EventArgs.Empty);
+            }
+        }
+
         public MemoryHook()
         {
             processName = "sekir";
+            offset = 64535204;
+            status = MemoryHookStatus.Starting;
 
             RestartSearchingTask();
+            StartLoop();
         }
 
         private void WaitForProcess()
         {
-            Debug.WriteLine("Started looking for process");
-
-            Process[] processes;
-            do
+            try
             {
-                processes = Process.GetProcessesByName(processName);
+                status = MemoryHookStatus.Searching;
+
+                Process[] processes;
+                do
+                {
+                    processes = Process.GetProcessesByName(processName);
+                    if (processes.Length == 0)
+                        Thread.Sleep(1000);
+                }
+                while (processes.Length < 1);
+
+                process = processes[0];
+
+                baseAddress = process.MainModule.BaseAddress;
+
+                externalMemory = new ExternalMemory(process);
+
+                status = MemoryHookStatus.Ready;
             }
-            while (processes.Length < 1);
-
-            Debug.WriteLine("Found process!");
-
-            process = processes[0];
-
-            baseAddress = process.MainModule.BaseAddress;
-
-            externalMemory = new ExternalMemory(process);
+            catch (Exception)
+            {
+                WaitForProcess();
+            }
         }
 
         public int? ReadMemory()
         {
-            Debug.WriteLine("Attempted to read memory");
             try
             {
                 externalMemory.Read(IntPtr.Add(baseAddress, offset), out int value);
                 return value;
             }
-            catch
+            catch (Exception)
             {
                 if (currentSearchingTask.IsCompleted)
                 {

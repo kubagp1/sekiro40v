@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Sekiro40v
+﻿namespace Sekiro40v
 {
     public class App
     {
