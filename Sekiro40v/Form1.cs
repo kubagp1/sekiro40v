@@ -246,5 +246,10 @@ namespace Sekiro40v
         {
             app.deathCounter.counterAlign = DeathCounter.CounterAlign.Right;
         }
+
+        private void DeathCounterCopyUrlButton_Click(object sender, EventArgs e)
+        {
+            Clipboard.SetText($"http://127.0.0.1:{app.webServerManager.Port}/counter/counter.html");
+        }
     }
 }

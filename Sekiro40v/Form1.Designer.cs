@@ -64,6 +64,7 @@ namespace Sekiro40v
             this.label7 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.DeathCounterCopyUrlButton = new System.Windows.Forms.Button();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.DeathCounterColorButton = new System.Windows.Forms.Button();
             this.DeathCounterFontFamilyInput = new System.Windows.Forms.TextBox();
@@ -473,6 +474,7 @@ namespace Sekiro40v
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.DeathCounterCopyUrlButton);
             this.tabPage1.Controls.Add(this.groupBox6);
             this.tabPage1.Controls.Add(this.DeathCounterCounterInput);
             this.tabPage1.Controls.Add(this.DeathCounterDecrementButton);
@@ -483,6 +485,16 @@ namespace Sekiro40v
             this.tabPage1.Size = new System.Drawing.Size(290, 401);
             this.tabPage1.TabIndex = 2;
             this.tabPage1.Text = "DeathCounter";
+            // 
+            // DeathCounterCopyUrlButton
+            // 
+            this.DeathCounterCopyUrlButton.Location = new System.Drawing.Point(6, 151);
+            this.DeathCounterCopyUrlButton.Name = "DeathCounterCopyUrlButton";
+            this.DeathCounterCopyUrlButton.Size = new System.Drawing.Size(75, 23);
+            this.DeathCounterCopyUrlButton.TabIndex = 3;
+            this.DeathCounterCopyUrlButton.Text = "Copy URL";
+            this.DeathCounterCopyUrlButton.UseVisualStyleBackColor = true;
+            this.DeathCounterCopyUrlButton.Click += new System.EventHandler(this.DeathCounterCopyUrlButton_Click);
             // 
             // groupBox6
             // 
@@ -564,14 +576,14 @@ namespace Sekiro40v
             // 
             this.DeathCounterCounterInput.Location = new System.Drawing.Point(87, 6);
             this.DeathCounterCounterInput.Maximum = new decimal(new int[] {
-            -1,
-            -1,
-            -1,
+            2147483647,
+            0,
+            0,
             0});
             this.DeathCounterCounterInput.Minimum = new decimal(new int[] {
-            -1,
-            -1,
-            -1,
+            -2147483648,
+            0,
+            0,
             -2147483648});
             this.DeathCounterCounterInput.Name = "DeathCounterCounterInput";
             this.DeathCounterCounterInput.Size = new System.Drawing.Size(116, 23);
@@ -711,6 +723,7 @@ namespace Sekiro40v
         private System.Windows.Forms.TextBox DeathCounterFontFamilyInput;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.ColorDialog colorDialog1;
+        private System.Windows.Forms.Button DeathCounterCopyUrlButton;
     }
 }
 
