@@ -90,9 +90,7 @@ class App {
             break;
 
           case Action.ImageOffset:
-            // this.image.style.transform = `translate(${e.value.x}%, ${e.value.y}%)`;
-            this.image.style.left = `${e.value.x}%`;
-            this.image.style.top = `${e.value.y}%`;
+            this.image.style.transform = `translate(${e.value.x}%, ${e.value.y}%)`;
             break;
 
           case Action.ImageSize:
