@@ -2,8 +2,7 @@
 using System.Threading.Tasks;
 using EmbedIO.WebSockets;
 using System.Diagnostics;
-using System.Text.Json;
-using System.Text.Json.Serialization;
+using Newtonsoft.Json;
 
 namespace Sekiro40v
 {
@@ -194,37 +193,37 @@ namespace Sekiro40v
 
             protected override Task OnClientConnectedAsync(IWebSocketContext context)
             {
-                SendAsync(context, JsonSerializer.Serialize(new CounterUpdate()
+                SendAsync(context, JsonConvert.SerializeObject(new CounterUpdate()
                 {
                     action = CounterUpdateAction.Counter,
                     value = DeathCounter.Counter
                 }));
 
-                SendAsync(context, JsonSerializer.Serialize(new CounterUpdate()
+                SendAsync(context, JsonConvert.SerializeObject(new CounterUpdate()
                 {
                     action = CounterUpdateAction.Align,
                     value = DeathCounter.counterAlign
                 }));
 
-                SendAsync(context, JsonSerializer.Serialize(new CounterUpdate()
+                SendAsync(context, JsonConvert.SerializeObject(new CounterUpdate()
                 {
                     action = CounterUpdateAction.Color,
                     value = DeathCounter.counterColor
                 }));
 
-                SendAsync(context, JsonSerializer.Serialize(new CounterUpdate()
+                SendAsync(context, JsonConvert.SerializeObject(new CounterUpdate()
                 {
                     action = CounterUpdateAction.FontFamily,
                     value = DeathCounter.counterFontFamily
                 }));
 
-                SendAsync(context, JsonSerializer.Serialize(new CounterUpdate()
+                SendAsync(context, JsonConvert.SerializeObject(new CounterUpdate()
                 {
                     action = CounterUpdateAction.ImageMode,
                     value = DeathCounter.counterImageMode
                 }));
 
-                SendAsync(context, JsonSerializer.Serialize(new CounterUpdate()
+                SendAsync(context, JsonConvert.SerializeObject(new CounterUpdate()
                 {
                     action = CounterUpdateAction.ImageOffset,
                     value = new ImageOffset()
@@ -234,7 +233,7 @@ namespace Sekiro40v
                     }
                 }));
 
-                SendAsync(context, JsonSerializer.Serialize(new CounterUpdate()
+                SendAsync(context, JsonConvert.SerializeObject(new CounterUpdate()
                 {
                     action = CounterUpdateAction.ImageSize,
                     value = DeathCounter.counterImageSize
@@ -245,7 +244,7 @@ namespace Sekiro40v
 
             public void BroadcastUpdate(CounterUpdate update)
             {
-                BroadcastAsync(JsonSerializer.Serialize(update));
+                BroadcastAsync(JsonConvert.SerializeObject(update));
             }
         }
 
