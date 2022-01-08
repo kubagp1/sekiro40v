@@ -14,13 +14,29 @@ namespace Sekiro40v
             Counter,
             FontFamily,
             Color,
-            Align
+            Align,
+            ImageMode,
+            ImageOffset,
+            ImageSize
         }
 
         public enum CounterAlign
         {
             Left,
             Right
+        }
+
+        public enum ImageMode
+        {
+            Hide,
+            Left,
+            Right
+        }
+
+        private class ImageOffset
+        {
+            public int x;
+            public int y;
         }
 
         public class CounterChangedEventArgs : EventArgs
@@ -100,6 +116,62 @@ namespace Sekiro40v
             }
         }
 
+        private ImageMode _counterImageMode;
+
+        public ImageMode counterImageMode
+        {
+            get { return _counterImageMode; }
+            set
+            {
+                var changed = _counterImageMode != value;
+                _counterImageMode = value;
+                if (changed)
+                    Module.BroadcastUpdate(new CounterUpdate() { action = CounterUpdateAction.ImageMode, value = _counterImageMode });
+            }
+        }
+
+        private int _counterImageOffsetX;
+
+        public int counterImageOffsetX
+        {
+            get { return _counterImageOffsetX; }
+            set
+            {
+                var changed = _counterImageOffsetX != value;
+                _counterImageOffsetX = value;
+                if (changed)
+                    Module.BroadcastUpdate(new CounterUpdate() { action = CounterUpdateAction.ImageOffset, value=new ImageOffset() { x = this.counterImageOffsetX, y = this.counterImageOffsetY } });
+            }
+        }
+
+        private int _counterImageOffsetY;
+
+        public int counterImageOffsetY
+        {
+            get { return _counterImageOffsetY; }
+            set
+            {
+                var changed = _counterImageOffsetY != value;
+                _counterImageOffsetY = value;
+                if (changed)
+                    Module.BroadcastUpdate(new CounterUpdate() { action = CounterUpdateAction.ImageOffset, value = new ImageOffset() { x = this.counterImageOffsetX, y = this.counterImageOffsetY } });
+            }
+        }
+
+        private int _counterImageSize;
+
+        public int counterImageSize
+        {
+            get { return _counterImageSize; }
+            set
+            {
+                var changed = _counterImageSize != value;
+                _counterImageSize = value;
+                if (changed)
+                    Module.BroadcastUpdate(new CounterUpdate() { action = CounterUpdateAction.ImageSize, value = this.counterImageSize});
+            }
+        }
+
         #endregion Getters Setters
 
         public class CounterUpdate
@@ -145,6 +217,29 @@ namespace Sekiro40v
                     action = CounterUpdateAction.FontFamily,
                     value = DeathCounter.counterFontFamily
                 }));
+
+                SendAsync(context, JsonSerializer.Serialize(new CounterUpdate()
+                {
+                    action = CounterUpdateAction.ImageMode,
+                    value = DeathCounter.counterImageMode
+                }));
+
+                SendAsync(context, JsonSerializer.Serialize(new CounterUpdate()
+                {
+                    action = CounterUpdateAction.ImageOffset,
+                    value = new ImageOffset()
+                    {
+                        x = DeathCounter.counterImageOffsetX,
+                        y = DeathCounter.counterImageOffsetY
+                    }
+                }));
+
+                SendAsync(context, JsonSerializer.Serialize(new CounterUpdate()
+                {
+                    action = CounterUpdateAction.ImageSize,
+                    value = DeathCounter.counterImageSize
+                }));
+
                 return base.OnClientConnectedAsync(context);
             }
 
@@ -163,6 +258,10 @@ namespace Sekiro40v
             counterAlign = CounterAlign.Left;
             counterColor = "#FF0000";
             counterFontFamily = "Arial";
+            counterImageOffsetX = 0;
+            counterImageOffsetY = 0;
+            counterImageSize = 50;
+            counterImageMode = ImageMode.Left;
 
             CounterChangedEventHandler += DeathCounter_CounterChangedEventHandler;
         }

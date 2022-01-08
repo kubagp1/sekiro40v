@@ -63,6 +63,16 @@ namespace Sekiro40v
                     break;
             }
 
+            DeathCounterImageInput.SelectedIndex = (int)app.deathCounter.counterImageMode;
+
+            DeathCounterImageOffsetXInput.Value = app.deathCounter.counterImageOffsetX;
+            DeathCounterImageOffsetXLabel.Text = app.deathCounter.counterImageOffsetX.ToString();
+
+            DeathCounterImageOffsetYInput.Value = app.deathCounter.counterImageOffsetY;
+            DeathCounterImageOffsetYLabel.Text = app.deathCounter.counterImageOffsetY.ToString();
+
+            DeathCounterImageSizeInput.Value = app.deathCounter.counterImageSize;
+
             // Event handlers below
 
             app.deathCounter.CounterChangedEventHandler += DeathCounter_CounterChangedEventHandler;
@@ -138,6 +148,21 @@ namespace Sekiro40v
         private void DeathCounterFontFamilyInput_TextChanged(object sender, EventArgs e)
         {
             app.deathCounter.counterFontFamily = DeathCounterFontFamilyInput.Text;
+        }
+
+        private void DeathCounterAlignToLeftRadio_CheckedChanged(object sender, EventArgs e)
+        {
+            app.deathCounter.counterAlign = DeathCounter.CounterAlign.Left;
+        }
+
+        private void DeathCounterAlignToRightRadio_CheckedChanged(object sender, EventArgs e)
+        {
+            app.deathCounter.counterAlign = DeathCounter.CounterAlign.Right;
+        }
+
+        private void DeathCounterCopyUrlButton_Click(object sender, EventArgs e)
+        {
+            Clipboard.SetText($"http://127.0.0.1:{app.webServerManager.Port}/counter/counter.html");
         }
 
         #endregion DeathCounter Event Handlers
@@ -237,19 +262,27 @@ namespace Sekiro40v
 
         #endregion MemoryHook Event Handlers
 
-        private void DeathCounterAlignToLeftRadio_CheckedChanged(object sender, EventArgs e)
+        private void DeathCounterImageInput_SelectedIndexChanged(object sender, EventArgs e)
         {
-            app.deathCounter.counterAlign = DeathCounter.CounterAlign.Left;
+            app.deathCounter.counterImageMode = (DeathCounter.ImageMode)DeathCounterImageInput.SelectedIndex;
         }
 
-        private void DeathCounterAlignToRightRadio_CheckedChanged(object sender, EventArgs e)
+        private void DeathCounterImageOffsetXInput_Scroll(object sender, EventArgs e)
         {
-            app.deathCounter.counterAlign = DeathCounter.CounterAlign.Right;
+            app.deathCounter.counterImageOffsetX = DeathCounterImageOffsetXInput.Value;
+            DeathCounterImageOffsetXLabel.Text = DeathCounterImageOffsetXInput.Value.ToString();
         }
 
-        private void DeathCounterCopyUrlButton_Click(object sender, EventArgs e)
+        private void DeathCounterImageOffsetYInput_Scroll(object sender, EventArgs e)
         {
-            Clipboard.SetText($"http://127.0.0.1:{app.webServerManager.Port}/counter/counter.html");
+            app.deathCounter.counterImageOffsetY = DeathCounterImageOffsetYInput.Value;
+            DeathCounterImageOffsetYLabel.Text = DeathCounterImageOffsetYInput.Value.ToString();
+        }
+
+        private void DeathCounterImageSizeInput_Scroll(object sender, EventArgs e)
+        {
+            app.deathCounter.counterImageSize = DeathCounterImageSizeInput.Value;
+            DeathCounterImageSizeLabel.Text = DeathCounterImageSizeInput.Value.ToString();
         }
     }
 }

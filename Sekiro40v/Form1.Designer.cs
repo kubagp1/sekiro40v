@@ -66,8 +66,20 @@ namespace Sekiro40v
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.DeathCounterCopyUrlButton = new System.Windows.Forms.Button();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.label22 = new System.Windows.Forms.Label();
+            this.DeathCounterImageSizeLabel = new System.Windows.Forms.Label();
+            this.DeathCounterImageOffsetYLabel = new System.Windows.Forms.Label();
+            this.DeathCounterImageOffsetXLabel = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.DeathCounterImageInput = new System.Windows.Forms.ComboBox();
+            this.DeathCounterImageSizeInput = new System.Windows.Forms.TrackBar();
+            this.DeathCounterImageOffsetYInput = new System.Windows.Forms.TrackBar();
             this.DeathCounterColorButton = new System.Windows.Forms.Button();
             this.DeathCounterFontFamilyInput = new System.Windows.Forms.TextBox();
+            this.DeathCounterImageOffsetXInput = new System.Windows.Forms.TrackBar();
+            this.label18 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
+            this.label19 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.DeathCounterAlignToRightRadio = new System.Windows.Forms.RadioButton();
@@ -94,6 +106,9 @@ namespace Sekiro40v
             ((System.ComponentModel.ISupportInitialize)(this.maxReadsPerMinuteInput)).BeginInit();
             this.tabPage1.SuspendLayout();
             this.groupBox6.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DeathCounterImageSizeInput)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DeathCounterImageOffsetYInput)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DeathCounterImageOffsetXInput)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DeathCounterCounterInput)).BeginInit();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -488,7 +503,7 @@ namespace Sekiro40v
             // 
             // DeathCounterCopyUrlButton
             // 
-            this.DeathCounterCopyUrlButton.Location = new System.Drawing.Point(6, 151);
+            this.DeathCounterCopyUrlButton.Location = new System.Drawing.Point(6, 372);
             this.DeathCounterCopyUrlButton.Name = "DeathCounterCopyUrlButton";
             this.DeathCounterCopyUrlButton.Size = new System.Drawing.Size(75, 23);
             this.DeathCounterCopyUrlButton.TabIndex = 3;
@@ -498,23 +513,125 @@ namespace Sekiro40v
             // 
             // groupBox6
             // 
+            this.groupBox6.Controls.Add(this.label22);
+            this.groupBox6.Controls.Add(this.DeathCounterImageSizeLabel);
+            this.groupBox6.Controls.Add(this.DeathCounterImageOffsetYLabel);
+            this.groupBox6.Controls.Add(this.DeathCounterImageOffsetXLabel);
+            this.groupBox6.Controls.Add(this.label16);
+            this.groupBox6.Controls.Add(this.DeathCounterImageInput);
+            this.groupBox6.Controls.Add(this.DeathCounterImageSizeInput);
+            this.groupBox6.Controls.Add(this.DeathCounterImageOffsetYInput);
             this.groupBox6.Controls.Add(this.DeathCounterColorButton);
             this.groupBox6.Controls.Add(this.DeathCounterFontFamilyInput);
+            this.groupBox6.Controls.Add(this.DeathCounterImageOffsetXInput);
+            this.groupBox6.Controls.Add(this.label18);
+            this.groupBox6.Controls.Add(this.label17);
+            this.groupBox6.Controls.Add(this.label19);
             this.groupBox6.Controls.Add(this.label15);
             this.groupBox6.Controls.Add(this.label14);
             this.groupBox6.Controls.Add(this.DeathCounterAlignToRightRadio);
             this.groupBox6.Controls.Add(this.DeathCounterAlignToLeftRadio);
             this.groupBox6.Location = new System.Drawing.Point(7, 36);
             this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(277, 109);
+            this.groupBox6.Size = new System.Drawing.Size(277, 259);
             this.groupBox6.TabIndex = 2;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Appearance";
             // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(6, 196);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(62, 15);
+            this.label22.TabIndex = 9;
+            this.label22.Text = "Image size";
+            // 
+            // DeathCounterImageSizeLabel
+            // 
+            this.DeathCounterImageSizeLabel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.DeathCounterImageSizeLabel.Location = new System.Drawing.Point(95, 198);
+            this.DeathCounterImageSizeLabel.Name = "DeathCounterImageSizeLabel";
+            this.DeathCounterImageSizeLabel.Size = new System.Drawing.Size(74, 15);
+            this.DeathCounterImageSizeLabel.TabIndex = 8;
+            this.DeathCounterImageSizeLabel.Text = "04";
+            this.DeathCounterImageSizeLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // DeathCounterImageOffsetYLabel
+            // 
+            this.DeathCounterImageOffsetYLabel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.DeathCounterImageOffsetYLabel.Location = new System.Drawing.Point(95, 168);
+            this.DeathCounterImageOffsetYLabel.Name = "DeathCounterImageOffsetYLabel";
+            this.DeathCounterImageOffsetYLabel.Size = new System.Drawing.Size(74, 15);
+            this.DeathCounterImageOffsetYLabel.TabIndex = 8;
+            this.DeathCounterImageOffsetYLabel.Text = "04";
+            this.DeathCounterImageOffsetYLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // DeathCounterImageOffsetXLabel
+            // 
+            this.DeathCounterImageOffsetXLabel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.DeathCounterImageOffsetXLabel.Location = new System.Drawing.Point(95, 139);
+            this.DeathCounterImageOffsetXLabel.Name = "DeathCounterImageOffsetXLabel";
+            this.DeathCounterImageOffsetXLabel.Size = new System.Drawing.Size(74, 15);
+            this.DeathCounterImageOffsetXLabel.TabIndex = 8;
+            this.DeathCounterImageOffsetXLabel.Text = "04";
+            this.DeathCounterImageOffsetXLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // label16
+            // 
+            this.label16.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label16.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.label16.Location = new System.Drawing.Point(6, 222);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(265, 34);
+            this.label16.TabIndex = 4;
+            this.label16.Text = "You can use any font installed on your computer or from Google Fonts.";
+            // 
+            // DeathCounterImageInput
+            // 
+            this.DeathCounterImageInput.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.DeathCounterImageInput.FormattingEnabled = true;
+            this.DeathCounterImageInput.IntegralHeight = false;
+            this.DeathCounterImageInput.Items.AddRange(new object[] {
+            "Hide",
+            "Left",
+            "Right"});
+            this.DeathCounterImageInput.Location = new System.Drawing.Point(171, 106);
+            this.DeathCounterImageInput.Name = "DeathCounterImageInput";
+            this.DeathCounterImageInput.Size = new System.Drawing.Size(100, 23);
+            this.DeathCounterImageInput.TabIndex = 7;
+            this.DeathCounterImageInput.SelectedIndexChanged += new System.EventHandler(this.DeathCounterImageInput_SelectedIndexChanged);
+            // 
+            // DeathCounterImageSizeInput
+            // 
+            this.DeathCounterImageSizeInput.LargeChange = 1;
+            this.DeathCounterImageSizeInput.Location = new System.Drawing.Point(167, 196);
+            this.DeathCounterImageSizeInput.Maximum = 150;
+            this.DeathCounterImageSizeInput.Minimum = 1;
+            this.DeathCounterImageSizeInput.Name = "DeathCounterImageSizeInput";
+            this.DeathCounterImageSizeInput.Size = new System.Drawing.Size(104, 45);
+            this.DeathCounterImageSizeInput.TabIndex = 6;
+            this.DeathCounterImageSizeInput.TickStyle = System.Windows.Forms.TickStyle.None;
+            this.DeathCounterImageSizeInput.Value = 1;
+            this.DeathCounterImageSizeInput.Scroll += new System.EventHandler(this.DeathCounterImageSizeInput_Scroll);
+            // 
+            // DeathCounterImageOffsetYInput
+            // 
+            this.DeathCounterImageOffsetYInput.LargeChange = 1;
+            this.DeathCounterImageOffsetYInput.Location = new System.Drawing.Point(167, 166);
+            this.DeathCounterImageOffsetYInput.Maximum = 50;
+            this.DeathCounterImageOffsetYInput.Minimum = -50;
+            this.DeathCounterImageOffsetYInput.Name = "DeathCounterImageOffsetYInput";
+            this.DeathCounterImageOffsetYInput.Size = new System.Drawing.Size(104, 45);
+            this.DeathCounterImageOffsetYInput.TabIndex = 6;
+            this.DeathCounterImageOffsetYInput.TickStyle = System.Windows.Forms.TickStyle.None;
+            this.DeathCounterImageOffsetYInput.Scroll += new System.EventHandler(this.DeathCounterImageOffsetYInput_Scroll);
+            // 
             // DeathCounterColorButton
             // 
             this.DeathCounterColorButton.BackColor = System.Drawing.Color.Transparent;
-            this.DeathCounterColorButton.Location = new System.Drawing.Point(171, 78);
+            this.DeathCounterColorButton.Location = new System.Drawing.Point(171, 77);
             this.DeathCounterColorButton.Name = "DeathCounterColorButton";
             this.DeathCounterColorButton.Size = new System.Drawing.Size(100, 23);
             this.DeathCounterColorButton.TabIndex = 5;
@@ -530,10 +647,49 @@ namespace Sekiro40v
             this.DeathCounterFontFamilyInput.TabIndex = 4;
             this.DeathCounterFontFamilyInput.TextChanged += new System.EventHandler(this.DeathCounterFontFamilyInput_TextChanged);
             // 
+            // DeathCounterImageOffsetXInput
+            // 
+            this.DeathCounterImageOffsetXInput.LargeChange = 1;
+            this.DeathCounterImageOffsetXInput.Location = new System.Drawing.Point(167, 137);
+            this.DeathCounterImageOffsetXInput.Maximum = 50;
+            this.DeathCounterImageOffsetXInput.Minimum = -50;
+            this.DeathCounterImageOffsetXInput.Name = "DeathCounterImageOffsetXInput";
+            this.DeathCounterImageOffsetXInput.Size = new System.Drawing.Size(104, 45);
+            this.DeathCounterImageOffsetXInput.TabIndex = 6;
+            this.DeathCounterImageOffsetXInput.TickStyle = System.Windows.Forms.TickStyle.None;
+            this.DeathCounterImageOffsetXInput.Scroll += new System.EventHandler(this.DeathCounterImageOffsetXInput_Scroll);
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(6, 168);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(83, 15);
+            this.label18.TabIndex = 3;
+            this.label18.Text = "Image offset Y";
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(6, 139);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(83, 15);
+            this.label17.TabIndex = 3;
+            this.label17.Text = "Image offset X";
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(6, 109);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(40, 15);
+            this.label19.TabIndex = 3;
+            this.label19.Text = "Image";
+            // 
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(6, 82);
+            this.label15.Location = new System.Drawing.Point(6, 81);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(36, 15);
             this.label15.TabIndex = 3;
@@ -665,6 +821,9 @@ namespace Sekiro40v
             this.tabPage1.ResumeLayout(false);
             this.groupBox6.ResumeLayout(false);
             this.groupBox6.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DeathCounterImageSizeInput)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DeathCounterImageOffsetYInput)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DeathCounterImageOffsetXInput)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DeathCounterCounterInput)).EndInit();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
@@ -724,6 +883,18 @@ namespace Sekiro40v
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.ColorDialog colorDialog1;
         private System.Windows.Forms.Button DeathCounterCopyUrlButton;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.TrackBar DeathCounterImageOffsetXInput;
+        private System.Windows.Forms.TrackBar DeathCounterImageOffsetYInput;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.ComboBox DeathCounterImageInput;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.Label DeathCounterImageOffsetYLabel;
+        private System.Windows.Forms.Label DeathCounterImageOffsetXLabel;
+        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.Label DeathCounterImageSizeLabel;
+        private System.Windows.Forms.TrackBar DeathCounterImageSizeInput;
     }
 }
 
