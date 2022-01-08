@@ -6,8 +6,6 @@ namespace Sekiro40v
 {
     public partial class MemoryHook
     {
-        public int maxRPM = 60;
-
         public int currentHP { get; private set; }
         public int maxHP = 0;
 
@@ -71,9 +69,9 @@ namespace Sekiro40v
 
                         TimeSpan executionTime = DateTime.Now - startTime;
 
-                        if (maxRPM <= 0)
-                            maxRPM = 1;
-                        int timeout = (int)(1000 / maxRPM - executionTime.TotalMilliseconds);
+                        if (Config.maxRPM <= 0)
+                            Config.maxRPM = 1;
+                        int timeout = (int)(1000 / Config.maxRPM - executionTime.TotalMilliseconds);
 
                         if (timeout >= 1)
                             Thread.Sleep(timeout);

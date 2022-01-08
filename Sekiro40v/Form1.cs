@@ -19,8 +19,8 @@ namespace Sekiro40v
             #region MemoryHook
 
             processNameInput.Text = app.memoryHook.processName;
-            maxReadsPerMinuteInput.Value = app.memoryHook.maxRPM;
-            memoryOffsetInput.Value = app.memoryHook.offset;
+            maxReadsPerMinuteInput.Value = app.memoryHook.Config.maxRPM;
+            memoryOffsetInput.Value = app.memoryHook.Config.offset;
 
             statusInput.Text = app.memoryHook.status.ToString();
 
@@ -72,6 +72,7 @@ namespace Sekiro40v
             DeathCounterImageOffsetYLabel.Text = app.deathCounter.counterImageOffsetY.ToString();
 
             DeathCounterImageSizeInput.Value = app.deathCounter.counterImageSize;
+            DeathCounterImageSizeLabel.Text = app.deathCounter.counterImageSize.ToString();
 
             // Event handlers below
 
@@ -241,17 +242,17 @@ namespace Sekiro40v
 
         private void maxReadsPerMinuteInput_ValueChanged(object sender, EventArgs e)
         {
-            app.memoryHook.maxRPM = (int)maxReadsPerMinuteInput.Value;
+            app.memoryHook.Config.maxRPM = (int)maxReadsPerMinuteInput.Value;
         }
 
         private void memoryOffsetInput_ValueChanged(object sender, EventArgs e)
         {
-            app.memoryHook.offset = (int)memoryOffsetInput.Value;
+            app.memoryHook.Config.offset = (int)memoryOffsetInput.Value;
         }
 
         private void resetStatisticsButton_Click(object sender, EventArgs e)
         {
-            var userSure = MessageBox.Show("Are you sure you want to reset all statistics of MemoryHook?", "Are you sure?", MessageBoxButtons.YesNoCancel);
+            var userSure = MessageBox.Show("Are you sure you want to reset all statistics of MemoryHook?", "Are you sure?", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
 
             if (userSure == DialogResult.Yes)
             {
@@ -283,6 +284,26 @@ namespace Sekiro40v
         {
             app.deathCounter.counterImageSize = DeathCounterImageSizeInput.Value;
             DeathCounterImageSizeLabel.Text = DeathCounterImageSizeInput.Value.ToString();
+        }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            app.Config.SaveSettings();
+        }
+
+        private void GeneralRestoreDefaultSettingsButton_Click(object sender, EventArgs e)
+        {
+            var userSure = MessageBox.Show(
+                "Are you sure you want to reset all settings?\nApplication will restart!", 
+                "Are you sure?", 
+                MessageBoxButtons.YesNoCancel,
+                MessageBoxIcon.Question);
+
+            if (userSure == DialogResult.Yes)
+            {
+                app.Config.RestoreDefaults();
+                Application.Restart();
+            }
         }
     }
 }

@@ -5,18 +5,21 @@ namespace Sekiro40v
 {
     public class App
     {
+        public Config Config;
         public MemoryHook memoryHook;
         public DeathCounter deathCounter;
         public WebServerManager webServerManager;
 
         public App()
         {
-            memoryHook = new();
-            deathCounter = new();
+            Config = new();
+
+            memoryHook = new(Config.settings.memoryHook);
+            deathCounter = new(Config.settings.deathCounter);
 
             memoryHook.DeathEventHandler += MemoryHook_DeathEventHandler;
 
-            webServerManager = new(deathCounter.Module);
+            webServerManager = new(Config.settings.general, deathCounter.Module);
         }
 
         private void MemoryHook_DeathEventHandler(object sender, EventArgs e)

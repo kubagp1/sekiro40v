@@ -90,6 +90,7 @@ namespace Sekiro40v
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
+            this.GeneralRestoreDefaultSettingsButton = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.generalTab.SuspendLayout();
             this.groupBox5.SuspendLayout();
@@ -127,6 +128,7 @@ namespace Sekiro40v
             // 
             // generalTab
             // 
+            this.generalTab.Controls.Add(this.GeneralRestoreDefaultSettingsButton);
             this.generalTab.Controls.Add(this.groupBox5);
             this.generalTab.Controls.Add(this.groupBox4);
             this.generalTab.Location = new System.Drawing.Point(4, 24);
@@ -787,6 +789,16 @@ namespace Sekiro40v
             // 
             this.colorDialog1.AnyColor = true;
             // 
+            // GeneralRestoreDefaultSettingsButton
+            // 
+            this.GeneralRestoreDefaultSettingsButton.Location = new System.Drawing.Point(6, 372);
+            this.GeneralRestoreDefaultSettingsButton.Name = "GeneralRestoreDefaultSettingsButton";
+            this.GeneralRestoreDefaultSettingsButton.Size = new System.Drawing.Size(159, 23);
+            this.GeneralRestoreDefaultSettingsButton.TabIndex = 2;
+            this.GeneralRestoreDefaultSettingsButton.Text = "Restore default settings";
+            this.GeneralRestoreDefaultSettingsButton.UseVisualStyleBackColor = true;
+            this.GeneralRestoreDefaultSettingsButton.Click += new System.EventHandler(this.GeneralRestoreDefaultSettingsButton_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -799,6 +811,7 @@ namespace Sekiro40v
             this.Name = "Form1";
             this.Padding = new System.Windows.Forms.Padding(3);
             this.Text = "Sekiro40v";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.tabControl1.ResumeLayout(false);
             this.generalTab.ResumeLayout(false);
             this.groupBox5.ResumeLayout(false);
@@ -895,6 +908,7 @@ namespace Sekiro40v
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.Label DeathCounterImageSizeLabel;
         private System.Windows.Forms.TrackBar DeathCounterImageSizeInput;
+        private System.Windows.Forms.Button GeneralRestoreDefaultSettingsButton;
     }
 }
 

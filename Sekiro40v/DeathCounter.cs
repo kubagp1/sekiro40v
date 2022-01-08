@@ -1,8 +1,7 @@
-﻿using System;
-using System.Threading.Tasks;
-using EmbedIO.WebSockets;
-using System.Diagnostics;
+﻿using EmbedIO.WebSockets;
 using Newtonsoft.Json;
+using System;
+using System.Threading.Tasks;
 
 namespace Sekiro40v
 {
@@ -51,10 +50,7 @@ namespace Sekiro40v
 
         public int Counter
         {
-            get
-            {
-                return _counter;
-            }
+            get { return _counter; }
             set
             {
                 var changed = _counter != value;
@@ -64,110 +60,93 @@ namespace Sekiro40v
             }
         }
 
-        private string _counterFontFamily;
-
         public string counterFontFamily
         {
-            get
-            {
-                return _counterFontFamily;
-            }
+            get { return Config.counterFontFamily; }
             set
             {
-                var changed = value != _counterFontFamily;
-                _counterFontFamily = value;
-                if (changed)
-                    Module.BroadcastUpdate(new CounterUpdate() { action = CounterUpdateAction.FontFamily, value = _counterFontFamily });
+                if (value != Config.counterFontFamily)
+                {
+                    Config.counterFontFamily = value;
+                    Module.BroadcastUpdate(new CounterUpdate() { action = CounterUpdateAction.FontFamily, value = counterFontFamily });
+                }
             }
         }
-
-        private string _counterColor;
 
         public string counterColor
         {
-            get
-            {
-                return _counterColor;
-            }
+            get { return Config.counterColor; }
             set
             {
-                var changed = value != _counterColor;
-                _counterColor = value;
+                var changed = value != Config.counterColor;
+                Config.counterColor = value;
                 if (changed)
-                    Module.BroadcastUpdate(new CounterUpdate() { action = CounterUpdateAction.Color, value = _counterColor });
+                    Module.BroadcastUpdate(new CounterUpdate() { action = CounterUpdateAction.Color, value = counterColor });
             }
         }
-
-        private CounterAlign _counterAlign;
 
         public CounterAlign counterAlign
         {
-            get
-            {
-                return _counterAlign;
-            }
+            get { return Config.counterAlign; }
             set
             {
-                var changed = value != _counterAlign;
-                _counterAlign = value;
-                if (changed)
-                    Module.BroadcastUpdate(new CounterUpdate() { action = CounterUpdateAction.Align, value = _counterAlign });
+                if (value != Config.counterAlign)
+                {
+                    Config.counterAlign = value;
+                    Module.BroadcastUpdate(new CounterUpdate() { action = CounterUpdateAction.Align, value = counterAlign });
+                }
             }
         }
-
-        private ImageMode _counterImageMode;
 
         public ImageMode counterImageMode
         {
-            get { return _counterImageMode; }
+            get { return Config.counterImageMode; }
             set
             {
-                var changed = _counterImageMode != value;
-                _counterImageMode = value;
-                if (changed)
-                    Module.BroadcastUpdate(new CounterUpdate() { action = CounterUpdateAction.ImageMode, value = _counterImageMode });
+                if (Config.counterImageMode != value)
+                {
+                    Config.counterImageMode = value;
+                    Module.BroadcastUpdate(new CounterUpdate() { action = CounterUpdateAction.ImageMode, value = counterImageMode });
+                }
             }
         }
-
-        private int _counterImageOffsetX;
 
         public int counterImageOffsetX
         {
-            get { return _counterImageOffsetX; }
+            get { return Config.counterImageOffsetX; }
             set
             {
-                var changed = _counterImageOffsetX != value;
-                _counterImageOffsetX = value;
-                if (changed)
-                    Module.BroadcastUpdate(new CounterUpdate() { action = CounterUpdateAction.ImageOffset, value=new ImageOffset() { x = this.counterImageOffsetX, y = this.counterImageOffsetY } });
+                if (Config.counterImageOffsetX != value)
+                {
+                    Config.counterImageOffsetX = value;
+                    Module.BroadcastUpdate(new CounterUpdate() { action = CounterUpdateAction.ImageOffset, value = new ImageOffset() { x = this.counterImageOffsetX, y = this.counterImageOffsetY } });
+                }
             }
         }
-
-        private int _counterImageOffsetY;
 
         public int counterImageOffsetY
         {
-            get { return _counterImageOffsetY; }
+            get { return Config.counterImageOffsetY; }
             set
             {
-                var changed = _counterImageOffsetY != value;
-                _counterImageOffsetY = value;
-                if (changed)
+                if (Config.counterImageOffsetY != value)
+                {
+                    Config.counterImageOffsetY = value;
                     Module.BroadcastUpdate(new CounterUpdate() { action = CounterUpdateAction.ImageOffset, value = new ImageOffset() { x = this.counterImageOffsetX, y = this.counterImageOffsetY } });
+                }
             }
         }
 
-        private int _counterImageSize;
-
         public int counterImageSize
         {
-            get { return _counterImageSize; }
+            get { return Config.counterImageSize; }
             set
             {
-                var changed = _counterImageSize != value;
-                _counterImageSize = value;
-                if (changed)
-                    Module.BroadcastUpdate(new CounterUpdate() { action = CounterUpdateAction.ImageSize, value = this.counterImageSize});
+                if (Config.counterImageSize != value)
+                {
+                    Config.counterImageSize = value;
+                    Module.BroadcastUpdate(new CounterUpdate() { action = CounterUpdateAction.ImageSize, value = this.counterImageSize });
+                }
             }
         }
 
@@ -250,17 +229,21 @@ namespace Sekiro40v
 
         public CounterWebSocketModule Module;
 
-        public DeathCounter()
+        public Config.DeathCounter Config;
+
+        public DeathCounter(Config.DeathCounter config)
         {
+            Config = config;
+
             Module = new CounterWebSocketModule("/counter/socket", this);
 
-            counterAlign = CounterAlign.Left;
-            counterColor = "#FF0000";
-            counterFontFamily = "Arial";
-            counterImageOffsetX = 0;
-            counterImageOffsetY = 0;
-            counterImageSize = 50;
-            counterImageMode = ImageMode.Left;
+            //counterAlign = CounterAlign.Right;
+            //counterColor = "#CB0000";
+            //counterFontFamily = "Architects Daughter";
+            //counterImageOffsetX = 8;
+            //counterImageOffsetY = 3;
+            //counterImageSize = 59;
+            //counterImageMode = ImageMode.Right;
 
             CounterChangedEventHandler += DeathCounter_CounterChangedEventHandler;
         }

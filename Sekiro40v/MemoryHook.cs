@@ -15,26 +15,21 @@ namespace Sekiro40v
 
     public partial class MemoryHook
     {
+        public Config.MemoryHook Config;
+
         public Process process;
         private ExternalMemory externalMemory;
         private IntPtr baseAddress;
         private Task currentSearchingTask;
 
-        public int offset;
-
-        private string _processName;
-
         public string processName
         {
-            get
-            {
-                return _processName;
-            }
+            get { return Config.processName; }
             set
             {
-                if (_processName != value)
+                if (Config.processName != value)
                 {
-                    _processName = value;
+                    Config.processName = value;
                     if (currentSearchingTask is not null && currentSearchingTask.IsCompleted) // the "is not null" part is here in case processName gets changed before any searching task is started
                     {
                         RestartSearchingTask();
@@ -58,10 +53,10 @@ namespace Sekiro40v
             }
         }
 
-        public MemoryHook()
+        public MemoryHook(Config.MemoryHook config)
         {
-            processName = "sekiro";
-            offset = 64535204;
+            this.Config = config;
+
             status = MemoryHookStatus.Starting;
 
             RestartSearchingTask();
@@ -101,7 +96,7 @@ namespace Sekiro40v
         {
             try
             {
-                externalMemory.Read(IntPtr.Add(baseAddress, offset), out int value);
+                externalMemory.Read(IntPtr.Add(baseAddress, Config.offset), out int value);
                 return value;
             }
             catch (Exception)
