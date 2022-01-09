@@ -24,6 +24,9 @@ namespace Sekiro40v
 
             statusInput.Text = app.memoryHook.status.ToString();
 
+            totalDamageInput.Value = app.StatisticsManager.statistics.memoryHook.totalDamage;
+            totalDeathsInput.Value = app.StatisticsManager.statistics.memoryHook.totalDeaths;
+
             // Rest is empty while this constructor is running so it's not necessary
 
             // Event handlers below
@@ -146,6 +149,29 @@ namespace Sekiro40v
             }
         }
 
+        private void DeathCounterImageInput_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            app.deathCounter.counterImageMode = (DeathCounter.ImageMode)DeathCounterImageInput.SelectedIndex;
+        }
+
+        private void DeathCounterImageOffsetXInput_Scroll(object sender, EventArgs e)
+        {
+            app.deathCounter.counterImageOffsetX = DeathCounterImageOffsetXInput.Value;
+            DeathCounterImageOffsetXLabel.Text = DeathCounterImageOffsetXInput.Value.ToString();
+        }
+
+        private void DeathCounterImageOffsetYInput_Scroll(object sender, EventArgs e)
+        {
+            app.deathCounter.counterImageOffsetY = DeathCounterImageOffsetYInput.Value;
+            DeathCounterImageOffsetYLabel.Text = DeathCounterImageOffsetYInput.Value.ToString();
+        }
+
+        private void DeathCounterImageSizeInput_Scroll(object sender, EventArgs e)
+        {
+            app.deathCounter.counterImageSize = DeathCounterImageSizeInput.Value;
+            DeathCounterImageSizeLabel.Text = DeathCounterImageSizeInput.Value.ToString();
+        }
+
         private void DeathCounterFontFamilyInput_TextChanged(object sender, EventArgs e)
         {
             app.deathCounter.counterFontFamily = DeathCounterFontFamilyInput.Text;
@@ -174,7 +200,8 @@ namespace Sekiro40v
         {
             Invoke(new Action(() =>
             {
-                totalDeathsInput.Value++;
+                app.StatisticsManager.statistics.memoryHook.totalDeaths++;
+                totalDeathsInput.Value = app.StatisticsManager.statistics.memoryHook.totalDeaths;
             }));
         }
 
@@ -182,7 +209,8 @@ namespace Sekiro40v
         {
             Invoke(new Action(() =>
             {
-                totalDamageInput.Value += e.damage;
+                app.StatisticsManager.statistics.memoryHook.totalDamage += e.damage;
+                totalDamageInput.Value = app.StatisticsManager.statistics.memoryHook.totalDamage;
             }));
         }
 
@@ -235,11 +263,6 @@ namespace Sekiro40v
             app.memoryHook.maxHP = (int)maxHPInput.Value;
         }
 
-        private void toolStripStatusLabel1_Click(object sender, EventArgs e)
-        {
-            Process.Start("explorer", "https://github.com/kubagp1/sekiro40v");
-        }
-
         private void maxReadsPerMinuteInput_ValueChanged(object sender, EventArgs e)
         {
             app.memoryHook.Config.maxRPM = (int)maxReadsPerMinuteInput.Value;
@@ -257,38 +280,33 @@ namespace Sekiro40v
             if (userSure == DialogResult.Yes)
             {
                 totalDamageInput.Value = 0;
+                app.StatisticsManager.statistics.memoryHook.totalDamage = 0;
                 totalDeathsInput.Value = 0;
+                app.StatisticsManager.statistics.memoryHook.totalDeaths = 0;
             }
+        }
+
+        private void totalDeathsInput_ValueChanged(object sender, EventArgs e)
+        {
+            app.StatisticsManager.statistics.memoryHook.totalDeaths = (int)totalDeathsInput.Value;
+        }
+
+        private void totalDamageInput_ValueChanged(object sender, EventArgs e)
+        {
+            app.StatisticsManager.statistics.memoryHook.totalDamage = (int)totalDamageInput.Value;
         }
 
         #endregion MemoryHook Event Handlers
 
-        private void DeathCounterImageInput_SelectedIndexChanged(object sender, EventArgs e)
+        private void toolStripStatusLabel1_Click(object sender, EventArgs e)
         {
-            app.deathCounter.counterImageMode = (DeathCounter.ImageMode)DeathCounterImageInput.SelectedIndex;
-        }
-
-        private void DeathCounterImageOffsetXInput_Scroll(object sender, EventArgs e)
-        {
-            app.deathCounter.counterImageOffsetX = DeathCounterImageOffsetXInput.Value;
-            DeathCounterImageOffsetXLabel.Text = DeathCounterImageOffsetXInput.Value.ToString();
-        }
-
-        private void DeathCounterImageOffsetYInput_Scroll(object sender, EventArgs e)
-        {
-            app.deathCounter.counterImageOffsetY = DeathCounterImageOffsetYInput.Value;
-            DeathCounterImageOffsetYLabel.Text = DeathCounterImageOffsetYInput.Value.ToString();
-        }
-
-        private void DeathCounterImageSizeInput_Scroll(object sender, EventArgs e)
-        {
-            app.deathCounter.counterImageSize = DeathCounterImageSizeInput.Value;
-            DeathCounterImageSizeLabel.Text = DeathCounterImageSizeInput.Value.ToString();
+            Process.Start("explorer", "https://github.com/kubagp1/sekiro40v");
         }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
             app.Config.SaveSettings();
+            app.StatisticsManager.SaveStatistics();
         }
 
         private void GeneralRestoreDefaultSettingsButton_Click(object sender, EventArgs e)

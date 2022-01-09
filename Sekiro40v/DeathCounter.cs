@@ -46,17 +46,16 @@ namespace Sekiro40v
 
         #region Getters Setters
 
-        private int _counter;
-
         public int Counter
         {
-            get { return _counter; }
+            get { return Statistics.deaths; }
             set
             {
-                var changed = _counter != value;
-                _counter = value;
-                if (changed)
+                if (Statistics.deaths != value)
+                {
+                    Statistics.deaths = value;
                     CounterChangedEventHandler?.Invoke(this, new CounterChangedEventArgs { value = value });
+                }
             }
         }
 
@@ -230,10 +229,12 @@ namespace Sekiro40v
         public CounterWebSocketModule Module;
 
         public Config.DeathCounter Config;
+        public StatisticsManager.DeathCounter Statistics;
 
-        public DeathCounter(Config.DeathCounter config)
+        public DeathCounter(Config.DeathCounter config, StatisticsManager.DeathCounter statistics)
         {
             Config = config;
+            Statistics = statistics;
 
             Module = new CounterWebSocketModule("/counter/socket", this);
 

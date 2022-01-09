@@ -35,8 +35,6 @@ namespace Sekiro40v
             public DeathCounter deathCounter { get; set; }
         }
 
-
-
         public string Path = @"settings.json";
         public Settings settings;
 
@@ -92,6 +90,7 @@ namespace Sekiro40v
                 RestoreDefaults();
             }
             
+            SaveSettings();
         }
     }
 }

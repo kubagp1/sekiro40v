@@ -6,6 +6,7 @@ namespace Sekiro40v
     public class App
     {
         public Config Config;
+        public StatisticsManager StatisticsManager;
         public MemoryHook memoryHook;
         public DeathCounter deathCounter;
         public WebServerManager webServerManager;
@@ -13,9 +14,10 @@ namespace Sekiro40v
         public App()
         {
             Config = new();
+            StatisticsManager = new();
 
             memoryHook = new(Config.settings.memoryHook);
-            deathCounter = new(Config.settings.deathCounter);
+            deathCounter = new(Config.settings.deathCounter, StatisticsManager.statistics.deathCounter);
 
             memoryHook.DeathEventHandler += MemoryHook_DeathEventHandler;
 

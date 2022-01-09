@@ -31,6 +31,8 @@ namespace Sekiro40v
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.generalTab = new System.Windows.Forms.TabPage();
+            this.GeneralEraseStatisticsButton = new System.Windows.Forms.Button();
+            this.GeneralRestoreDefaultSettingsButton = new System.Windows.Forms.Button();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.GeneralStatusMemoryHookInput = new System.Windows.Forms.TextBox();
             this.GeneralStatusWebserverInput = new System.Windows.Forms.TextBox();
@@ -90,7 +92,6 @@ namespace Sekiro40v
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
-            this.GeneralRestoreDefaultSettingsButton = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.generalTab.SuspendLayout();
             this.groupBox5.SuspendLayout();
@@ -128,6 +129,7 @@ namespace Sekiro40v
             // 
             // generalTab
             // 
+            this.generalTab.Controls.Add(this.GeneralEraseStatisticsButton);
             this.generalTab.Controls.Add(this.GeneralRestoreDefaultSettingsButton);
             this.generalTab.Controls.Add(this.groupBox5);
             this.generalTab.Controls.Add(this.groupBox4);
@@ -138,6 +140,25 @@ namespace Sekiro40v
             this.generalTab.TabIndex = 0;
             this.generalTab.Text = "General";
             this.generalTab.UseVisualStyleBackColor = true;
+            // 
+            // GeneralEraseStatisticsButton
+            // 
+            this.GeneralEraseStatisticsButton.Location = new System.Drawing.Point(6, 343);
+            this.GeneralEraseStatisticsButton.Name = "GeneralEraseStatisticsButton";
+            this.GeneralEraseStatisticsButton.Size = new System.Drawing.Size(159, 23);
+            this.GeneralEraseStatisticsButton.TabIndex = 3;
+            this.GeneralEraseStatisticsButton.Text = "Erase all statistics";
+            this.GeneralEraseStatisticsButton.UseVisualStyleBackColor = true;
+            // 
+            // GeneralRestoreDefaultSettingsButton
+            // 
+            this.GeneralRestoreDefaultSettingsButton.Location = new System.Drawing.Point(6, 372);
+            this.GeneralRestoreDefaultSettingsButton.Name = "GeneralRestoreDefaultSettingsButton";
+            this.GeneralRestoreDefaultSettingsButton.Size = new System.Drawing.Size(159, 23);
+            this.GeneralRestoreDefaultSettingsButton.TabIndex = 2;
+            this.GeneralRestoreDefaultSettingsButton.Text = "Restore default settings";
+            this.GeneralRestoreDefaultSettingsButton.UseVisualStyleBackColor = true;
+            this.GeneralRestoreDefaultSettingsButton.Click += new System.EventHandler(this.GeneralRestoreDefaultSettingsButton_Click);
             // 
             // groupBox5
             // 
@@ -299,6 +320,7 @@ namespace Sekiro40v
             this.totalDamageInput.Name = "totalDamageInput";
             this.totalDamageInput.Size = new System.Drawing.Size(100, 23);
             this.totalDamageInput.TabIndex = 1;
+            this.totalDamageInput.ValueChanged += new System.EventHandler(this.totalDamageInput_ValueChanged);
             // 
             // totalDeathsInput
             // 
@@ -311,6 +333,7 @@ namespace Sekiro40v
             this.totalDeathsInput.Name = "totalDeathsInput";
             this.totalDeathsInput.Size = new System.Drawing.Size(100, 23);
             this.totalDeathsInput.TabIndex = 0;
+            this.totalDeathsInput.ValueChanged += new System.EventHandler(this.totalDeathsInput_ValueChanged);
             // 
             // groupBox2
             // 
@@ -775,11 +798,13 @@ namespace Sekiro40v
             this.statusStrip1.Location = new System.Drawing.Point(3, 435);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(298, 22);
+            this.statusStrip1.SizingGrip = false;
             this.statusStrip1.TabIndex = 1;
             this.statusStrip1.Text = "statusStrip1";
             // 
             // toolStripStatusLabel1
             // 
+            this.toolStripStatusLabel1.ForeColor = System.Drawing.SystemColors.GrayText;
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
             this.toolStripStatusLabel1.Size = new System.Drawing.Size(115, 17);
             this.toolStripStatusLabel1.Text = "sekiro40v by kubagp";
@@ -788,16 +813,6 @@ namespace Sekiro40v
             // colorDialog1
             // 
             this.colorDialog1.AnyColor = true;
-            // 
-            // GeneralRestoreDefaultSettingsButton
-            // 
-            this.GeneralRestoreDefaultSettingsButton.Location = new System.Drawing.Point(6, 372);
-            this.GeneralRestoreDefaultSettingsButton.Name = "GeneralRestoreDefaultSettingsButton";
-            this.GeneralRestoreDefaultSettingsButton.Size = new System.Drawing.Size(159, 23);
-            this.GeneralRestoreDefaultSettingsButton.TabIndex = 2;
-            this.GeneralRestoreDefaultSettingsButton.Text = "Restore default settings";
-            this.GeneralRestoreDefaultSettingsButton.UseVisualStyleBackColor = true;
-            this.GeneralRestoreDefaultSettingsButton.Click += new System.EventHandler(this.GeneralRestoreDefaultSettingsButton_Click);
             // 
             // Form1
             // 
@@ -909,6 +924,7 @@ namespace Sekiro40v
         private System.Windows.Forms.Label DeathCounterImageSizeLabel;
         private System.Windows.Forms.TrackBar DeathCounterImageSizeInput;
         private System.Windows.Forms.Button GeneralRestoreDefaultSettingsButton;
+        private System.Windows.Forms.Button GeneralEraseStatisticsButton;
     }
 }
 
