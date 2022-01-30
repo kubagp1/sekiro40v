@@ -65,7 +65,7 @@ namespace Sekiro40v
             this.label9 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.deathCounterTab = new System.Windows.Forms.TabPage();
             this.DeathCounterCopyUrlButton = new System.Windows.Forms.Button();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.label22 = new System.Windows.Forms.Label();
@@ -89,9 +89,11 @@ namespace Sekiro40v
             this.DeathCounterCounterInput = new System.Windows.Forms.NumericUpDown();
             this.DeathCounterDecrementButton = new System.Windows.Forms.Button();
             this.DeathCounterIncrementButton = new System.Windows.Forms.Button();
+            this.painSenderTab = new System.Windows.Forms.TabPage();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
+            this.twitchIntegrationTab = new System.Windows.Forms.TabPage();
             this.tabControl1.SuspendLayout();
             this.generalTab.SuspendLayout();
             this.groupBox5.SuspendLayout();
@@ -106,7 +108,7 @@ namespace Sekiro40v
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.memoryOffsetInput)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.maxReadsPerMinuteInput)).BeginInit();
-            this.tabPage1.SuspendLayout();
+            this.deathCounterTab.SuspendLayout();
             this.groupBox6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DeathCounterImageSizeInput)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DeathCounterImageOffsetYInput)).BeginInit();
@@ -119,12 +121,16 @@ namespace Sekiro40v
             // 
             this.tabControl1.Controls.Add(this.generalTab);
             this.tabControl1.Controls.Add(this.memoryHookTab);
-            this.tabControl1.Controls.Add(this.tabPage1);
+            this.tabControl1.Controls.Add(this.deathCounterTab);
+            this.tabControl1.Controls.Add(this.painSenderTab);
+            this.tabControl1.Controls.Add(this.twitchIntegrationTab);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Top;
             this.tabControl1.Location = new System.Drawing.Point(3, 3);
+            this.tabControl1.Multiline = true;
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(298, 429);
+            this.tabControl1.SizeMode = System.Windows.Forms.TabSizeMode.FillToRight;
             this.tabControl1.TabIndex = 0;
             // 
             // generalTab
@@ -133,17 +139,17 @@ namespace Sekiro40v
             this.generalTab.Controls.Add(this.GeneralRestoreDefaultSettingsButton);
             this.generalTab.Controls.Add(this.groupBox5);
             this.generalTab.Controls.Add(this.groupBox4);
-            this.generalTab.Location = new System.Drawing.Point(4, 24);
+            this.generalTab.Location = new System.Drawing.Point(4, 44);
             this.generalTab.Name = "generalTab";
             this.generalTab.Padding = new System.Windows.Forms.Padding(3);
-            this.generalTab.Size = new System.Drawing.Size(290, 401);
+            this.generalTab.Size = new System.Drawing.Size(290, 381);
             this.generalTab.TabIndex = 0;
             this.generalTab.Text = "General";
             this.generalTab.UseVisualStyleBackColor = true;
             // 
             // GeneralEraseStatisticsButton
             // 
-            this.GeneralEraseStatisticsButton.Location = new System.Drawing.Point(6, 343);
+            this.GeneralEraseStatisticsButton.Location = new System.Drawing.Point(6, 323);
             this.GeneralEraseStatisticsButton.Name = "GeneralEraseStatisticsButton";
             this.GeneralEraseStatisticsButton.Size = new System.Drawing.Size(159, 23);
             this.GeneralEraseStatisticsButton.TabIndex = 3;
@@ -152,7 +158,7 @@ namespace Sekiro40v
             // 
             // GeneralRestoreDefaultSettingsButton
             // 
-            this.GeneralRestoreDefaultSettingsButton.Location = new System.Drawing.Point(6, 372);
+            this.GeneralRestoreDefaultSettingsButton.Location = new System.Drawing.Point(6, 352);
             this.GeneralRestoreDefaultSettingsButton.Name = "GeneralRestoreDefaultSettingsButton";
             this.GeneralRestoreDefaultSettingsButton.Size = new System.Drawing.Size(159, 23);
             this.GeneralRestoreDefaultSettingsButton.TabIndex = 2;
@@ -275,7 +281,7 @@ namespace Sekiro40v
             this.groupBox3.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupBox3.Location = new System.Drawing.Point(3, 261);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(284, 134);
+            this.groupBox3.Size = new System.Drawing.Size(284, 117);
             this.groupBox3.TabIndex = 2;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Statistics";
@@ -301,7 +307,7 @@ namespace Sekiro40v
             // resetStatisticsButton
             // 
             this.resetStatisticsButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.resetStatisticsButton.Location = new System.Drawing.Point(6, 105);
+            this.resetStatisticsButton.Location = new System.Drawing.Point(6, 88);
             this.resetStatisticsButton.Name = "resetStatisticsButton";
             this.resetStatisticsButton.Size = new System.Drawing.Size(100, 23);
             this.resetStatisticsButton.TabIndex = 2;
@@ -512,23 +518,23 @@ namespace Sekiro40v
             this.label1.TabIndex = 0;
             this.label1.Text = "Process name";
             // 
-            // tabPage1
+            // deathCounterTab
             // 
-            this.tabPage1.Controls.Add(this.DeathCounterCopyUrlButton);
-            this.tabPage1.Controls.Add(this.groupBox6);
-            this.tabPage1.Controls.Add(this.DeathCounterCounterInput);
-            this.tabPage1.Controls.Add(this.DeathCounterDecrementButton);
-            this.tabPage1.Controls.Add(this.DeathCounterIncrementButton);
-            this.tabPage1.Location = new System.Drawing.Point(4, 24);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(290, 401);
-            this.tabPage1.TabIndex = 2;
-            this.tabPage1.Text = "DeathCounter";
+            this.deathCounterTab.Controls.Add(this.DeathCounterCopyUrlButton);
+            this.deathCounterTab.Controls.Add(this.groupBox6);
+            this.deathCounterTab.Controls.Add(this.DeathCounterCounterInput);
+            this.deathCounterTab.Controls.Add(this.DeathCounterDecrementButton);
+            this.deathCounterTab.Controls.Add(this.DeathCounterIncrementButton);
+            this.deathCounterTab.Location = new System.Drawing.Point(4, 24);
+            this.deathCounterTab.Name = "deathCounterTab";
+            this.deathCounterTab.Padding = new System.Windows.Forms.Padding(3);
+            this.deathCounterTab.Size = new System.Drawing.Size(290, 401);
+            this.deathCounterTab.TabIndex = 2;
+            this.deathCounterTab.Text = "DeathCounter";
             // 
             // DeathCounterCopyUrlButton
             // 
-            this.DeathCounterCopyUrlButton.Location = new System.Drawing.Point(6, 372);
+            this.DeathCounterCopyUrlButton.Location = new System.Drawing.Point(6, 352);
             this.DeathCounterCopyUrlButton.Name = "DeathCounterCopyUrlButton";
             this.DeathCounterCopyUrlButton.Size = new System.Drawing.Size(75, 23);
             this.DeathCounterCopyUrlButton.TabIndex = 3;
@@ -791,6 +797,16 @@ namespace Sekiro40v
             this.DeathCounterIncrementButton.UseVisualStyleBackColor = true;
             this.DeathCounterIncrementButton.Click += new System.EventHandler(this.DeathCounterIncrementButton_Click);
             // 
+            // painSenderTab
+            // 
+            this.painSenderTab.Location = new System.Drawing.Point(4, 44);
+            this.painSenderTab.Name = "painSenderTab";
+            this.painSenderTab.Padding = new System.Windows.Forms.Padding(3);
+            this.painSenderTab.Size = new System.Drawing.Size(290, 381);
+            this.painSenderTab.TabIndex = 3;
+            this.painSenderTab.Text = "Pain Sender";
+            this.painSenderTab.UseVisualStyleBackColor = true;
+            // 
             // statusStrip1
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -813,6 +829,15 @@ namespace Sekiro40v
             // colorDialog1
             // 
             this.colorDialog1.AnyColor = true;
+            // 
+            // twitchIntegrationTab
+            // 
+            this.twitchIntegrationTab.Location = new System.Drawing.Point(4, 44);
+            this.twitchIntegrationTab.Name = "twitchIntegrationTab";
+            this.twitchIntegrationTab.Size = new System.Drawing.Size(290, 381);
+            this.twitchIntegrationTab.TabIndex = 4;
+            this.twitchIntegrationTab.Text = "Twitch Integration";
+            this.twitchIntegrationTab.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
@@ -846,7 +871,7 @@ namespace Sekiro40v
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.memoryOffsetInput)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.maxReadsPerMinuteInput)).EndInit();
-            this.tabPage1.ResumeLayout(false);
+            this.deathCounterTab.ResumeLayout(false);
             this.groupBox6.ResumeLayout(false);
             this.groupBox6.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DeathCounterImageSizeInput)).EndInit();
@@ -890,7 +915,7 @@ namespace Sekiro40v
         private System.Windows.Forms.Button resetStatisticsButton;
         private System.Windows.Forms.NumericUpDown totalDamageInput;
         private System.Windows.Forms.NumericUpDown totalDeathsInput;
-        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TabPage deathCounterTab;
         private System.Windows.Forms.NumericUpDown DeathCounterCounterInput;
         private System.Windows.Forms.Button DeathCounterDecrementButton;
         private System.Windows.Forms.Button DeathCounterIncrementButton;
@@ -925,6 +950,8 @@ namespace Sekiro40v
         private System.Windows.Forms.TrackBar DeathCounterImageSizeInput;
         private System.Windows.Forms.Button GeneralRestoreDefaultSettingsButton;
         private System.Windows.Forms.Button GeneralEraseStatisticsButton;
+        private System.Windows.Forms.TabPage painSenderTab;
+        private System.Windows.Forms.TabPage twitchIntegrationTab;
     }
 }
 
