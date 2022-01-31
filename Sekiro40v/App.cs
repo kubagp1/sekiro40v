@@ -10,6 +10,7 @@ namespace Sekiro40v
         public MemoryHook memoryHook;
         public DeathCounter deathCounter;
         public WebServerManager webServerManager;
+        public PainSender painSender;
 
         public App()
         {
@@ -22,6 +23,8 @@ namespace Sekiro40v
             memoryHook.DeathEventHandler += MemoryHook_DeathEventHandler;
 
             webServerManager = new(Config.settings.general, deathCounter.Module);
+
+            painSender = new(Config.settings.painSender, StatisticsManager.statistics.painSender);
         }
 
         private void MemoryHook_DeathEventHandler(object sender, EventArgs e)

@@ -16,10 +16,16 @@ namespace Sekiro40v
             public int deaths { get; set; }
         }
 
+        public class PainSender
+        {
+            public int duration { get; set; }
+        }
+
         public class Statistics
         {
             public MemoryHook memoryHook { get; set; }
             public DeathCounter deathCounter { get; set; }
+            public PainSender painSender { get; set; }
         }
 
         public string Path = @"statistics.json";
@@ -58,6 +64,10 @@ namespace Sekiro40v
                 deathCounter = new DeathCounter()
                 {
                     deaths = 0,
+                },
+                painSender = new PainSender()
+                {
+                    duration = 0,
                 }
             };
 

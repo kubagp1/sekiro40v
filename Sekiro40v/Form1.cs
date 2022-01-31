@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
@@ -39,7 +40,7 @@ namespace Sekiro40v
             app.memoryHook.DamageEventHandler += MemoryHook_DamageEventHandler;
             app.memoryHook.DeathEventHandler += MemoryHook_DeathEventHandler;
 
-            #endregion MemoryHook
+            #endregion
 
             #region DeathCounter
 
@@ -81,7 +82,7 @@ namespace Sekiro40v
 
             app.deathCounter.CounterChangedEventHandler += DeathCounter_CounterChangedEventHandler;
 
-            #endregion DeathCounter
+            #endregion
 
             #region General
 
@@ -92,8 +93,46 @@ namespace Sekiro40v
 
             app.webServerManager.WebServerStateChangedEventHandler += WebServerManager_WebServerStateChangedEventHandler;
 
-            #endregion General
+            #endregion
+
+            #region PainSender
+
+            RefreshPortList();
+            app.painSender.StatusChanged += PainSender_StatusChanged;
+            app.painSender.StatisticsUpdated += PainSender_StatisticsUpdated;
+            PainSender_StatusChanged(app.painSender, EventArgs.Empty);
+            PainSender_StatisticsUpdated(app.painSender, EventArgs.Empty);
+
+            #endregion
         }
+
+        #region General
+        private void toolStripStatusLabel1_Click(object sender, EventArgs e)
+        {
+            Process.Start("explorer", "https://github.com/kubagp1/sekiro40v");
+        }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            app.Config.SaveSettings();
+            app.StatisticsManager.SaveStatistics();
+        }
+
+        private void GeneralRestoreDefaultSettingsButton_Click(object sender, EventArgs e)
+        {
+            var userSure = MessageBox.Show(
+                "Are you sure you want to reset all settings?\nApplication will restart!",
+                "Are you sure?",
+                MessageBoxButtons.YesNoCancel,
+                MessageBoxIcon.Question);
+
+            if (userSure == DialogResult.Yes)
+            {
+                app.Config.RestoreDefaults();
+                Application.Restart();
+            }
+        }
+        #endregion
 
         #region WebServer Event Handler
 
@@ -298,30 +337,76 @@ namespace Sekiro40v
 
         #endregion MemoryHook Event Handlers
 
-        private void toolStripStatusLabel1_Click(object sender, EventArgs e)
+        #region PainSender Event Handlers and related
+
+        private void RefreshPortList()
         {
-            Process.Start("explorer", "https://github.com/kubagp1/sekiro40v");
+            List<string> portList = new();
+            portList.Add("None");
+            portList.AddRange(app.painSender.PortList);
+
+            painSenderComboBox.Items.Clear();
+            painSenderComboBox.Items.AddRange(portList.ToArray());
+            int v = painSenderComboBox.Items.IndexOf(app.painSender.PortName);
+            if (v != -1) painSenderComboBox.SelectedIndex = v;
+            else painSenderComboBox.SelectedIndex = 0;
         }
 
-        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        private void painSenderRefreshButton_Click(object sender, EventArgs e)
         {
-            app.Config.SaveSettings();
-            app.StatisticsManager.SaveStatistics();
+            RefreshPortList();
         }
 
-        private void GeneralRestoreDefaultSettingsButton_Click(object sender, EventArgs e)
+        private void painSenderComboBox_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            var userSure = MessageBox.Show(
-                "Are you sure you want to reset all settings?\nApplication will restart!", 
-                "Are you sure?", 
-                MessageBoxButtons.YesNoCancel,
-                MessageBoxIcon.Question);
+            app.painSender.PortName = painSenderComboBox.SelectedItem.ToString();
+        }
+
+        private void painSenderComboBox_TextUpdate(object sender, EventArgs e)
+        {
+            app.painSender.PortName = painSenderComboBox.Text;
+        }
+
+        private void PainSender_StatusChanged(object sender, EventArgs e)
+        {
+            painSenderStatus.Text = app.painSender.Status.ToString();
+            generalPainSenderStatus.Text = app.painSender.Status.ToString();
+        }
+
+        private void painSenderPairButton_Click(object sender, EventArgs e)
+        {
+            app.painSender.Pair();
+        }
+
+        private void painSenderResetStatistics_Click(object sender, EventArgs e)
+        {
+            var userSure = MessageBox.Show("Are you sure you want to reset all statistics of PainSender?", "Are you sure?", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
 
             if (userSure == DialogResult.Yes)
             {
-                app.Config.RestoreDefaults();
-                Application.Restart();
+                app.StatisticsManager.statistics.painSender.duration = 0;
+                PainSender_StatisticsUpdated(app.painSender, EventArgs.Empty);
             }
         }
+
+        private void painSenderManualShockButton_Click(object sender, EventArgs e)
+        {
+            int strength = (int)painSenderManualShockStrength.Value;
+            int duration = (int)painSenderManualShockDuration.Value;
+
+            app.painSender.SendShock(strength, duration);
+        }
+
+        private void PainSender_StatisticsUpdated(object sender, EventArgs e)
+        {
+            painSenderTotalDuration.Value = app.painSender.Statistics.duration;
+        }
+
+        private void painSenderTotalDuration_ValueChanged(object sender, EventArgs e)
+        {
+            app.StatisticsManager.statistics.painSender.duration = (int)painSenderTotalDuration.Value;
+        }
+
+        #endregion
     }
 }

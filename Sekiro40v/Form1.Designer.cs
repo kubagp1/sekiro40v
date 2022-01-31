@@ -29,42 +29,29 @@ namespace Sekiro40v
         /// </summary>
         private void InitializeComponent()
         {
-            this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.generalTab = new System.Windows.Forms.TabPage();
-            this.GeneralEraseStatisticsButton = new System.Windows.Forms.Button();
-            this.GeneralRestoreDefaultSettingsButton = new System.Windows.Forms.Button();
-            this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.GeneralStatusMemoryHookInput = new System.Windows.Forms.TextBox();
-            this.GeneralStatusWebserverInput = new System.Windows.Forms.TextBox();
-            this.label13 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.webServerPortInput = new System.Windows.Forms.NumericUpDown();
-            this.label11 = new System.Windows.Forms.Label();
-            this.memoryHookTab = new System.Windows.Forms.TabPage();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.resetStatisticsButton = new System.Windows.Forms.Button();
-            this.totalDamageInput = new System.Windows.Forms.NumericUpDown();
-            this.totalDeathsInput = new System.Windows.Forms.NumericUpDown();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.maxHPInput = new System.Windows.Forms.NumericUpDown();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.currentHPInput = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.pidInput = new System.Windows.Forms.TextBox();
-            this.statusInput = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.memoryOffsetInput = new System.Windows.Forms.NumericUpDown();
-            this.maxReadsPerMinuteInput = new System.Windows.Forms.NumericUpDown();
-            this.processNameInput = new System.Windows.Forms.TextBox();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.colorDialog1 = new System.Windows.Forms.ColorDialog();
+            this.painSenderTab = new System.Windows.Forms.TabPage();
+            this.groupBox10 = new System.Windows.Forms.GroupBox();
+            this.label25 = new System.Windows.Forms.Label();
+            this.label24 = new System.Windows.Forms.Label();
+            this.painSenderManualShockButton = new System.Windows.Forms.Button();
+            this.painSenderManualShockDuration = new System.Windows.Forms.NumericUpDown();
+            this.painSenderManualShockStrength = new System.Windows.Forms.NumericUpDown();
+            this.groupBox9 = new System.Windows.Forms.GroupBox();
+            this.painSenderTotalDuration = new System.Windows.Forms.NumericUpDown();
+            this.painSenderResetStatistics = new System.Windows.Forms.Button();
+            this.label23 = new System.Windows.Forms.Label();
+            this.groupBox8 = new System.Windows.Forms.GroupBox();
+            this.painSenderStatus = new System.Windows.Forms.TextBox();
+            this.label21 = new System.Windows.Forms.Label();
+            this.groupBox7 = new System.Windows.Forms.GroupBox();
+            this.painSenderComboBox = new System.Windows.Forms.ComboBox();
+            this.label20 = new System.Windows.Forms.Label();
+            this.painSenderRefreshButton = new System.Windows.Forms.Button();
+            this.painSenderPairButton = new System.Windows.Forms.Button();
             this.deathCounterTab = new System.Windows.Forms.TabPage();
             this.DeathCounterCopyUrlButton = new System.Windows.Forms.Button();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
@@ -89,16 +76,59 @@ namespace Sekiro40v
             this.DeathCounterCounterInput = new System.Windows.Forms.NumericUpDown();
             this.DeathCounterDecrementButton = new System.Windows.Forms.Button();
             this.DeathCounterIncrementButton = new System.Windows.Forms.Button();
-            this.painSenderTab = new System.Windows.Forms.TabPage();
-            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.colorDialog1 = new System.Windows.Forms.ColorDialog();
-            this.twitchIntegrationTab = new System.Windows.Forms.TabPage();
-            this.tabControl1.SuspendLayout();
-            this.generalTab.SuspendLayout();
-            this.groupBox5.SuspendLayout();
-            this.groupBox4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.webServerPortInput)).BeginInit();
+            this.memoryHookTab = new System.Windows.Forms.TabPage();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.resetStatisticsButton = new System.Windows.Forms.Button();
+            this.totalDamageInput = new System.Windows.Forms.NumericUpDown();
+            this.totalDeathsInput = new System.Windows.Forms.NumericUpDown();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.maxHPInput = new System.Windows.Forms.NumericUpDown();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.currentHPInput = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.pidInput = new System.Windows.Forms.TextBox();
+            this.statusInput = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.memoryOffsetInput = new System.Windows.Forms.NumericUpDown();
+            this.maxReadsPerMinuteInput = new System.Windows.Forms.NumericUpDown();
+            this.processNameInput = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.generalTab = new System.Windows.Forms.TabPage();
+            this.GeneralEraseStatisticsButton = new System.Windows.Forms.Button();
+            this.GeneralRestoreDefaultSettingsButton = new System.Windows.Forms.Button();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.generalPainSenderStatus = new System.Windows.Forms.TextBox();
+            this.GeneralStatusMemoryHookInput = new System.Windows.Forms.TextBox();
+            this.label26 = new System.Windows.Forms.Label();
+            this.GeneralStatusWebserverInput = new System.Windows.Forms.TextBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.webServerPortInput = new System.Windows.Forms.NumericUpDown();
+            this.label11 = new System.Windows.Forms.Label();
+            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.statusStrip1.SuspendLayout();
+            this.painSenderTab.SuspendLayout();
+            this.groupBox10.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.painSenderManualShockDuration)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.painSenderManualShockStrength)).BeginInit();
+            this.groupBox9.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.painSenderTotalDuration)).BeginInit();
+            this.groupBox8.SuspendLayout();
+            this.groupBox7.SuspendLayout();
+            this.deathCounterTab.SuspendLayout();
+            this.groupBox6.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DeathCounterImageSizeInput)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DeathCounterImageOffsetYInput)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DeathCounterImageOffsetXInput)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DeathCounterCounterInput)).BeginInit();
             this.memoryHookTab.SuspendLayout();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.totalDamageInput)).BeginInit();
@@ -108,415 +138,246 @@ namespace Sekiro40v
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.memoryOffsetInput)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.maxReadsPerMinuteInput)).BeginInit();
-            this.deathCounterTab.SuspendLayout();
-            this.groupBox6.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.DeathCounterImageSizeInput)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.DeathCounterImageOffsetYInput)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.DeathCounterImageOffsetXInput)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.DeathCounterCounterInput)).BeginInit();
-            this.statusStrip1.SuspendLayout();
+            this.generalTab.SuspendLayout();
+            this.groupBox5.SuspendLayout();
+            this.groupBox4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.webServerPortInput)).BeginInit();
+            this.tabControl1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // tabControl1
+            // statusStrip1
             // 
-            this.tabControl1.Controls.Add(this.generalTab);
-            this.tabControl1.Controls.Add(this.memoryHookTab);
-            this.tabControl1.Controls.Add(this.deathCounterTab);
-            this.tabControl1.Controls.Add(this.painSenderTab);
-            this.tabControl1.Controls.Add(this.twitchIntegrationTab);
-            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.tabControl1.Location = new System.Drawing.Point(3, 3);
-            this.tabControl1.Multiline = true;
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(298, 429);
-            this.tabControl1.SizeMode = System.Windows.Forms.TabSizeMode.FillToRight;
-            this.tabControl1.TabIndex = 0;
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripStatusLabel1});
+            this.statusStrip1.Location = new System.Drawing.Point(3, 410);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(298, 22);
+            this.statusStrip1.SizingGrip = false;
+            this.statusStrip1.TabIndex = 1;
+            this.statusStrip1.Text = "statusStrip1";
             // 
-            // generalTab
+            // toolStripStatusLabel1
             // 
-            this.generalTab.Controls.Add(this.GeneralEraseStatisticsButton);
-            this.generalTab.Controls.Add(this.GeneralRestoreDefaultSettingsButton);
-            this.generalTab.Controls.Add(this.groupBox5);
-            this.generalTab.Controls.Add(this.groupBox4);
-            this.generalTab.Location = new System.Drawing.Point(4, 44);
-            this.generalTab.Name = "generalTab";
-            this.generalTab.Padding = new System.Windows.Forms.Padding(3);
-            this.generalTab.Size = new System.Drawing.Size(290, 381);
-            this.generalTab.TabIndex = 0;
-            this.generalTab.Text = "General";
-            this.generalTab.UseVisualStyleBackColor = true;
+            this.toolStripStatusLabel1.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(115, 17);
+            this.toolStripStatusLabel1.Text = "sekiro40v by kubagp";
+            this.toolStripStatusLabel1.Click += new System.EventHandler(this.toolStripStatusLabel1_Click);
             // 
-            // GeneralEraseStatisticsButton
+            // colorDialog1
             // 
-            this.GeneralEraseStatisticsButton.Location = new System.Drawing.Point(6, 323);
-            this.GeneralEraseStatisticsButton.Name = "GeneralEraseStatisticsButton";
-            this.GeneralEraseStatisticsButton.Size = new System.Drawing.Size(159, 23);
-            this.GeneralEraseStatisticsButton.TabIndex = 3;
-            this.GeneralEraseStatisticsButton.Text = "Erase all statistics";
-            this.GeneralEraseStatisticsButton.UseVisualStyleBackColor = true;
+            this.colorDialog1.AnyColor = true;
             // 
-            // GeneralRestoreDefaultSettingsButton
+            // painSenderTab
             // 
-            this.GeneralRestoreDefaultSettingsButton.Location = new System.Drawing.Point(6, 352);
-            this.GeneralRestoreDefaultSettingsButton.Name = "GeneralRestoreDefaultSettingsButton";
-            this.GeneralRestoreDefaultSettingsButton.Size = new System.Drawing.Size(159, 23);
-            this.GeneralRestoreDefaultSettingsButton.TabIndex = 2;
-            this.GeneralRestoreDefaultSettingsButton.Text = "Restore default settings";
-            this.GeneralRestoreDefaultSettingsButton.UseVisualStyleBackColor = true;
-            this.GeneralRestoreDefaultSettingsButton.Click += new System.EventHandler(this.GeneralRestoreDefaultSettingsButton_Click);
+            this.painSenderTab.Controls.Add(this.groupBox10);
+            this.painSenderTab.Controls.Add(this.groupBox9);
+            this.painSenderTab.Controls.Add(this.groupBox8);
+            this.painSenderTab.Controls.Add(this.groupBox7);
+            this.painSenderTab.Controls.Add(this.painSenderPairButton);
+            this.painSenderTab.Location = new System.Drawing.Point(4, 24);
+            this.painSenderTab.Name = "painSenderTab";
+            this.painSenderTab.Padding = new System.Windows.Forms.Padding(3);
+            this.painSenderTab.Size = new System.Drawing.Size(290, 381);
+            this.painSenderTab.TabIndex = 3;
+            this.painSenderTab.Text = "PainSender";
+            this.painSenderTab.UseVisualStyleBackColor = true;
             // 
-            // groupBox5
+            // groupBox10
             // 
-            this.groupBox5.Controls.Add(this.GeneralStatusMemoryHookInput);
-            this.groupBox5.Controls.Add(this.GeneralStatusWebserverInput);
-            this.groupBox5.Controls.Add(this.label13);
-            this.groupBox5.Controls.Add(this.label12);
-            this.groupBox5.Dock = System.Windows.Forms.DockStyle.Top;
-            this.groupBox5.Location = new System.Drawing.Point(3, 57);
-            this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(284, 85);
-            this.groupBox5.TabIndex = 1;
-            this.groupBox5.TabStop = false;
-            this.groupBox5.Text = "Status";
+            this.groupBox10.Controls.Add(this.label25);
+            this.groupBox10.Controls.Add(this.label24);
+            this.groupBox10.Controls.Add(this.painSenderManualShockButton);
+            this.groupBox10.Controls.Add(this.painSenderManualShockDuration);
+            this.groupBox10.Controls.Add(this.painSenderManualShockStrength);
+            this.groupBox10.Dock = System.Windows.Forms.DockStyle.Top;
+            this.groupBox10.Location = new System.Drawing.Point(3, 239);
+            this.groupBox10.Name = "groupBox10";
+            this.groupBox10.Size = new System.Drawing.Size(284, 69);
+            this.groupBox10.TabIndex = 7;
+            this.groupBox10.TabStop = false;
+            this.groupBox10.Text = "Testing";
             // 
-            // GeneralStatusMemoryHookInput
+            // label25
             // 
-            this.GeneralStatusMemoryHookInput.Enabled = false;
-            this.GeneralStatusMemoryHookInput.Location = new System.Drawing.Point(178, 51);
-            this.GeneralStatusMemoryHookInput.Name = "GeneralStatusMemoryHookInput";
-            this.GeneralStatusMemoryHookInput.Size = new System.Drawing.Size(100, 23);
-            this.GeneralStatusMemoryHookInput.TabIndex = 1;
+            this.label25.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label25.AutoSize = true;
+            this.label25.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.label25.Location = new System.Drawing.Point(106, 22);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(80, 15);
+            this.label25.TabIndex = 3;
+            this.label25.Text = "Duration (ms)";
             // 
-            // GeneralStatusWebserverInput
+            // label24
             // 
-            this.GeneralStatusWebserverInput.Enabled = false;
-            this.GeneralStatusWebserverInput.Location = new System.Drawing.Point(178, 22);
-            this.GeneralStatusWebserverInput.Name = "GeneralStatusWebserverInput";
-            this.GeneralStatusWebserverInput.Size = new System.Drawing.Size(100, 23);
-            this.GeneralStatusWebserverInput.TabIndex = 1;
+            this.label24.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label24.AutoSize = true;
+            this.label24.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.label24.Location = new System.Drawing.Point(3, 22);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(98, 15);
+            this.label24.TabIndex = 2;
+            this.label24.Text = "Strength (0 - 100)";
             // 
-            // label13
+            // painSenderManualShockButton
             // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(6, 54);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(81, 15);
-            this.label13.TabIndex = 0;
-            this.label13.Text = "MemoryHook";
+            this.painSenderManualShockButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.painSenderManualShockButton.Location = new System.Drawing.Point(219, 40);
+            this.painSenderManualShockButton.Name = "painSenderManualShockButton";
+            this.painSenderManualShockButton.Size = new System.Drawing.Size(59, 23);
+            this.painSenderManualShockButton.TabIndex = 1;
+            this.painSenderManualShockButton.Text = "Shock";
+            this.painSenderManualShockButton.UseVisualStyleBackColor = true;
+            this.painSenderManualShockButton.Click += new System.EventHandler(this.painSenderManualShockButton_Click);
             // 
-            // label12
+            // painSenderManualShockDuration
             // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(6, 25);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(63, 15);
-            this.label12.TabIndex = 0;
-            this.label12.Text = "WebServer";
-            // 
-            // groupBox4
-            // 
-            this.groupBox4.Controls.Add(this.webServerPortInput);
-            this.groupBox4.Controls.Add(this.label11);
-            this.groupBox4.Dock = System.Windows.Forms.DockStyle.Top;
-            this.groupBox4.Location = new System.Drawing.Point(3, 3);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(284, 54);
-            this.groupBox4.TabIndex = 0;
-            this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "Settings";
-            // 
-            // webServerPortInput
-            // 
-            this.webServerPortInput.Location = new System.Drawing.Point(178, 22);
-            this.webServerPortInput.Maximum = new decimal(new int[] {
-            65535,
+            this.painSenderManualShockDuration.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.painSenderManualShockDuration.Location = new System.Drawing.Point(110, 40);
+            this.painSenderManualShockDuration.Maximum = new decimal(new int[] {
+            3000,
             0,
             0,
             0});
-            this.webServerPortInput.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.webServerPortInput.Name = "webServerPortInput";
-            this.webServerPortInput.Size = new System.Drawing.Size(100, 23);
-            this.webServerPortInput.TabIndex = 1;
-            this.webServerPortInput.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.webServerPortInput.ValueChanged += new System.EventHandler(this.webServerPortInput_ValueChanged);
+            this.painSenderManualShockDuration.Name = "painSenderManualShockDuration";
+            this.painSenderManualShockDuration.Size = new System.Drawing.Size(103, 23);
+            this.painSenderManualShockDuration.TabIndex = 0;
             // 
-            // label11
+            // painSenderManualShockStrength
             // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(6, 24);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(88, 15);
-            this.label11.TabIndex = 0;
-            this.label11.Text = "WebServer port";
+            this.painSenderManualShockStrength.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.painSenderManualShockStrength.Location = new System.Drawing.Point(6, 40);
+            this.painSenderManualShockStrength.Name = "painSenderManualShockStrength";
+            this.painSenderManualShockStrength.Size = new System.Drawing.Size(98, 23);
+            this.painSenderManualShockStrength.TabIndex = 0;
             // 
-            // memoryHookTab
+            // groupBox9
             // 
-            this.memoryHookTab.Controls.Add(this.groupBox3);
-            this.memoryHookTab.Controls.Add(this.groupBox2);
-            this.memoryHookTab.Controls.Add(this.groupBox1);
-            this.memoryHookTab.Location = new System.Drawing.Point(4, 24);
-            this.memoryHookTab.Name = "memoryHookTab";
-            this.memoryHookTab.Padding = new System.Windows.Forms.Padding(3);
-            this.memoryHookTab.Size = new System.Drawing.Size(290, 401);
-            this.memoryHookTab.TabIndex = 1;
-            this.memoryHookTab.Text = "MemoryHook";
-            this.memoryHookTab.UseVisualStyleBackColor = true;
+            this.groupBox9.Controls.Add(this.painSenderTotalDuration);
+            this.groupBox9.Controls.Add(this.painSenderResetStatistics);
+            this.groupBox9.Controls.Add(this.label23);
+            this.groupBox9.Dock = System.Windows.Forms.DockStyle.Top;
+            this.groupBox9.Location = new System.Drawing.Point(3, 144);
+            this.groupBox9.Name = "groupBox9";
+            this.groupBox9.Size = new System.Drawing.Size(284, 95);
+            this.groupBox9.TabIndex = 6;
+            this.groupBox9.TabStop = false;
+            this.groupBox9.Text = "Statistics";
             // 
-            // groupBox3
+            // painSenderTotalDuration
             // 
-            this.groupBox3.Controls.Add(this.label10);
-            this.groupBox3.Controls.Add(this.label8);
-            this.groupBox3.Controls.Add(this.resetStatisticsButton);
-            this.groupBox3.Controls.Add(this.totalDamageInput);
-            this.groupBox3.Controls.Add(this.totalDeathsInput);
-            this.groupBox3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.groupBox3.Location = new System.Drawing.Point(3, 261);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(284, 117);
-            this.groupBox3.TabIndex = 2;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Statistics";
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(7, 53);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(78, 15);
-            this.label10.TabIndex = 4;
-            this.label10.Text = "Total damage";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(7, 24);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(70, 15);
-            this.label8.TabIndex = 3;
-            this.label8.Text = "Total deaths";
-            // 
-            // resetStatisticsButton
-            // 
-            this.resetStatisticsButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.resetStatisticsButton.Location = new System.Drawing.Point(6, 88);
-            this.resetStatisticsButton.Name = "resetStatisticsButton";
-            this.resetStatisticsButton.Size = new System.Drawing.Size(100, 23);
-            this.resetStatisticsButton.TabIndex = 2;
-            this.resetStatisticsButton.Text = "Reset statistics";
-            this.resetStatisticsButton.UseVisualStyleBackColor = true;
-            this.resetStatisticsButton.Click += new System.EventHandler(this.resetStatisticsButton_Click);
-            // 
-            // totalDamageInput
-            // 
-            this.totalDamageInput.Location = new System.Drawing.Point(178, 51);
-            this.totalDamageInput.Maximum = new decimal(new int[] {
+            this.painSenderTotalDuration.Location = new System.Drawing.Point(178, 23);
+            this.painSenderTotalDuration.Maximum = new decimal(new int[] {
             -1,
             -1,
             -1,
             0});
-            this.totalDamageInput.Name = "totalDamageInput";
-            this.totalDamageInput.Size = new System.Drawing.Size(100, 23);
-            this.totalDamageInput.TabIndex = 1;
-            this.totalDamageInput.ValueChanged += new System.EventHandler(this.totalDamageInput_ValueChanged);
+            this.painSenderTotalDuration.Name = "painSenderTotalDuration";
+            this.painSenderTotalDuration.Size = new System.Drawing.Size(100, 23);
+            this.painSenderTotalDuration.TabIndex = 3;
+            this.painSenderTotalDuration.ValueChanged += new System.EventHandler(this.painSenderTotalDuration_ValueChanged);
             // 
-            // totalDeathsInput
+            // painSenderResetStatistics
             // 
-            this.totalDeathsInput.Location = new System.Drawing.Point(178, 22);
-            this.totalDeathsInput.Maximum = new decimal(new int[] {
-            -1,
-            -1,
-            -1,
-            0});
-            this.totalDeathsInput.Name = "totalDeathsInput";
-            this.totalDeathsInput.Size = new System.Drawing.Size(100, 23);
-            this.totalDeathsInput.TabIndex = 0;
-            this.totalDeathsInput.ValueChanged += new System.EventHandler(this.totalDeathsInput_ValueChanged);
+            this.painSenderResetStatistics.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.painSenderResetStatistics.Location = new System.Drawing.Point(6, 66);
+            this.painSenderResetStatistics.Name = "painSenderResetStatistics";
+            this.painSenderResetStatistics.Size = new System.Drawing.Size(101, 23);
+            this.painSenderResetStatistics.TabIndex = 2;
+            this.painSenderResetStatistics.Text = "Reset statistics";
+            this.painSenderResetStatistics.UseVisualStyleBackColor = true;
+            this.painSenderResetStatistics.Click += new System.EventHandler(this.painSenderResetStatistics_Click);
             // 
-            // groupBox2
+            // label23
             // 
-            this.groupBox2.Controls.Add(this.maxHPInput);
-            this.groupBox2.Controls.Add(this.label6);
-            this.groupBox2.Controls.Add(this.label5);
-            this.groupBox2.Controls.Add(this.currentHPInput);
-            this.groupBox2.Controls.Add(this.label4);
-            this.groupBox2.Controls.Add(this.pidInput);
-            this.groupBox2.Controls.Add(this.statusInput);
-            this.groupBox2.Controls.Add(this.label3);
-            this.groupBox2.Controls.Add(this.label2);
-            this.groupBox2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.groupBox2.Location = new System.Drawing.Point(3, 117);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(284, 144);
-            this.groupBox2.TabIndex = 1;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Status";
+            this.label23.AutoSize = true;
+            this.label23.Location = new System.Drawing.Point(6, 25);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(130, 15);
+            this.label23.TabIndex = 1;
+            this.label23.Text = "Total shock duration (s)";
             // 
-            // maxHPInput
+            // groupBox8
             // 
-            this.maxHPInput.Location = new System.Drawing.Point(178, 109);
-            this.maxHPInput.Maximum = new decimal(new int[] {
-            -1,
-            -1,
-            -1,
-            0});
-            this.maxHPInput.Name = "maxHPInput";
-            this.maxHPInput.Size = new System.Drawing.Size(100, 23);
-            this.maxHPInput.TabIndex = 2;
-            this.maxHPInput.ValueChanged += new System.EventHandler(this.maxHPInput_ValueChanged);
+            this.groupBox8.Controls.Add(this.painSenderStatus);
+            this.groupBox8.Controls.Add(this.label21);
+            this.groupBox8.Dock = System.Windows.Forms.DockStyle.Top;
+            this.groupBox8.Location = new System.Drawing.Point(3, 88);
+            this.groupBox8.Name = "groupBox8";
+            this.groupBox8.Size = new System.Drawing.Size(284, 56);
+            this.groupBox8.TabIndex = 5;
+            this.groupBox8.TabStop = false;
+            this.groupBox8.Text = "Status";
             // 
-            // label6
+            // painSenderStatus
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(7, 111);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(52, 15);
-            this.label6.TabIndex = 8;
-            this.label6.Text = "Max. HP";
+            this.painSenderStatus.Enabled = false;
+            this.painSenderStatus.Location = new System.Drawing.Point(178, 22);
+            this.painSenderStatus.Name = "painSenderStatus";
+            this.painSenderStatus.Size = new System.Drawing.Size(100, 23);
+            this.painSenderStatus.TabIndex = 0;
             // 
-            // label5
+            // label21
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(7, 83);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(66, 15);
-            this.label5.TabIndex = 6;
-            this.label5.Text = "Current HP";
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(6, 25);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(39, 15);
+            this.label21.TabIndex = 1;
+            this.label21.Text = "Status";
             // 
-            // currentHPInput
+            // groupBox7
             // 
-            this.currentHPInput.Enabled = false;
-            this.currentHPInput.Location = new System.Drawing.Point(178, 80);
-            this.currentHPInput.Name = "currentHPInput";
-            this.currentHPInput.Size = new System.Drawing.Size(100, 23);
-            this.currentHPInput.TabIndex = 5;
+            this.groupBox7.Controls.Add(this.painSenderComboBox);
+            this.groupBox7.Controls.Add(this.label20);
+            this.groupBox7.Controls.Add(this.painSenderRefreshButton);
+            this.groupBox7.Dock = System.Windows.Forms.DockStyle.Top;
+            this.groupBox7.Location = new System.Drawing.Point(3, 3);
+            this.groupBox7.Name = "groupBox7";
+            this.groupBox7.Size = new System.Drawing.Size(284, 85);
+            this.groupBox7.TabIndex = 4;
+            this.groupBox7.TabStop = false;
+            this.groupBox7.Text = "Settings";
             // 
-            // label4
+            // painSenderComboBox
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(7, 53);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(25, 15);
-            this.label4.TabIndex = 4;
-            this.label4.Text = "PID";
+            this.painSenderComboBox.FormattingEnabled = true;
+            this.painSenderComboBox.Location = new System.Drawing.Point(178, 22);
+            this.painSenderComboBox.Name = "painSenderComboBox";
+            this.painSenderComboBox.Size = new System.Drawing.Size(100, 23);
+            this.painSenderComboBox.TabIndex = 0;
+            this.painSenderComboBox.SelectionChangeCommitted += new System.EventHandler(this.painSenderComboBox_SelectionChangeCommitted);
+            this.painSenderComboBox.TextUpdate += new System.EventHandler(this.painSenderComboBox_TextUpdate);
             // 
-            // pidInput
+            // label20
             // 
-            this.pidInput.Enabled = false;
-            this.pidInput.Location = new System.Drawing.Point(178, 50);
-            this.pidInput.Name = "pidInput";
-            this.pidInput.Size = new System.Drawing.Size(100, 23);
-            this.pidInput.TabIndex = 3;
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(6, 25);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(60, 15);
+            this.label20.TabIndex = 1;
+            this.label20.Text = "Serial port";
             // 
-            // statusInput
+            // painSenderRefreshButton
             // 
-            this.statusInput.Enabled = false;
-            this.statusInput.Location = new System.Drawing.Point(178, 20);
-            this.statusInput.Name = "statusInput";
-            this.statusInput.Size = new System.Drawing.Size(100, 23);
-            this.statusInput.TabIndex = 2;
+            this.painSenderRefreshButton.Location = new System.Drawing.Point(178, 51);
+            this.painSenderRefreshButton.Name = "painSenderRefreshButton";
+            this.painSenderRefreshButton.Size = new System.Drawing.Size(100, 23);
+            this.painSenderRefreshButton.TabIndex = 2;
+            this.painSenderRefreshButton.Text = "Refresh list";
+            this.painSenderRefreshButton.UseVisualStyleBackColor = true;
+            this.painSenderRefreshButton.Click += new System.EventHandler(this.painSenderRefreshButton_Click);
             // 
-            // label3
+            // painSenderPairButton
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(6, 23);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(39, 15);
-            this.label3.TabIndex = 1;
-            this.label3.Text = "Status";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(6, 19);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(0, 15);
-            this.label2.TabIndex = 0;
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.memoryOffsetInput);
-            this.groupBox1.Controls.Add(this.maxReadsPerMinuteInput);
-            this.groupBox1.Controls.Add(this.processNameInput);
-            this.groupBox1.Controls.Add(this.label9);
-            this.groupBox1.Controls.Add(this.label7);
-            this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.groupBox1.Location = new System.Drawing.Point(3, 3);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(284, 114);
-            this.groupBox1.TabIndex = 0;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Settings";
-            // 
-            // memoryOffsetInput
-            // 
-            this.memoryOffsetInput.Location = new System.Drawing.Point(178, 79);
-            this.memoryOffsetInput.Maximum = new decimal(new int[] {
-            -1,
-            -1,
-            -1,
-            0});
-            this.memoryOffsetInput.Name = "memoryOffsetInput";
-            this.memoryOffsetInput.Size = new System.Drawing.Size(100, 23);
-            this.memoryOffsetInput.TabIndex = 2;
-            this.memoryOffsetInput.ValueChanged += new System.EventHandler(this.memoryOffsetInput_ValueChanged);
-            // 
-            // maxReadsPerMinuteInput
-            // 
-            this.maxReadsPerMinuteInput.Location = new System.Drawing.Point(178, 50);
-            this.maxReadsPerMinuteInput.Maximum = new decimal(new int[] {
-            -1,
-            -1,
-            -1,
-            0});
-            this.maxReadsPerMinuteInput.Name = "maxReadsPerMinuteInput";
-            this.maxReadsPerMinuteInput.Size = new System.Drawing.Size(100, 23);
-            this.maxReadsPerMinuteInput.TabIndex = 2;
-            this.maxReadsPerMinuteInput.ValueChanged += new System.EventHandler(this.maxReadsPerMinuteInput_ValueChanged);
-            // 
-            // processNameInput
-            // 
-            this.processNameInput.Location = new System.Drawing.Point(178, 20);
-            this.processNameInput.Name = "processNameInput";
-            this.processNameInput.Size = new System.Drawing.Size(100, 23);
-            this.processNameInput.TabIndex = 1;
-            this.processNameInput.TextChanged += new System.EventHandler(this.processNameInput_TextChanged);
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(6, 81);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(85, 15);
-            this.label9.TabIndex = 0;
-            this.label9.Text = "Memory offset";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(6, 52);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(125, 15);
-            this.label7.TabIndex = 0;
-            this.label7.Text = "Max. reads per minute";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 23);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(80, 15);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Process name";
+            this.painSenderPairButton.Location = new System.Drawing.Point(171, 352);
+            this.painSenderPairButton.Name = "painSenderPairButton";
+            this.painSenderPairButton.Size = new System.Drawing.Size(113, 23);
+            this.painSenderPairButton.TabIndex = 3;
+            this.painSenderPairButton.Text = "Pair with collar";
+            this.painSenderPairButton.UseVisualStyleBackColor = true;
+            this.painSenderPairButton.Click += new System.EventHandler(this.painSenderPairButton_Click);
             // 
             // deathCounterTab
             // 
@@ -528,7 +389,7 @@ namespace Sekiro40v
             this.deathCounterTab.Location = new System.Drawing.Point(4, 24);
             this.deathCounterTab.Name = "deathCounterTab";
             this.deathCounterTab.Padding = new System.Windows.Forms.Padding(3);
-            this.deathCounterTab.Size = new System.Drawing.Size(290, 401);
+            this.deathCounterTab.Size = new System.Drawing.Size(290, 381);
             this.deathCounterTab.TabIndex = 2;
             this.deathCounterTab.Text = "DeathCounter";
             // 
@@ -797,68 +658,458 @@ namespace Sekiro40v
             this.DeathCounterIncrementButton.UseVisualStyleBackColor = true;
             this.DeathCounterIncrementButton.Click += new System.EventHandler(this.DeathCounterIncrementButton_Click);
             // 
-            // painSenderTab
+            // memoryHookTab
             // 
-            this.painSenderTab.Location = new System.Drawing.Point(4, 44);
-            this.painSenderTab.Name = "painSenderTab";
-            this.painSenderTab.Padding = new System.Windows.Forms.Padding(3);
-            this.painSenderTab.Size = new System.Drawing.Size(290, 381);
-            this.painSenderTab.TabIndex = 3;
-            this.painSenderTab.Text = "Pain Sender";
-            this.painSenderTab.UseVisualStyleBackColor = true;
+            this.memoryHookTab.Controls.Add(this.groupBox3);
+            this.memoryHookTab.Controls.Add(this.groupBox2);
+            this.memoryHookTab.Controls.Add(this.groupBox1);
+            this.memoryHookTab.Location = new System.Drawing.Point(4, 24);
+            this.memoryHookTab.Name = "memoryHookTab";
+            this.memoryHookTab.Padding = new System.Windows.Forms.Padding(3);
+            this.memoryHookTab.Size = new System.Drawing.Size(290, 381);
+            this.memoryHookTab.TabIndex = 1;
+            this.memoryHookTab.Text = "MemoryHook";
+            this.memoryHookTab.UseVisualStyleBackColor = true;
             // 
-            // statusStrip1
+            // groupBox3
             // 
-            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripStatusLabel1});
-            this.statusStrip1.Location = new System.Drawing.Point(3, 435);
-            this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(298, 22);
-            this.statusStrip1.SizingGrip = false;
-            this.statusStrip1.TabIndex = 1;
-            this.statusStrip1.Text = "statusStrip1";
+            this.groupBox3.Controls.Add(this.label10);
+            this.groupBox3.Controls.Add(this.label8);
+            this.groupBox3.Controls.Add(this.resetStatisticsButton);
+            this.groupBox3.Controls.Add(this.totalDamageInput);
+            this.groupBox3.Controls.Add(this.totalDeathsInput);
+            this.groupBox3.Dock = System.Windows.Forms.DockStyle.Top;
+            this.groupBox3.Location = new System.Drawing.Point(3, 261);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(284, 117);
+            this.groupBox3.TabIndex = 2;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Statistics";
             // 
-            // toolStripStatusLabel1
+            // label10
             // 
-            this.toolStripStatusLabel1.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(115, 17);
-            this.toolStripStatusLabel1.Text = "sekiro40v by kubagp";
-            this.toolStripStatusLabel1.Click += new System.EventHandler(this.toolStripStatusLabel1_Click);
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(7, 53);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(78, 15);
+            this.label10.TabIndex = 4;
+            this.label10.Text = "Total damage";
             // 
-            // colorDialog1
+            // label8
             // 
-            this.colorDialog1.AnyColor = true;
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(7, 24);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(70, 15);
+            this.label8.TabIndex = 3;
+            this.label8.Text = "Total deaths";
             // 
-            // twitchIntegrationTab
+            // resetStatisticsButton
             // 
-            this.twitchIntegrationTab.Location = new System.Drawing.Point(4, 44);
-            this.twitchIntegrationTab.Name = "twitchIntegrationTab";
-            this.twitchIntegrationTab.Size = new System.Drawing.Size(290, 381);
-            this.twitchIntegrationTab.TabIndex = 4;
-            this.twitchIntegrationTab.Text = "Twitch Integration";
-            this.twitchIntegrationTab.UseVisualStyleBackColor = true;
+            this.resetStatisticsButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.resetStatisticsButton.Location = new System.Drawing.Point(6, 88);
+            this.resetStatisticsButton.Name = "resetStatisticsButton";
+            this.resetStatisticsButton.Size = new System.Drawing.Size(100, 23);
+            this.resetStatisticsButton.TabIndex = 2;
+            this.resetStatisticsButton.Text = "Reset statistics";
+            this.resetStatisticsButton.UseVisualStyleBackColor = true;
+            this.resetStatisticsButton.Click += new System.EventHandler(this.resetStatisticsButton_Click);
+            // 
+            // totalDamageInput
+            // 
+            this.totalDamageInput.Location = new System.Drawing.Point(178, 51);
+            this.totalDamageInput.Maximum = new decimal(new int[] {
+            -1,
+            -1,
+            -1,
+            0});
+            this.totalDamageInput.Name = "totalDamageInput";
+            this.totalDamageInput.Size = new System.Drawing.Size(100, 23);
+            this.totalDamageInput.TabIndex = 1;
+            this.totalDamageInput.ValueChanged += new System.EventHandler(this.totalDamageInput_ValueChanged);
+            // 
+            // totalDeathsInput
+            // 
+            this.totalDeathsInput.Location = new System.Drawing.Point(178, 22);
+            this.totalDeathsInput.Maximum = new decimal(new int[] {
+            -1,
+            -1,
+            -1,
+            0});
+            this.totalDeathsInput.Name = "totalDeathsInput";
+            this.totalDeathsInput.Size = new System.Drawing.Size(100, 23);
+            this.totalDeathsInput.TabIndex = 0;
+            this.totalDeathsInput.ValueChanged += new System.EventHandler(this.totalDeathsInput_ValueChanged);
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.maxHPInput);
+            this.groupBox2.Controls.Add(this.label6);
+            this.groupBox2.Controls.Add(this.label5);
+            this.groupBox2.Controls.Add(this.currentHPInput);
+            this.groupBox2.Controls.Add(this.label4);
+            this.groupBox2.Controls.Add(this.pidInput);
+            this.groupBox2.Controls.Add(this.statusInput);
+            this.groupBox2.Controls.Add(this.label3);
+            this.groupBox2.Controls.Add(this.label2);
+            this.groupBox2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.groupBox2.Location = new System.Drawing.Point(3, 117);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(284, 144);
+            this.groupBox2.TabIndex = 1;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Status";
+            // 
+            // maxHPInput
+            // 
+            this.maxHPInput.Location = new System.Drawing.Point(178, 109);
+            this.maxHPInput.Maximum = new decimal(new int[] {
+            -1,
+            -1,
+            -1,
+            0});
+            this.maxHPInput.Name = "maxHPInput";
+            this.maxHPInput.Size = new System.Drawing.Size(100, 23);
+            this.maxHPInput.TabIndex = 2;
+            this.maxHPInput.ValueChanged += new System.EventHandler(this.maxHPInput_ValueChanged);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(7, 111);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(52, 15);
+            this.label6.TabIndex = 8;
+            this.label6.Text = "Max. HP";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(7, 83);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(66, 15);
+            this.label5.TabIndex = 6;
+            this.label5.Text = "Current HP";
+            // 
+            // currentHPInput
+            // 
+            this.currentHPInput.Enabled = false;
+            this.currentHPInput.Location = new System.Drawing.Point(178, 80);
+            this.currentHPInput.Name = "currentHPInput";
+            this.currentHPInput.Size = new System.Drawing.Size(100, 23);
+            this.currentHPInput.TabIndex = 5;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(7, 53);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(25, 15);
+            this.label4.TabIndex = 4;
+            this.label4.Text = "PID";
+            // 
+            // pidInput
+            // 
+            this.pidInput.Enabled = false;
+            this.pidInput.Location = new System.Drawing.Point(178, 50);
+            this.pidInput.Name = "pidInput";
+            this.pidInput.Size = new System.Drawing.Size(100, 23);
+            this.pidInput.TabIndex = 3;
+            // 
+            // statusInput
+            // 
+            this.statusInput.Enabled = false;
+            this.statusInput.Location = new System.Drawing.Point(178, 20);
+            this.statusInput.Name = "statusInput";
+            this.statusInput.Size = new System.Drawing.Size(100, 23);
+            this.statusInput.TabIndex = 2;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(6, 23);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(39, 15);
+            this.label3.TabIndex = 1;
+            this.label3.Text = "Status";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(6, 19);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(0, 15);
+            this.label2.TabIndex = 0;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.memoryOffsetInput);
+            this.groupBox1.Controls.Add(this.maxReadsPerMinuteInput);
+            this.groupBox1.Controls.Add(this.processNameInput);
+            this.groupBox1.Controls.Add(this.label9);
+            this.groupBox1.Controls.Add(this.label7);
+            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.groupBox1.Location = new System.Drawing.Point(3, 3);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(284, 114);
+            this.groupBox1.TabIndex = 0;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Settings";
+            // 
+            // memoryOffsetInput
+            // 
+            this.memoryOffsetInput.Location = new System.Drawing.Point(178, 79);
+            this.memoryOffsetInput.Maximum = new decimal(new int[] {
+            -1,
+            -1,
+            -1,
+            0});
+            this.memoryOffsetInput.Name = "memoryOffsetInput";
+            this.memoryOffsetInput.Size = new System.Drawing.Size(100, 23);
+            this.memoryOffsetInput.TabIndex = 2;
+            this.memoryOffsetInput.ValueChanged += new System.EventHandler(this.memoryOffsetInput_ValueChanged);
+            // 
+            // maxReadsPerMinuteInput
+            // 
+            this.maxReadsPerMinuteInput.Location = new System.Drawing.Point(178, 50);
+            this.maxReadsPerMinuteInput.Maximum = new decimal(new int[] {
+            -1,
+            -1,
+            -1,
+            0});
+            this.maxReadsPerMinuteInput.Name = "maxReadsPerMinuteInput";
+            this.maxReadsPerMinuteInput.Size = new System.Drawing.Size(100, 23);
+            this.maxReadsPerMinuteInput.TabIndex = 2;
+            this.maxReadsPerMinuteInput.ValueChanged += new System.EventHandler(this.maxReadsPerMinuteInput_ValueChanged);
+            // 
+            // processNameInput
+            // 
+            this.processNameInput.Location = new System.Drawing.Point(178, 20);
+            this.processNameInput.Name = "processNameInput";
+            this.processNameInput.Size = new System.Drawing.Size(100, 23);
+            this.processNameInput.TabIndex = 1;
+            this.processNameInput.TextChanged += new System.EventHandler(this.processNameInput_TextChanged);
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(6, 81);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(85, 15);
+            this.label9.TabIndex = 0;
+            this.label9.Text = "Memory offset";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(6, 52);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(125, 15);
+            this.label7.TabIndex = 0;
+            this.label7.Text = "Max. reads per minute";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(6, 23);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(80, 15);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Process name";
+            // 
+            // generalTab
+            // 
+            this.generalTab.Controls.Add(this.GeneralEraseStatisticsButton);
+            this.generalTab.Controls.Add(this.GeneralRestoreDefaultSettingsButton);
+            this.generalTab.Controls.Add(this.groupBox5);
+            this.generalTab.Controls.Add(this.groupBox4);
+            this.generalTab.Location = new System.Drawing.Point(4, 24);
+            this.generalTab.Name = "generalTab";
+            this.generalTab.Padding = new System.Windows.Forms.Padding(3);
+            this.generalTab.Size = new System.Drawing.Size(290, 381);
+            this.generalTab.TabIndex = 0;
+            this.generalTab.Text = "General";
+            this.generalTab.UseVisualStyleBackColor = true;
+            // 
+            // GeneralEraseStatisticsButton
+            // 
+            this.GeneralEraseStatisticsButton.Location = new System.Drawing.Point(6, 323);
+            this.GeneralEraseStatisticsButton.Name = "GeneralEraseStatisticsButton";
+            this.GeneralEraseStatisticsButton.Size = new System.Drawing.Size(159, 23);
+            this.GeneralEraseStatisticsButton.TabIndex = 3;
+            this.GeneralEraseStatisticsButton.Text = "Erase all statistics";
+            this.GeneralEraseStatisticsButton.UseVisualStyleBackColor = true;
+            // 
+            // GeneralRestoreDefaultSettingsButton
+            // 
+            this.GeneralRestoreDefaultSettingsButton.Location = new System.Drawing.Point(6, 352);
+            this.GeneralRestoreDefaultSettingsButton.Name = "GeneralRestoreDefaultSettingsButton";
+            this.GeneralRestoreDefaultSettingsButton.Size = new System.Drawing.Size(159, 23);
+            this.GeneralRestoreDefaultSettingsButton.TabIndex = 2;
+            this.GeneralRestoreDefaultSettingsButton.Text = "Restore default settings";
+            this.GeneralRestoreDefaultSettingsButton.UseVisualStyleBackColor = true;
+            this.GeneralRestoreDefaultSettingsButton.Click += new System.EventHandler(this.GeneralRestoreDefaultSettingsButton_Click);
+            // 
+            // groupBox5
+            // 
+            this.groupBox5.Controls.Add(this.generalPainSenderStatus);
+            this.groupBox5.Controls.Add(this.GeneralStatusMemoryHookInput);
+            this.groupBox5.Controls.Add(this.label26);
+            this.groupBox5.Controls.Add(this.GeneralStatusWebserverInput);
+            this.groupBox5.Controls.Add(this.label13);
+            this.groupBox5.Controls.Add(this.label12);
+            this.groupBox5.Dock = System.Windows.Forms.DockStyle.Top;
+            this.groupBox5.Location = new System.Drawing.Point(3, 57);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(284, 113);
+            this.groupBox5.TabIndex = 1;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "Status";
+            // 
+            // generalPainSenderStatus
+            // 
+            this.generalPainSenderStatus.Enabled = false;
+            this.generalPainSenderStatus.Location = new System.Drawing.Point(178, 80);
+            this.generalPainSenderStatus.Name = "generalPainSenderStatus";
+            this.generalPainSenderStatus.Size = new System.Drawing.Size(100, 23);
+            this.generalPainSenderStatus.TabIndex = 1;
+            // 
+            // GeneralStatusMemoryHookInput
+            // 
+            this.GeneralStatusMemoryHookInput.Enabled = false;
+            this.GeneralStatusMemoryHookInput.Location = new System.Drawing.Point(178, 51);
+            this.GeneralStatusMemoryHookInput.Name = "GeneralStatusMemoryHookInput";
+            this.GeneralStatusMemoryHookInput.Size = new System.Drawing.Size(100, 23);
+            this.GeneralStatusMemoryHookInput.TabIndex = 1;
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Location = new System.Drawing.Point(6, 83);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(66, 15);
+            this.label26.TabIndex = 0;
+            this.label26.Text = "PainSender";
+            // 
+            // GeneralStatusWebserverInput
+            // 
+            this.GeneralStatusWebserverInput.Enabled = false;
+            this.GeneralStatusWebserverInput.Location = new System.Drawing.Point(178, 22);
+            this.GeneralStatusWebserverInput.Name = "GeneralStatusWebserverInput";
+            this.GeneralStatusWebserverInput.Size = new System.Drawing.Size(100, 23);
+            this.GeneralStatusWebserverInput.TabIndex = 1;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(6, 54);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(81, 15);
+            this.label13.TabIndex = 0;
+            this.label13.Text = "MemoryHook";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(6, 25);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(63, 15);
+            this.label12.TabIndex = 0;
+            this.label12.Text = "WebServer";
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.webServerPortInput);
+            this.groupBox4.Controls.Add(this.label11);
+            this.groupBox4.Dock = System.Windows.Forms.DockStyle.Top;
+            this.groupBox4.Location = new System.Drawing.Point(3, 3);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(284, 54);
+            this.groupBox4.TabIndex = 0;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Settings";
+            // 
+            // webServerPortInput
+            // 
+            this.webServerPortInput.Location = new System.Drawing.Point(178, 22);
+            this.webServerPortInput.Maximum = new decimal(new int[] {
+            65535,
+            0,
+            0,
+            0});
+            this.webServerPortInput.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.webServerPortInput.Name = "webServerPortInput";
+            this.webServerPortInput.Size = new System.Drawing.Size(100, 23);
+            this.webServerPortInput.TabIndex = 1;
+            this.webServerPortInput.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.webServerPortInput.ValueChanged += new System.EventHandler(this.webServerPortInput_ValueChanged);
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(6, 24);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(88, 15);
+            this.label11.TabIndex = 0;
+            this.label11.Text = "WebServer port";
+            // 
+            // tabControl1
+            // 
+            this.tabControl1.Controls.Add(this.generalTab);
+            this.tabControl1.Controls.Add(this.memoryHookTab);
+            this.tabControl1.Controls.Add(this.deathCounterTab);
+            this.tabControl1.Controls.Add(this.painSenderTab);
+            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.tabControl1.Location = new System.Drawing.Point(3, 3);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(298, 409);
+            this.tabControl1.TabIndex = 0;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(304, 460);
+            this.ClientSize = new System.Drawing.Size(304, 435);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.tabControl1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "Form1";
             this.Padding = new System.Windows.Forms.Padding(3);
             this.Text = "Sekiro40v";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
-            this.tabControl1.ResumeLayout(false);
-            this.generalTab.ResumeLayout(false);
-            this.groupBox5.ResumeLayout(false);
-            this.groupBox5.PerformLayout();
-            this.groupBox4.ResumeLayout(false);
-            this.groupBox4.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.webServerPortInput)).EndInit();
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
+            this.painSenderTab.ResumeLayout(false);
+            this.groupBox10.ResumeLayout(false);
+            this.groupBox10.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.painSenderManualShockDuration)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.painSenderManualShockStrength)).EndInit();
+            this.groupBox9.ResumeLayout(false);
+            this.groupBox9.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.painSenderTotalDuration)).EndInit();
+            this.groupBox8.ResumeLayout(false);
+            this.groupBox8.PerformLayout();
+            this.groupBox7.ResumeLayout(false);
+            this.groupBox7.PerformLayout();
+            this.deathCounterTab.ResumeLayout(false);
+            this.groupBox6.ResumeLayout(false);
+            this.groupBox6.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DeathCounterImageSizeInput)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DeathCounterImageOffsetYInput)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DeathCounterImageOffsetXInput)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DeathCounterCounterInput)).EndInit();
             this.memoryHookTab.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
@@ -871,87 +1122,103 @@ namespace Sekiro40v
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.memoryOffsetInput)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.maxReadsPerMinuteInput)).EndInit();
-            this.deathCounterTab.ResumeLayout(false);
-            this.groupBox6.ResumeLayout(false);
-            this.groupBox6.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.DeathCounterImageSizeInput)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.DeathCounterImageOffsetYInput)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.DeathCounterImageOffsetXInput)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.DeathCounterCounterInput)).EndInit();
-            this.statusStrip1.ResumeLayout(false);
-            this.statusStrip1.PerformLayout();
+            this.generalTab.ResumeLayout(false);
+            this.groupBox5.ResumeLayout(false);
+            this.groupBox5.PerformLayout();
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.webServerPortInput)).EndInit();
+            this.tabControl1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.TabControl tabControl1;
-        private System.Windows.Forms.TabPage generalTab;
-        private System.Windows.Forms.TabPage memoryHookTab;
         private System.Windows.Forms.StatusStrip statusStrip1;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox processNameInput;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox statusInput;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox currentHPInput;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox pidInput;
-        private System.Windows.Forms.NumericUpDown memoryOffsetInput;
-        private System.Windows.Forms.NumericUpDown maxReadsPerMinuteInput;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.NumericUpDown maxHPInput;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
+        private System.Windows.Forms.ColorDialog colorDialog1;
+        private System.Windows.Forms.TabPage painSenderTab;
+        private System.Windows.Forms.GroupBox groupBox10;
+        private System.Windows.Forms.Label label25;
+        private System.Windows.Forms.Label label24;
+        private System.Windows.Forms.Button painSenderManualShockButton;
+        private System.Windows.Forms.NumericUpDown painSenderManualShockDuration;
+        private System.Windows.Forms.NumericUpDown painSenderManualShockStrength;
+        private System.Windows.Forms.GroupBox groupBox9;
+        private System.Windows.Forms.NumericUpDown painSenderTotalDuration;
+        private System.Windows.Forms.Button painSenderResetStatistics;
+        private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.GroupBox groupBox8;
+        private System.Windows.Forms.TextBox painSenderStatus;
+        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.GroupBox groupBox7;
+        private System.Windows.Forms.ComboBox painSenderComboBox;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.Button painSenderRefreshButton;
+        private System.Windows.Forms.Button painSenderPairButton;
+        private System.Windows.Forms.TabPage deathCounterTab;
+        private System.Windows.Forms.Button DeathCounterCopyUrlButton;
+        private System.Windows.Forms.GroupBox groupBox6;
+        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.Label DeathCounterImageSizeLabel;
+        private System.Windows.Forms.Label DeathCounterImageOffsetYLabel;
+        private System.Windows.Forms.Label DeathCounterImageOffsetXLabel;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.ComboBox DeathCounterImageInput;
+        private System.Windows.Forms.TrackBar DeathCounterImageSizeInput;
+        private System.Windows.Forms.TrackBar DeathCounterImageOffsetYInput;
+        private System.Windows.Forms.Button DeathCounterColorButton;
+        private System.Windows.Forms.TextBox DeathCounterFontFamilyInput;
+        private System.Windows.Forms.TrackBar DeathCounterImageOffsetXInput;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.RadioButton DeathCounterAlignToRightRadio;
+        private System.Windows.Forms.RadioButton DeathCounterAlignToLeftRadio;
+        private System.Windows.Forms.NumericUpDown DeathCounterCounterInput;
+        private System.Windows.Forms.Button DeathCounterDecrementButton;
+        private System.Windows.Forms.Button DeathCounterIncrementButton;
+        private System.Windows.Forms.TabPage memoryHookTab;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Button resetStatisticsButton;
         private System.Windows.Forms.NumericUpDown totalDamageInput;
         private System.Windows.Forms.NumericUpDown totalDeathsInput;
-        private System.Windows.Forms.TabPage deathCounterTab;
-        private System.Windows.Forms.NumericUpDown DeathCounterCounterInput;
-        private System.Windows.Forms.Button DeathCounterDecrementButton;
-        private System.Windows.Forms.Button DeathCounterIncrementButton;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.NumericUpDown maxHPInput;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox currentHPInput;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox pidInput;
+        private System.Windows.Forms.TextBox statusInput;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.NumericUpDown memoryOffsetInput;
+        private System.Windows.Forms.NumericUpDown maxReadsPerMinuteInput;
+        private System.Windows.Forms.TextBox processNameInput;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TabPage generalTab;
+        private System.Windows.Forms.Button GeneralEraseStatisticsButton;
+        private System.Windows.Forms.Button GeneralRestoreDefaultSettingsButton;
+        private System.Windows.Forms.GroupBox groupBox5;
+        private System.Windows.Forms.TextBox generalPainSenderStatus;
+        private System.Windows.Forms.TextBox GeneralStatusMemoryHookInput;
+        private System.Windows.Forms.Label label26;
+        private System.Windows.Forms.TextBox GeneralStatusWebserverInput;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label label12;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.NumericUpDown webServerPortInput;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.GroupBox groupBox5;
-        private System.Windows.Forms.TextBox GeneralStatusWebserverInput;
-        private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.TextBox GeneralStatusMemoryHookInput;
-        private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.GroupBox groupBox6;
-        private System.Windows.Forms.RadioButton DeathCounterAlignToRightRadio;
-        private System.Windows.Forms.RadioButton DeathCounterAlignToLeftRadio;
-        private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.Button DeathCounterColorButton;
-        private System.Windows.Forms.TextBox DeathCounterFontFamilyInput;
-        private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.ColorDialog colorDialog1;
-        private System.Windows.Forms.Button DeathCounterCopyUrlButton;
-        private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.TrackBar DeathCounterImageOffsetXInput;
-        private System.Windows.Forms.TrackBar DeathCounterImageOffsetYInput;
-        private System.Windows.Forms.Label label18;
-        private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.ComboBox DeathCounterImageInput;
-        private System.Windows.Forms.Label label19;
-        private System.Windows.Forms.Label DeathCounterImageOffsetYLabel;
-        private System.Windows.Forms.Label DeathCounterImageOffsetXLabel;
-        private System.Windows.Forms.Label label22;
-        private System.Windows.Forms.Label DeathCounterImageSizeLabel;
-        private System.Windows.Forms.TrackBar DeathCounterImageSizeInput;
-        private System.Windows.Forms.Button GeneralRestoreDefaultSettingsButton;
-        private System.Windows.Forms.Button GeneralEraseStatisticsButton;
-        private System.Windows.Forms.TabPage painSenderTab;
-        private System.Windows.Forms.TabPage twitchIntegrationTab;
+        private System.Windows.Forms.TabControl tabControl1;
     }
 }
 

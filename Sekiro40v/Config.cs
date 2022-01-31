@@ -27,12 +27,18 @@ namespace Sekiro40v
             public int counterImageSize { get; set; }
             public Sekiro40v.DeathCounter.ImageMode counterImageMode { get; set; }
         }
+        
+        public class PainSender
+        {
+            public string port { get; set; }
+        }
 
         public class Settings
         {
             public General general { get; set; }
             public MemoryHook memoryHook { get; set; }
             public DeathCounter deathCounter { get; set; }
+            public PainSender painSender { get; set; }
         }
 
         public string Path = @"settings.json";
@@ -66,6 +72,10 @@ namespace Sekiro40v
                     counterImageOffsetY = 3,
                     counterImageSize = 59,
                     counterImageMode = Sekiro40v.DeathCounter.ImageMode.Right
+                },
+                painSender = new PainSender()
+                {
+                    port = "COM4"
                 }
             };
 
