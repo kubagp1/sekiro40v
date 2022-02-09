@@ -8,6 +8,16 @@ namespace Sekiro40v
         public class General
         {
             public int webServerPort { get; set; }
+
+            public bool shockOnDamage { get; set; }
+            public ShockOnDamageMode shockOnDamageMode { get; set;}
+            public int shockOnDamageStrength { get; set;}
+            public int shockOnDamageDuration { get; set;}
+
+            public bool shockOnDeath { get; set;}
+            public int shockOnDeathStrength { get; set; }
+            public int shockOnDeathDuration { get; set; }
+
         }
 
         public class MemoryHook
@@ -55,7 +65,14 @@ namespace Sekiro40v
             {
                 general = new General()
                 {
-                    webServerPort = 2137
+                    webServerPort = 2137,
+                    shockOnDamage = true,
+                    shockOnDamageMode = ShockOnDamageMode.ScaleDuration,
+                    shockOnDamageDuration = 3000,
+                    shockOnDamageStrength = 10,
+                    shockOnDeath = true,
+                    shockOnDeathDuration = 300,
+                    shockOnDeathStrength = 100
                 },
                 memoryHook = new MemoryHook()
                 {
@@ -91,6 +108,11 @@ namespace Sekiro40v
         {
             try
             {
+                var deserializerSettings = new JsonSerializerSettings
+                {
+                    NullValueHandling = NullValueHandling.Ignore,
+                    MissingMemberHandling = MissingMemberHandling.Error
+                };
                 settings = JsonConvert.DeserializeObject<Settings>(File.ReadAllText(Path));
 
                 if (settings == null) RestoreDefaults();

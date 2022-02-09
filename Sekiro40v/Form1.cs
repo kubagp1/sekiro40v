@@ -93,6 +93,18 @@ namespace Sekiro40v
 
             app.webServerManager.WebServerStateChangedEventHandler += WebServerManager_WebServerStateChangedEventHandler;
 
+            generalShockOnDamageChcekbox.Checked = app.settings.shockOnDamage;
+
+            generalShockOnDamageMode.SelectedIndex = (int)app.settings.shockOnDamageMode;
+
+            generalShockOnDamageStrengthInput.Value = app.settings.shockOnDamageStrength;
+            generalShockOnDamageDurationInput.Value = app.settings.shockOnDamageDuration;
+
+            generalShockOnDeathCheckbox.Checked = app.settings.shockOnDeath;
+
+            generalShockOnDeathStrength.Value = app.settings.shockOnDeathStrength;
+            generalShockOnDeathDuration.Value = app.settings.shockOnDeathDuration;
+
             #endregion
 
             #region PainSender
@@ -408,5 +420,60 @@ namespace Sekiro40v
         }
 
         #endregion
+
+        private void generalShockOnDamageChcekbox_CheckedChanged(object sender, EventArgs e)
+        {
+            app.settings.shockOnDamage = generalShockOnDamageChcekbox.Checked;
+        }
+
+        private void generalShockOnDamageMode_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            app.settings.shockOnDamageMode = (ShockOnDamageMode)generalShockOnDamageMode.SelectedIndex;
+
+            switch (app.settings.shockOnDamageMode)
+            {
+                case ShockOnDamageMode.ScaleBoth:
+                    generalShockOnDamageStrenthLabel.Text = "Max. strength (0-100)";
+                    generalShockOnDamageDurationLabel.Text = "Max. duration (ms)";
+                    break;
+                case ShockOnDamageMode.ScaleDuration:
+                    generalShockOnDamageStrenthLabel.Text = "Strength (0-100)";
+                    generalShockOnDamageDurationLabel.Text = "Max. duration (ms)";
+                    break;
+                case ShockOnDamageMode.ScaleStrength:
+                    generalShockOnDamageStrenthLabel.Text = "Max. strength (0-100)";
+                    generalShockOnDamageDurationLabel.Text = "Duration (ms)";
+                    break;
+                case ShockOnDamageMode.StaticBoth:
+                    generalShockOnDamageStrenthLabel.Text = "Strength (0-100)";
+                    generalShockOnDamageDurationLabel.Text = "Duration (ms)";
+                    break;
+            }
+        }
+
+        private void generalShockOnDamageStrengthInput_ValueChanged(object sender, EventArgs e)
+        {
+            app.settings.shockOnDamageStrength = (int)generalShockOnDamageStrengthInput.Value;
+        }
+
+        private void generalShockOnDamageDurationInput_ValueChanged(object sender, EventArgs e)
+        {
+            app.settings.shockOnDamageDuration = (int)generalShockOnDamageDurationInput.Value;
+        }
+
+        private void generalShockOnDeathCheckbox_CheckedChanged(object sender, EventArgs e)
+        {
+            app.settings.shockOnDeath = generalShockOnDeathCheckbox.Checked;
+        }
+
+        private void generalShockOnDeathStrength_ValueChanged(object sender, EventArgs e)
+        {
+            app.settings.shockOnDeathStrength = (int)generalShockOnDeathStrength.Value;
+        }
+
+        private void generalShockOnDeathDuration_ValueChanged(object sender, EventArgs e)
+        {
+            app.settings.shockOnDeathDuration = (int)generalShockOnDeathDuration.Value;
+        }
     }
 }

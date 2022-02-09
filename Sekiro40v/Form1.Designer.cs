@@ -114,6 +114,18 @@ namespace Sekiro40v
             this.webServerPortInput = new System.Windows.Forms.NumericUpDown();
             this.label11 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.groupBox11 = new System.Windows.Forms.GroupBox();
+            this.generalShockOnDamageChcekbox = new System.Windows.Forms.CheckBox();
+            this.generalShockOnDeathCheckbox = new System.Windows.Forms.CheckBox();
+            this.generalShockOnDeathStrength = new System.Windows.Forms.NumericUpDown();
+            this.generalShockOnDeathDuration = new System.Windows.Forms.NumericUpDown();
+            this.label27 = new System.Windows.Forms.Label();
+            this.label28 = new System.Windows.Forms.Label();
+            this.generalShockOnDamageMode = new System.Windows.Forms.ComboBox();
+            this.generalShockOnDamageStrengthInput = new System.Windows.Forms.NumericUpDown();
+            this.generalShockOnDamageDurationInput = new System.Windows.Forms.NumericUpDown();
+            this.generalShockOnDamageStrenthLabel = new System.Windows.Forms.Label();
+            this.generalShockOnDamageDurationLabel = new System.Windows.Forms.Label();
             this.statusStrip1.SuspendLayout();
             this.painSenderTab.SuspendLayout();
             this.groupBox10.SuspendLayout();
@@ -143,6 +155,11 @@ namespace Sekiro40v
             this.groupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.webServerPortInput)).BeginInit();
             this.tabControl1.SuspendLayout();
+            this.groupBox11.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.generalShockOnDeathStrength)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.generalShockOnDeathDuration)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.generalShockOnDamageStrengthInput)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.generalShockOnDamageDurationInput)).BeginInit();
             this.SuspendLayout();
             // 
             // statusStrip1
@@ -395,7 +412,7 @@ namespace Sekiro40v
             // 
             // DeathCounterCopyUrlButton
             // 
-            this.DeathCounterCopyUrlButton.Location = new System.Drawing.Point(6, 352);
+            this.DeathCounterCopyUrlButton.Location = new System.Drawing.Point(209, 352);
             this.DeathCounterCopyUrlButton.Name = "DeathCounterCopyUrlButton";
             this.DeathCounterCopyUrlButton.Size = new System.Drawing.Size(75, 23);
             this.DeathCounterCopyUrlButton.TabIndex = 3;
@@ -920,6 +937,7 @@ namespace Sekiro40v
             // 
             // generalTab
             // 
+            this.generalTab.Controls.Add(this.groupBox11);
             this.generalTab.Controls.Add(this.GeneralEraseStatisticsButton);
             this.generalTab.Controls.Add(this.GeneralRestoreDefaultSettingsButton);
             this.generalTab.Controls.Add(this.groupBox5);
@@ -960,9 +978,9 @@ namespace Sekiro40v
             this.groupBox5.Controls.Add(this.label13);
             this.groupBox5.Controls.Add(this.label12);
             this.groupBox5.Dock = System.Windows.Forms.DockStyle.Top;
-            this.groupBox5.Location = new System.Drawing.Point(3, 57);
+            this.groupBox5.Location = new System.Drawing.Point(3, 51);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(284, 113);
+            this.groupBox5.Size = new System.Drawing.Size(284, 107);
             this.groupBox5.TabIndex = 1;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Status";
@@ -1025,7 +1043,7 @@ namespace Sekiro40v
             this.groupBox4.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupBox4.Location = new System.Drawing.Point(3, 3);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(284, 54);
+            this.groupBox4.Size = new System.Drawing.Size(284, 48);
             this.groupBox4.TabIndex = 0;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Settings";
@@ -1074,6 +1092,149 @@ namespace Sekiro40v
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(298, 409);
             this.tabControl1.TabIndex = 0;
+            // 
+            // groupBox11
+            // 
+            this.groupBox11.Controls.Add(this.generalShockOnDamageMode);
+            this.groupBox11.Controls.Add(this.generalShockOnDamageDurationLabel);
+            this.groupBox11.Controls.Add(this.generalShockOnDamageStrenthLabel);
+            this.groupBox11.Controls.Add(this.label28);
+            this.groupBox11.Controls.Add(this.generalShockOnDamageDurationInput);
+            this.groupBox11.Controls.Add(this.label27);
+            this.groupBox11.Controls.Add(this.generalShockOnDamageStrengthInput);
+            this.groupBox11.Controls.Add(this.generalShockOnDeathDuration);
+            this.groupBox11.Controls.Add(this.generalShockOnDeathStrength);
+            this.groupBox11.Controls.Add(this.generalShockOnDeathCheckbox);
+            this.groupBox11.Controls.Add(this.generalShockOnDamageChcekbox);
+            this.groupBox11.Dock = System.Windows.Forms.DockStyle.Top;
+            this.groupBox11.Location = new System.Drawing.Point(3, 158);
+            this.groupBox11.Name = "groupBox11";
+            this.groupBox11.Size = new System.Drawing.Size(284, 159);
+            this.groupBox11.TabIndex = 4;
+            this.groupBox11.TabStop = false;
+            this.groupBox11.Text = "MemoryHook and PainSender integration";
+            // 
+            // generalShockOnDamageChcekbox
+            // 
+            this.generalShockOnDamageChcekbox.AutoSize = true;
+            this.generalShockOnDamageChcekbox.Location = new System.Drawing.Point(6, 22);
+            this.generalShockOnDamageChcekbox.Name = "generalShockOnDamageChcekbox";
+            this.generalShockOnDamageChcekbox.Size = new System.Drawing.Size(121, 19);
+            this.generalShockOnDamageChcekbox.TabIndex = 0;
+            this.generalShockOnDamageChcekbox.Text = "Shock on damage";
+            this.generalShockOnDamageChcekbox.UseVisualStyleBackColor = true;
+            this.generalShockOnDamageChcekbox.CheckedChanged += new System.EventHandler(this.generalShockOnDamageChcekbox_CheckedChanged);
+            // 
+            // generalShockOnDeathCheckbox
+            // 
+            this.generalShockOnDeathCheckbox.AutoSize = true;
+            this.generalShockOnDeathCheckbox.Location = new System.Drawing.Point(6, 91);
+            this.generalShockOnDeathCheckbox.Name = "generalShockOnDeathCheckbox";
+            this.generalShockOnDeathCheckbox.Size = new System.Drawing.Size(108, 19);
+            this.generalShockOnDeathCheckbox.TabIndex = 0;
+            this.generalShockOnDeathCheckbox.Text = "Shock on death";
+            this.generalShockOnDeathCheckbox.UseVisualStyleBackColor = true;
+            this.generalShockOnDeathCheckbox.CheckedChanged += new System.EventHandler(this.generalShockOnDeathCheckbox_CheckedChanged);
+            // 
+            // generalShockOnDeathStrength
+            // 
+            this.generalShockOnDeathStrength.Location = new System.Drawing.Point(6, 130);
+            this.generalShockOnDeathStrength.Name = "generalShockOnDeathStrength";
+            this.generalShockOnDeathStrength.Size = new System.Drawing.Size(120, 23);
+            this.generalShockOnDeathStrength.TabIndex = 1;
+            this.generalShockOnDeathStrength.ValueChanged += new System.EventHandler(this.generalShockOnDeathStrength_ValueChanged);
+            // 
+            // generalShockOnDeathDuration
+            // 
+            this.generalShockOnDeathDuration.Location = new System.Drawing.Point(132, 130);
+            this.generalShockOnDeathDuration.Maximum = new decimal(new int[] {
+            3000,
+            0,
+            0,
+            0});
+            this.generalShockOnDeathDuration.Name = "generalShockOnDeathDuration";
+            this.generalShockOnDeathDuration.Size = new System.Drawing.Size(120, 23);
+            this.generalShockOnDeathDuration.TabIndex = 2;
+            this.generalShockOnDeathDuration.ValueChanged += new System.EventHandler(this.generalShockOnDeathDuration_ValueChanged);
+            // 
+            // label27
+            // 
+            this.label27.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label27.AutoSize = true;
+            this.label27.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.label27.Location = new System.Drawing.Point(4, 114);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(98, 15);
+            this.label27.TabIndex = 4;
+            this.label27.Text = "Strength (0 - 100)";
+            // 
+            // label28
+            // 
+            this.label28.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label28.AutoSize = true;
+            this.label28.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.label28.Location = new System.Drawing.Point(129, 114);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(80, 15);
+            this.label28.TabIndex = 5;
+            this.label28.Text = "Duration (ms)";
+            // 
+            // generalShockOnDamageMode
+            // 
+            this.generalShockOnDamageMode.FormattingEnabled = true;
+            this.generalShockOnDamageMode.Items.AddRange(new object[] {
+            "Scale strength",
+            "Scale duration",
+            "Scale both",
+            "Static both"});
+            this.generalShockOnDamageMode.Location = new System.Drawing.Point(157, 20);
+            this.generalShockOnDamageMode.Name = "generalShockOnDamageMode";
+            this.generalShockOnDamageMode.Size = new System.Drawing.Size(121, 23);
+            this.generalShockOnDamageMode.TabIndex = 6;
+            this.generalShockOnDamageMode.SelectedIndexChanged += new System.EventHandler(this.generalShockOnDamageMode_SelectedIndexChanged);
+            // 
+            // generalShockOnDamageStrengthInput
+            // 
+            this.generalShockOnDamageStrengthInput.Location = new System.Drawing.Point(6, 62);
+            this.generalShockOnDamageStrengthInput.Name = "generalShockOnDamageStrengthInput";
+            this.generalShockOnDamageStrengthInput.Size = new System.Drawing.Size(120, 23);
+            this.generalShockOnDamageStrengthInput.TabIndex = 1;
+            this.generalShockOnDamageStrengthInput.ValueChanged += new System.EventHandler(this.generalShockOnDamageStrengthInput_ValueChanged);
+            // 
+            // generalShockOnDamageDurationInput
+            // 
+            this.generalShockOnDamageDurationInput.Location = new System.Drawing.Point(132, 62);
+            this.generalShockOnDamageDurationInput.Maximum = new decimal(new int[] {
+            3000,
+            0,
+            0,
+            0});
+            this.generalShockOnDamageDurationInput.Name = "generalShockOnDamageDurationInput";
+            this.generalShockOnDamageDurationInput.Size = new System.Drawing.Size(120, 23);
+            this.generalShockOnDamageDurationInput.TabIndex = 2;
+            this.generalShockOnDamageDurationInput.ValueChanged += new System.EventHandler(this.generalShockOnDamageDurationInput_ValueChanged);
+            // 
+            // generalShockOnDamageStrenthLabel
+            // 
+            this.generalShockOnDamageStrenthLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.generalShockOnDamageStrenthLabel.AutoSize = true;
+            this.generalShockOnDamageStrenthLabel.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.generalShockOnDamageStrenthLabel.Location = new System.Drawing.Point(3, 46);
+            this.generalShockOnDamageStrenthLabel.Name = "generalShockOnDamageStrenthLabel";
+            this.generalShockOnDamageStrenthLabel.Size = new System.Drawing.Size(98, 15);
+            this.generalShockOnDamageStrenthLabel.TabIndex = 4;
+            this.generalShockOnDamageStrenthLabel.Text = "Strength (0 - 100)";
+            // 
+            // generalShockOnDamageDurationLabel
+            // 
+            this.generalShockOnDamageDurationLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.generalShockOnDamageDurationLabel.AutoSize = true;
+            this.generalShockOnDamageDurationLabel.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.generalShockOnDamageDurationLabel.Location = new System.Drawing.Point(129, 46);
+            this.generalShockOnDamageDurationLabel.Name = "generalShockOnDamageDurationLabel";
+            this.generalShockOnDamageDurationLabel.Size = new System.Drawing.Size(80, 15);
+            this.generalShockOnDamageDurationLabel.TabIndex = 5;
+            this.generalShockOnDamageDurationLabel.Text = "Duration (ms)";
             // 
             // Form1
             // 
@@ -1129,6 +1290,12 @@ namespace Sekiro40v
             this.groupBox4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.webServerPortInput)).EndInit();
             this.tabControl1.ResumeLayout(false);
+            this.groupBox11.ResumeLayout(false);
+            this.groupBox11.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.generalShockOnDeathStrength)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.generalShockOnDeathDuration)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.generalShockOnDamageStrengthInput)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.generalShockOnDamageDurationInput)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1219,6 +1386,18 @@ namespace Sekiro40v
         private System.Windows.Forms.NumericUpDown webServerPortInput;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.GroupBox groupBox11;
+        private System.Windows.Forms.ComboBox generalShockOnDamageMode;
+        private System.Windows.Forms.Label generalShockOnDamageDurationLabel;
+        private System.Windows.Forms.Label generalShockOnDamageStrenthLabel;
+        private System.Windows.Forms.Label label28;
+        private System.Windows.Forms.NumericUpDown generalShockOnDamageDurationInput;
+        private System.Windows.Forms.Label label27;
+        private System.Windows.Forms.NumericUpDown generalShockOnDamageStrengthInput;
+        private System.Windows.Forms.NumericUpDown generalShockOnDeathDuration;
+        private System.Windows.Forms.NumericUpDown generalShockOnDeathStrength;
+        private System.Windows.Forms.CheckBox generalShockOnDeathCheckbox;
+        private System.Windows.Forms.CheckBox generalShockOnDamageChcekbox;
     }
 }
 

@@ -97,6 +97,8 @@ namespace Sekiro40v
 
         public void SendShock(int strength, int duration)
         {
+            Debug.WriteLine($"Strength: {strength}, duration: {duration}");
+
             if (serialPort != null && serialPort.IsOpen)
             {
                 serialPort.Write(GenerateCommand(strength, duration));
