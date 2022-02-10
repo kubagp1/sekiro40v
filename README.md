@@ -10,9 +10,15 @@ Sekiro40v is a tool for zapping yourself with electricity while playing games (o
  5. If you want to use Death Counter, go to Death Counter tab, press `Copy URL` button and paste it into OBS or whatever. More info below.
  6. Now, you need to set up your Arduino-like device. Since I own a Raspberry Pi Pico, I'm gonna assume you do too.
  7. Install [Arduino IDE](https://www.arduino.cc/en/software). Launch it. Go to Tools -> Board -> Boards Manager. Search and install your board.
- 8. Go [here](https://github.com/kubagp1/sekiro40v/blob/main/Sekiro40vPico/Sekiro40vPico.ino) and click highlighted button (`Copy raw contents`). Or just copy entire file however you like.![Github screenshot](https://i.imgur.com/occQj1K.png)
+ 8. Go [here](https://github.com/kubagp1/sekiro40v/blob/main/Sekiro40vPico/Sekiro40vPico.ino) and click highlighted button (`Copy raw contents`). Or just copy entire file however you like.
+ 
+ ![Github screenshot](https://i.imgur.com/occQj1K.png)
+  
  9. Paste what you just copied into Arduino IDE.
- 10. Change `TX_PIN` if you need and then press `Upload` button (looks like an arrow facing right).![Arduino IDE screenshot](https://i.imgur.com/ULb0cbN.png)
+ 10. Change `TX_PIN` if you need and then press `Upload` button (looks like an arrow facing right).
+
+ ![Arduino IDE screenshot](https://i.imgur.com/ULb0cbN.png)
+  
  11. Wait for it to upload, it may take a while.
  12. Connect your RF transmitter to device using some cables. GND to GND. VCC to VBUS, ATAD(DATA) to whatever you set TX_PIN to. The default is 22.
 
@@ -21,9 +27,11 @@ If you got lost, or something went wrong please [open an issue](https://github.c
 ## What are these options?
 ### General
 ![General view of Sekiro40v](https://i.imgur.com/YEUvNSl.png)
+
 **WebServer port** - this is the port on which the local web server used to serve *DeathCounter* is listening. Remember to change it everywhere you are displaying counter (eg. OBS) after changing this setting.
 
 ![MemoryHook and PainSender integration section](https://i.imgur.com/uO1nud8.png)
+
 These settings decide what shock settings (if any) should be used when damage or death is detected in game.
 
  - **Scale strength** - duration of shock doesn't change. Strength is calculated like this `(damage taken / max HP) * max strength`. For
@@ -44,6 +52,7 @@ The rest of buttons and options are pretty self-explanatory, but feel free to [o
 
 ### MemoryHook
 ![MemoryHook view of Sekiro40v](https://i.imgur.com/AbfMnJq.png)
+
 In here, is everything related to reading game's memory.
 
  - **Process name** - name of the process of the game, you can find it in the Task Manager. It doesn't need extension however so just throw ".exe" away.
@@ -66,6 +75,7 @@ The rest of statistics and statuses are pretty self-explanatory, but feel free t
 
 ### DeathCounter
 ![DeathCounter view of Sekiro40v](https://i.imgur.com/QCk5ckk.png)
+
 You can modify counter value by clicking **Decrement** and **Increment** buttons, but also just typing a number in the box in the middle. It also auto-increments itself every time *MemoryHook* detects a death.
 
 Use it by first copying URL using button in right-bottom corner, then paste it in your browser or OBS (or anything really). For OBS I recommend to make it a lot wider than taller because numbers try to fill all vertical space. Then, if you don't like default look, you can modify it directly on this tab and view results in browser or OBS without any refreshing or saving.
@@ -76,6 +86,7 @@ One more thing, if you want to replace displayed image, you have to replace `web
 
 ### PainSender
 ![PainSender view of Sekiro40v](https://i.imgur.com/a6UQDtd.png)
+
 **PainSender** is responsible for connecting to your Arduino-like device and sending it simple commands.
 #### How do I know which one is my Arduino-like device?
 You have three options:
