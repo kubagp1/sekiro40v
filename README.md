@@ -108,12 +108,19 @@ I think that just about covers it all, but if there is something else you want m
 
 If any of above didn't help please [open an issue](https://github.com/kubagp1/sekiro40v/issues/new)!
 
+
+## Electric collar
+![https://i00.eu/img/403/250x250f/6ohlz2eh/1086.jpg](Picture of Petrainer shock collar)
+I'm using Petrainer PET998D. The script for Arduino-like device is made for it. I copied the actual communucating with the collar part from [here](https://github.com/btlvr/pet998drb-arduino/blob/master/main.cpp). [http://brettleaver.com/collar/](Here) is a pretty cool article about how it works.
+[https://stpihkal.docs.buttplug.io/protocols/petrainer.html](Here) is another nice source for "toys" communication protocols.
+Feel free to fork this project or make a pull request for another collars and things.
+
 ## Somewhat hidden features 
 
  - Clicking on a label in bottom-left corner opens this site.
  - If you send shock request before the last one has finished, the new one is prioritized if it's longer than what's left of the old one.
 
-## Do I want help?
+## Do you want help?
 Yes, if you know how to generate .ef2 files for RP2040 (Pico) from Arduino IDE, please contact me.
 Also any suggestions, bug reports, corrections are welcome. 
 
