@@ -110,7 +110,8 @@ If any of above didn't help please [open an issue](https://github.com/kubagp1/se
 
 
 ## Electric collar
-![https://i00.eu/img/403/250x250f/6ohlz2eh/1086.jpg](Picture of Petrainer shock collar)
+![Picture of Petrainer shock collar](https://i00.eu/img/403/250x250f/6ohlz2eh/1086.jpg)
+
 I'm using Petrainer PET998D. The script for Arduino-like device is made for it. I copied the actual communucating with the collar part from [here](https://github.com/btlvr/pet998drb-arduino/blob/master/main.cpp). [http://brettleaver.com/collar/](Here) is a pretty cool article about how it works.
 [https://stpihkal.docs.buttplug.io/protocols/petrainer.html](Here) is another nice source for "toys" communication protocols.
 Feel free to fork this project or make a pull request for another collars and things.
