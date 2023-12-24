@@ -78,7 +78,7 @@ namespace Sekiro40v
                 {
                     processName = "sekiro",
                     maxRPM = 60,
-                    offset = 64535204
+                    offset = 62362212
                 },
                 deathCounter = new DeathCounter()
                 {
