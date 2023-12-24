@@ -24,6 +24,7 @@ namespace Sekiro40v
             memoryOffsetInput.Value = app.memoryHook.Config.offset;
 
             statusInput.Text = app.memoryHook.status.ToString();
+            pidInput.Text = app.memoryHook.process?.Id.ToString() ?? "";
 
             totalDamageInput.Value = app.StatisticsManager.statistics.memoryHook.totalDamage;
             totalDeathsInput.Value = app.StatisticsManager.statistics.memoryHook.totalDeaths;
