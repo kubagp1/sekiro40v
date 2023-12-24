@@ -44,13 +44,11 @@ class App {
         case Action.FontFamily:
           this.counter.style.fontFamily = e.value;
 
-          if (!document.fonts.check('1em ' + e.value)) {
-            WebFont.load({
-              google: {
-                families: [e.value]
-              }
-            });
-          }
+          WebFont.load({
+            google: {
+              families: [e.value]
+            }
+          });
 
           break;
         
