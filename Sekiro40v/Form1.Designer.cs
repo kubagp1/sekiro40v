@@ -843,6 +843,7 @@ namespace Sekiro40v
             // 
             // memoryOffsetInput
             // 
+            memoryOffsetInput.InterceptArrowKeys = false;
             memoryOffsetInput.Location = new System.Drawing.Point(178, 79);
             memoryOffsetInput.Maximum = new decimal(new int[] { -1, -1, -1, 0 });
             memoryOffsetInput.Name = "memoryOffsetInput";
