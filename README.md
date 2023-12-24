@@ -85,6 +85,8 @@ The rest of buttons and options are pretty self-explanatory, but feel free to [o
 
 ### General
 
+![General view of Sekiro40v](https://i.imgur.com/YEUvNSl.png)
+
 The **WebServer port** is the port that the local web server uses to serve the _DeathCounter_. If you change this setting, remember to update it wherever you're displaying the counter (e.g. OBS).
 
 ![MemoryHook and PainSender integration section](https://i.imgur.com/uO1nud8.png)
@@ -266,6 +268,8 @@ If Sekiro40v isn't working as expected, here are some steps you can take:
 If these steps don't resolve the issue, please [open an issue](https://github.com/kubagp1/sekiro40v/issues/new).
 
 ## Electric Collar
+
+![Picture of Petrainer shock collar](https://i00.eu/img/403/250x250f/6ohlz2eh/1086.jpg)
 
 The script for the Arduino-like device is designed for the Petrainer PET998D collar. The communication part of the script was adapted from [this source](https://github.com/btlvr/pet998drb-arduino/blob/master/main.cpp). You can find more information about how it works [here](http://brettleaver.com/collar/). Another useful resource for "toy" communication protocols can be found [here](https://stpihkal.docs.buttplug.io/protocols/petrainer.html). Feel free to fork this project or make a pull request for other collars and devices.
 
