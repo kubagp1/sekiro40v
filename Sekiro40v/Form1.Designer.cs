@@ -389,6 +389,7 @@ namespace Sekiro40v
             // 
             // deathCounterTab
             // 
+            deathCounterTab.BackColor = System.Drawing.Color.Transparent;
             deathCounterTab.Controls.Add(DeathCounterCopyUrlButton);
             deathCounterTab.Controls.Add(groupBox6);
             deathCounterTab.Controls.Add(DeathCounterCounterInput);
@@ -400,6 +401,7 @@ namespace Sekiro40v
             deathCounterTab.Size = new System.Drawing.Size(290, 381);
             deathCounterTab.TabIndex = 2;
             deathCounterTab.Text = "DeathCounter";
+            deathCounterTab.UseVisualStyleBackColor = true;
             // 
             // DeathCounterCopyUrlButton
             // 
