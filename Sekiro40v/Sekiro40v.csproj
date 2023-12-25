@@ -1,76 +1,76 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-  <PropertyGroup>
-    <OutputType>WinExe</OutputType>
-    <TargetFramework>net8.0-windows</TargetFramework>
-    <UseWindowsForms>true</UseWindowsForms>
-    <ApplicationManifest>app.manifest</ApplicationManifest>
-    <EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
-    <Authors>kubagp</Authors>
-    <Company />
-    <PackageProjectUrl>https://github.com/kubagp1/sekiro40v</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/kubagp1/sekiro40v</RepositoryUrl>
-    <RepositoryType />
-    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-    <ApplicationIcon>image.ico</ApplicationIcon>
-    <DebugType>portable</DebugType>
-    <SignAssembly>False</SignAssembly>
-    <Description>Set of tools for made for streaming Sekiro with Shock Collar.</Description>
-    <Copyright>GNU GENERAL PUBLIC LICENSE</Copyright>
-    <PackageIcon>image.png</PackageIcon>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DebugType>none</DebugType>
-    <DebugSymbols>false</DebugSymbols>
-  </PropertyGroup>
-  <ItemGroup>
-    <Content Include="image.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="EmbedIO" Version="3.4.3" />
-    <PackageReference Include="Reloaded.Memory" Version="4.1.3" />
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
-    <PackageReference Include="System.IO.Ports" Version="8.0.0" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Resources\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Update="Properties\Resources.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Update="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <None Update="image.ico">
-      <Pack>True</Pack>
-      <PackagePath>\</PackagePath>
-    </None>
-    <None Update="webserver_static\counter\counter.html">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="webserver_static\counter\image.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <Pack>True</Pack>
-      <PackagePath>\</PackagePath>
-    </None>
-    <None Update="webserver_static\counter\index.css">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="webserver_static\counter\index.html">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="webserver_static\counter\index.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="webserver_static\placeholder.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
+    <PropertyGroup>
+        <OutputType>WinExe</OutputType>
+        <TargetFramework>net8.0-windows</TargetFramework>
+        <UseWindowsForms>true</UseWindowsForms>
+        <ApplicationManifest>app.manifest</ApplicationManifest>
+        <EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
+        <Authors>kubagp</Authors>
+        <Company/>
+        <PackageProjectUrl>https://github.com/kubagp1/sekiro40v</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/kubagp1/sekiro40v</RepositoryUrl>
+        <RepositoryType/>
+        <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+        <ApplicationIcon>image.ico</ApplicationIcon>
+        <DebugType>portable</DebugType>
+        <SignAssembly>False</SignAssembly>
+        <Description>Set of tools for made for streaming Sekiro with Shock Collar.</Description>
+        <Copyright>GNU GENERAL PUBLIC LICENSE</Copyright>
+        <PackageIcon>image.png</PackageIcon>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+        <DebugType>none</DebugType>
+        <DebugSymbols>false</DebugSymbols>
+    </PropertyGroup>
+    <ItemGroup>
+        <Content Include="image.ico"/>
+    </ItemGroup>
+    <ItemGroup>
+        <PackageReference Include="EmbedIO" Version="3.4.3"/>
+        <PackageReference Include="Reloaded.Memory" Version="4.1.3"/>
+        <PackageReference Include="Newtonsoft.Json" Version="13.0.3"/>
+        <PackageReference Include="System.IO.Ports" Version="8.0.0"/>
+    </ItemGroup>
+    <ItemGroup>
+        <Folder Include="Resources\"/>
+    </ItemGroup>
+    <ItemGroup>
+        <Compile Update="Properties\Resources.Designer.cs">
+            <DesignTime>True</DesignTime>
+            <AutoGen>True</AutoGen>
+            <DependentUpon>Resources.resx</DependentUpon>
+        </Compile>
+    </ItemGroup>
+    <ItemGroup>
+        <EmbeddedResource Update="Properties\Resources.resx">
+            <Generator>ResXFileCodeGenerator</Generator>
+            <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+        </EmbeddedResource>
+    </ItemGroup>
+    <ItemGroup>
+        <None Update="image.ico">
+            <Pack>True</Pack>
+            <PackagePath>\</PackagePath>
+        </None>
+        <None Update="webserver_static\counter\counter.html">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="webserver_static\counter\image.png">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+            <Pack>True</Pack>
+            <PackagePath>\</PackagePath>
+        </None>
+        <None Update="webserver_static\counter\index.css">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="webserver_static\counter\index.html">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="webserver_static\counter\index.js">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="webserver_static\placeholder.txt">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+    </ItemGroup>
 </Project>

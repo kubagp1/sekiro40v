@@ -1,82 +1,81 @@
-﻿using Newtonsoft.Json;
-using System.IO;
+﻿using System.IO;
+using Newtonsoft.Json;
 
-namespace Sekiro40v
+namespace Sekiro40v;
+
+public class StatisticsManager
 {
-    public class StatisticsManager
+    public string Path = @"statistics.json";
+    public Statistics statistics;
+
+    public StatisticsManager()
     {
-        public class MemoryHook
+        LoadStatistics();
+    }
+
+    public void LoadStatistics()
+    {
+        try
         {
-            public int totalDeaths { get; set; }
-            public int totalDamage { get; set; }
+            statistics = JsonConvert.DeserializeObject<Statistics>(File.ReadAllText(Path));
+
+            if (statistics == null) EraseStatistics();
+        }
+        catch
+        {
+            EraseStatistics();
         }
 
-        public class DeathCounter
-        {
-            public int deaths { get; set; }
-        }
+        SaveStatistics();
+    }
 
-        public class PainSender
+    public void EraseStatistics()
+    {
+        statistics = new Statistics
         {
-            public int duration { get; set; }
-        }
-
-        public class Statistics
-        {
-            public MemoryHook memoryHook { get; set; }
-            public DeathCounter deathCounter { get; set; }
-            public PainSender painSender { get; set; }
-        }
-
-        public string Path = @"statistics.json";
-        public Statistics statistics;
-
-        public StatisticsManager()
-        {
-            LoadStatistics();
-        }
-
-        public void LoadStatistics()
-        {
-            try
+            memoryHook = new MemoryHook
             {
-                statistics = JsonConvert.DeserializeObject<Statistics>(File.ReadAllText(Path));
-
-                if (statistics == null) EraseStatistics();
+                totalDeaths = 0,
+                totalDamage = 0
+            },
+            deathCounter = new DeathCounter
+            {
+                deaths = 0
+            },
+            painSender = new PainSender
+            {
+                duration = 0
             }
-            catch
-            {
-                EraseStatistics();
-            }
+        };
 
-            SaveStatistics();
-        }
+        SaveStatistics();
+    }
 
-        public void EraseStatistics()
-        {
-            statistics = new Statistics()
-            {
-                memoryHook = new MemoryHook()
-                {
-                    totalDeaths = 0,
-                    totalDamage = 0,
-                },
-                deathCounter = new DeathCounter()
-                {
-                    deaths = 0,
-                },
-                painSender = new PainSender()
-                {
-                    duration = 0,
-                }
-            };
+    public void SaveStatistics()
+    {
+        File.WriteAllText(Path, JsonConvert.SerializeObject(statistics));
+    }
 
-            SaveStatistics();
-        }
+    public class MemoryHook
+    {
+        public int totalDeaths { get; set; }
+        public int totalDamage { get; set; }
+    }
 
-        public void SaveStatistics()
-        {
-            File.WriteAllText(Path, JsonConvert.SerializeObject(statistics));
-        }
+    public class DeathCounter
+    {
+        public int deaths { get; set; }
+    }
+
+    public class PainSender
+    {
+        public int duration { get; set; }
+    }
+
+    public class Statistics
+    {
+        public MemoryHook memoryHook { get; set; }
+        public DeathCounter deathCounter { get; set; }
+        public PainSender painSender { get; set; }
     }
 }

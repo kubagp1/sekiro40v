@@ -2,120 +2,110 @@
 using System.Diagnostics;
 using System.IO.Ports;
 
-namespace Sekiro40v
+namespace Sekiro40v;
+
+public enum PainSenderStatus
 {
-    public enum PainSenderStatus
+    Starting,
+    Running,
+    Error
+}
+
+public class PainSender
+{
+    private readonly Config.PainSender Config;
+
+    private SerialPort serialPort;
+    public StatisticsManager.PainSender Statistics;
+
+    private PainSenderStatus status;
+
+    public PainSender(Config.PainSender config, StatisticsManager.PainSender statistics)
     {
-        Starting,
-        Running,
-        Error
+        Config = config;
+        Statistics = statistics;
+
+        Status = PainSenderStatus.Starting;
+        RestartSerialConnection();
     }
 
-    public class PainSender
+    public string[] PortList => SerialPort.GetPortNames();
+
+    public string PortName
     {
-        public string[] PortList
+        set
         {
-            get
-            {
-                return SerialPort.GetPortNames();
-            }
-        }
-
-        public string PortName
-        {
-            set
-            {
-                Config.port = value;
-                RestartSerialConnection();
-            }
-            get
-            {
-                return Config.port;
-            }
-        }
-
-        private SerialPort serialPort;
-
-        public event EventHandler StatusChanged;
-
-        private PainSenderStatus status;
-        public PainSenderStatus Status
-        {
-            get { return status; }
-            set 
-            {
-                if (value != Status)
-                {
-                    status = value;
-                    StatusChanged?.Invoke(this, EventArgs.Empty);
-                }
-            }
-        }
-
-        private Config.PainSender Config;
-        public StatisticsManager.PainSender Statistics;
-
-        public event EventHandler StatisticsUpdated;
-
-        public PainSender(Config.PainSender config, StatisticsManager.PainSender statistics)
-        {
-            Config = config;
-            Statistics = statistics;
-
-            Status = PainSenderStatus.Starting;
+            Config.port = value;
             RestartSerialConnection();
         }
+        get => Config.port;
+    }
 
-        public void RestartSerialConnection()
+    public PainSenderStatus Status
+    {
+        get => status;
+        set
         {
-            try
+            if (value != Status)
             {
-                if (serialPort != null)
-                {
-                    serialPort.Close();
-                }
-
-                serialPort = new(PortName, 115200);
-                serialPort.RtsEnable = true;
-                serialPort.DtrEnable = true;
-                serialPort.Open();
-
-                Status = PainSenderStatus.Running;
-            }
-            catch
-            {
-                Status = PainSenderStatus.Error;
-                serialPort = null;
-                Config.port = "None"; // Changing via public property PortName would cause feedback loop
+                status = value;
+                StatusChanged?.Invoke(this, EventArgs.Empty);
             }
         }
+    }
 
-        private string GenerateCommand(int strength, int duration)
+    public event EventHandler StatusChanged;
+
+    public event EventHandler StatisticsUpdated;
+
+    public void RestartSerialConnection()
+    {
+        try
         {
-            return $"1 {strength} {duration}\n"; ;
+            if (serialPort != null) serialPort.Close();
+
+            serialPort = new SerialPort(PortName, 115200);
+            serialPort.RtsEnable = true;
+            serialPort.DtrEnable = true;
+            serialPort.Open();
+
+            Status = PainSenderStatus.Running;
         }
-
-        public void SendShock(int strength, int duration)
+        catch
         {
-            Debug.WriteLine($"Strength: {strength}, duration: {duration}");
+            Status = PainSenderStatus.Error;
+            serialPort = null;
+            Config.port = "None"; // Changing via public property PortName would cause feedback loop
+        }
+    }
 
-            if (serialPort != null && serialPort.IsOpen)
+    private string GenerateCommand(int strength, int duration)
+    {
+        return $"1 {strength} {duration}\n";
+        ;
+    }
+
+    public void SendShock(int strength, int duration)
+    {
+        Debug.WriteLine($"Strength: {strength}, duration: {duration}");
+
+        if (serialPort != null && serialPort.IsOpen)
+        {
+            serialPort.Write(GenerateCommand(strength, duration));
+            if (strength > 0)
             {
-                serialPort.Write(GenerateCommand(strength, duration));
-                if (strength > 0)
-                {
-                    Statistics.duration += duration;
-                    StatisticsUpdated?.Invoke(this, EventArgs.Empty);
-                }
-            } else
-            {
-                RestartSerialConnection();
+                Statistics.duration += duration;
+                StatisticsUpdated?.Invoke(this, EventArgs.Empty);
             }
         }
-
-        public void Pair()
+        else
         {
-            SendShock(0, 1000);
+            RestartSerialConnection();
         }
+    }
+
+    public void Pair()
+    {
+        SendShock(0, 1000);
     }
 }

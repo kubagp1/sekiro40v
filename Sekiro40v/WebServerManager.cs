@@ -1,81 +1,75 @@
-﻿using System;
-using EmbedIO;
-using EmbedIO.WebApi;
-using EmbedIO.WebSockets;
-using System.Threading;
+﻿using System.Threading;
 using System.Threading.Tasks;
-using System.Diagnostics;
+using EmbedIO;
 
-namespace Sekiro40v
+namespace Sekiro40v;
+
+public class WebServerManager
 {
-    public class WebServerManager
+    public Config.General Config;
+
+    private readonly DeathCounter.CounterWebSocketModule counterModule;
+    private CancellationTokenSource cts = new();
+
+    private IWebServer webServer;
+
+    private Task webServerTask;
+
+    public WebServerManager(Config.General config, DeathCounter.CounterWebSocketModule counterModule)
     {
-        public Config.General Config;
+        Config = config;
 
-        private IWebServer webServer;
-        private CancellationTokenSource cts = new();
+        this.counterModule = counterModule;
 
-        private Task webServerTask;
+        StartWebServer();
+    }
 
-        public int Port
+    public int Port
+    {
+        get => Config.webServerPort;
+        set
         {
-            get
+            var changed = value != Config.webServerPort;
+            Config.webServerPort = value;
+            if (changed && webServerTask is not null)
             {
-                return Config.webServerPort;
-            }
-            set
-            {
-                var changed = value != Config.webServerPort;
-                Config.webServerPort = value;
-                if (changed && webServerTask is not null)
-                {
-                    // Maybe this is not the most elegant solution but it gets the job done
-                    cts.Cancel();
-                    StartWebServer();
-                }
+                // Maybe this is not the most elegant solution but it gets the job done
+                cts.Cancel();
+                StartWebServer();
             }
         }
+    }
 
-        public WebServerState? GetWebServerState()
-        {
-            return webServer?.State;
-        }
+    public WebServerState? GetWebServerState()
+    {
+        return webServer?.State;
+    }
 
-        private DeathCounter.CounterWebSocketModule counterModule;
+    private WebServer ConfigureWebServer()
+    {
+        return new WebServer(o => o
+                .WithUrlPrefix($"http://127.0.0.1:{Port}/")
+                .WithMode(HttpListenerMode.Microsoft))
+            .WithModule(counterModule)
+            .WithStaticFolder("/", "webserver_static", false);
+    }
 
-        public WebServerManager(Config.General config, DeathCounter.CounterWebSocketModule counterModule)
-        {
-            this.Config = config;
+    public event WebServerStateChangedEventHandler WebServerStateChangedEventHandler;
 
-            this.counterModule = counterModule;
+    private void StartWebServer()
+    {
+        webServer = ConfigureWebServer();
 
-            StartWebServer();
-        }
+        webServer.StateChanged += WebServer_StateChanged;
 
-        private WebServer ConfigureWebServer()
-            => new WebServer(o => o
-                     .WithUrlPrefix($"http://127.0.0.1:{Port}/")
-                     .WithMode(HttpListenerMode.Microsoft))
-                .WithModule(counterModule)
-                .WithStaticFolder("/", "webserver_static", false);
+        cts = new CancellationTokenSource();
 
-        public event WebServerStateChangedEventHandler WebServerStateChangedEventHandler;
+        webServerTask = webServer.RunAsync(cts.Token);
+    }
 
-        private void StartWebServer()
-        {
-            webServer = ConfigureWebServer();
-
-            webServer.StateChanged += WebServer_StateChanged;
-
-            cts = new CancellationTokenSource();
-
-            webServerTask = webServer.RunAsync(cts.Token);
-        }
-
-        private void WebServer_StateChanged(object sender, WebServerStateChangedEventArgs e)
-        {
-            if (sender == webServer) // Ignore state updates of old servers
-                WebServerStateChangedEventHandler?.Invoke(sender, e);
-        }
+    private void WebServer_StateChanged(object sender, WebServerStateChangedEventArgs e)
+    {
+        if (sender == webServer) // Ignore state updates of old servers
+            WebServerStateChangedEventHandler?.Invoke(sender, e);
     }
 }
