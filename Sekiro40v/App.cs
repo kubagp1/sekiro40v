@@ -12,25 +12,25 @@ public enum ShockOnDamageMode
 
 public class App
 {
-    public Config Config;
-    public DeathCounter DeathCounter;
-    public MemoryHook MemoryHook;
-    public PainSender PainSender;
+    public readonly Config Config;
+    public readonly DeathCounter DeathCounter;
+    public readonly MemoryHook MemoryHook;
+    public readonly PainSender PainSender;
 
-    public Config.General Settings;
-    public StatisticsManager StatisticsManager;
-    public WebServerManager WebServerManager;
+    public readonly Config.General GeneralSettings;
+    public readonly StatisticsManager StatisticsManager;
+    public readonly WebServerManager WebServerManager;
 
     public App()
     {
         Config = new Config();
         StatisticsManager = new StatisticsManager();
 
-        Settings = Config.Settings.General;
+        GeneralSettings = Config.Settings.General;
 
         MemoryHook = new MemoryHook(Config.Settings.MemoryHook);
         DeathCounter = new DeathCounter(Config.Settings.DeathCounter, StatisticsManager.Statistics.DeathCounter);
-        WebServerManager = new WebServerManager(Config.Settings.General, DeathCounter.Module);
+        WebServerManager = new WebServerManager(Config.Settings.General, DeathCounter.WebSocketModule);
         PainSender = new PainSender(Config.Settings.PainSender, StatisticsManager.Statistics.PainSender);
 
         MemoryHook.DeathEventHandler += MemoryHook_DeathEventHandler;
@@ -39,36 +39,35 @@ public class App
 
     private void MemoryHook_DamageEventHandler(object sender, MemoryHook.DamageEventHandlerEventArgs e)
     {
-        if (Settings.ShockOnDamage)
+        if (!GeneralSettings.ShockOnDamage) return;
+        
+        var percentage = (double)e.Damage / e.MaxHp;
+        switch (GeneralSettings.ShockOnDamageMode)
         {
-            var percentage = (double)e.Damage / e.MaxHp;
-            switch (Settings.ShockOnDamageMode)
-            {
-                case ShockOnDamageMode.ScaleBoth:
-                    PainSender.SendShock(
-                        (int)(Settings.ShockOnDamageStrength * percentage),
-                        (int)(Settings.ShockOnDamageDuration * percentage)
-                    );
-                    break;
-                case ShockOnDamageMode.ScaleDuration:
-                    PainSender.SendShock(
-                        Settings.ShockOnDamageStrength,
-                        (int)(Settings.ShockOnDamageDuration * percentage)
-                    );
-                    break;
-                case ShockOnDamageMode.ScaleStrength:
-                    PainSender.SendShock(
-                        (int)(Settings.ShockOnDamageStrength * percentage),
-                        Settings.ShockOnDamageDuration
-                    );
-                    break;
-                case ShockOnDamageMode.StaticBoth:
-                    PainSender.SendShock(
-                        Settings.ShockOnDamageStrength,
-                        Settings.ShockOnDamageDuration
-                    );
-                    break;
-            }
+            case ShockOnDamageMode.ScaleBoth:
+                PainSender.SendShock(
+                    (int)(GeneralSettings.ShockOnDamageStrength * percentage),
+                    (int)(GeneralSettings.ShockOnDamageDuration * percentage)
+                );
+                break;
+            case ShockOnDamageMode.ScaleDuration:
+                PainSender.SendShock(
+                    GeneralSettings.ShockOnDamageStrength,
+                    (int)(GeneralSettings.ShockOnDamageDuration * percentage)
+                );
+                break;
+            case ShockOnDamageMode.ScaleStrength:
+                PainSender.SendShock(
+                    (int)(GeneralSettings.ShockOnDamageStrength * percentage),
+                    GeneralSettings.ShockOnDamageDuration
+                );
+                break;
+            case ShockOnDamageMode.StaticBoth:
+                PainSender.SendShock(
+                    GeneralSettings.ShockOnDamageStrength,
+                    GeneralSettings.ShockOnDamageDuration
+                );
+                break;
         }
     }
 
@@ -76,6 +75,6 @@ public class App
     {
         DeathCounter.Counter++;
 
-        if (Settings.ShockOnDeath) PainSender.SendShock(Settings.ShockOnDeathStrength, Settings.ShockOnDeathDuration);
+        if (GeneralSettings.ShockOnDeath) PainSender.SendShock(GeneralSettings.ShockOnDeathStrength, GeneralSettings.ShockOnDeathDuration);
     }
 }

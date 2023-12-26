@@ -17,7 +17,7 @@ public partial class MemoryHook
 {
     private MemoryHookStatus _status;
     private nint _baseAddress;
-    public Config.MemoryHook Config;
+    public readonly Config.MemoryHook Config;
     private Task _currentSearchingTask;
     private ExternalMemory _externalMemory;
 
@@ -38,21 +38,19 @@ public partial class MemoryHook
         get => Config.ProcessName;
         set
         {
-            if (Config.ProcessName != value)
-            {
-                Config.ProcessName = value;
-                if (_currentSearchingTask is not null &&
-                    _currentSearchingTask
-                        .IsCompleted) // the "is not null" part is here in case processName gets changed before any searching task is started
-                    RestartSearchingTask();
-            }
+            if (Config.ProcessName == value) return;
+            Config.ProcessName = value;
+            if (_currentSearchingTask is not null &&
+                _currentSearchingTask
+                    .IsCompleted) // the "is not null" part is here in case processName gets changed before any searching task is started
+                RestartSearchingTask();
         }
     }
 
     public MemoryHookStatus Status
     {
         get => _status;
-        set
+        private set
         {
             _status = value;
 
@@ -90,7 +88,7 @@ public partial class MemoryHook
         }
     }
 
-    public int? ReadMemory()
+    private int? ReadMemory()
     {
         try
         {
@@ -112,6 +110,6 @@ public partial class MemoryHook
         _externalMemory = null;
         // baseAddress should technically be nulled here but who cares
 
-        _currentSearchingTask = Task.Run(() => { WaitForProcess(); });
+        _currentSearchingTask = Task.Run(WaitForProcess);
     }
 }

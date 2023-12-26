@@ -96,17 +96,17 @@ public partial class Form1 : Form
 
         app.WebServerManager.WebServerStateChangedEventHandler += WebServerManager_WebServerStateChangedEventHandler;
 
-        generalShockOnDamageChcekbox.Checked = app.Settings.ShockOnDamage;
+        generalShockOnDamageChcekbox.Checked = app.GeneralSettings.ShockOnDamage;
 
-        generalShockOnDamageMode.SelectedIndex = (int)app.Settings.ShockOnDamageMode;
+        generalShockOnDamageMode.SelectedIndex = (int)app.GeneralSettings.ShockOnDamageMode;
 
-        generalShockOnDamageStrengthInput.Value = app.Settings.ShockOnDamageStrength;
-        generalShockOnDamageDurationInput.Value = app.Settings.ShockOnDamageDuration;
+        generalShockOnDamageStrengthInput.Value = app.GeneralSettings.ShockOnDamageStrength;
+        generalShockOnDamageDurationInput.Value = app.GeneralSettings.ShockOnDamageDuration;
 
-        generalShockOnDeathCheckbox.Checked = app.Settings.ShockOnDeath;
+        generalShockOnDeathCheckbox.Checked = app.GeneralSettings.ShockOnDeath;
 
-        generalShockOnDeathStrength.Value = app.Settings.ShockOnDeathStrength;
-        generalShockOnDeathDuration.Value = app.Settings.ShockOnDeathDuration;
+        generalShockOnDeathStrength.Value = app.GeneralSettings.ShockOnDeathStrength;
+        generalShockOnDeathDuration.Value = app.GeneralSettings.ShockOnDeathDuration;
 
         #endregion
 
@@ -121,16 +121,16 @@ public partial class Form1 : Form
         #endregion
     }
 
-    private void generalShockOnDamageCheckbox_CheckedChanged(object sender, EventArgs e)
+    private void GeneralShockOnDamageCheckbox_CheckedChanged(object sender, EventArgs e)
     {
-        _app.Settings.ShockOnDamage = generalShockOnDamageChcekbox.Checked;
+        _app.GeneralSettings.ShockOnDamage = generalShockOnDamageChcekbox.Checked;
     }
 
-    private void generalShockOnDamageMode_SelectedIndexChanged(object sender, EventArgs e)
+    private void GeneralShockOnDamageMode_SelectedIndexChanged(object sender, EventArgs e)
     {
-        _app.Settings.ShockOnDamageMode = (ShockOnDamageMode)generalShockOnDamageMode.SelectedIndex;
+        _app.GeneralSettings.ShockOnDamageMode = (ShockOnDamageMode)generalShockOnDamageMode.SelectedIndex;
 
-        switch (_app.Settings.ShockOnDamageMode)
+        switch (_app.GeneralSettings.ShockOnDamageMode)
         {
             case ShockOnDamageMode.ScaleBoth:
                 generalShockOnDamageStrenthLabel.Text = "Max. strength (0-100)";
@@ -151,34 +151,34 @@ public partial class Form1 : Form
         }
     }
 
-    private void generalShockOnDamageStrengthInput_ValueChanged(object sender, EventArgs e)
+    private void GeneralShockOnDamageStrengthInput_ValueChanged(object sender, EventArgs e)
     {
-        _app.Settings.ShockOnDamageStrength = (int)generalShockOnDamageStrengthInput.Value;
+        _app.GeneralSettings.ShockOnDamageStrength = (int)generalShockOnDamageStrengthInput.Value;
     }
 
-    private void generalShockOnDamageDurationInput_ValueChanged(object sender, EventArgs e)
+    private void GeneralShockOnDamageDurationInput_ValueChanged(object sender, EventArgs e)
     {
-        _app.Settings.ShockOnDamageDuration = (int)generalShockOnDamageDurationInput.Value;
+        _app.GeneralSettings.ShockOnDamageDuration = (int)generalShockOnDamageDurationInput.Value;
     }
 
-    private void generalShockOnDeathCheckbox_CheckedChanged(object sender, EventArgs e)
+    private void GeneralShockOnDeathCheckbox_CheckedChanged(object sender, EventArgs e)
     {
-        _app.Settings.ShockOnDeath = generalShockOnDeathCheckbox.Checked;
+        _app.GeneralSettings.ShockOnDeath = generalShockOnDeathCheckbox.Checked;
     }
 
-    private void generalShockOnDeathStrength_ValueChanged(object sender, EventArgs e)
+    private void GeneralShockOnDeathStrength_ValueChanged(object sender, EventArgs e)
     {
-        _app.Settings.ShockOnDeathStrength = (int)generalShockOnDeathStrength.Value;
+        _app.GeneralSettings.ShockOnDeathStrength = (int)generalShockOnDeathStrength.Value;
     }
 
-    private void generalShockOnDeathDuration_ValueChanged(object sender, EventArgs e)
+    private void GeneralShockOnDeathDuration_ValueChanged(object sender, EventArgs e)
     {
-        _app.Settings.ShockOnDeathDuration = (int)generalShockOnDeathDuration.Value;
+        _app.GeneralSettings.ShockOnDeathDuration = (int)generalShockOnDeathDuration.Value;
     }
 
     #region General
 
-    private void toolStripStatusLabel1_Click(object sender, EventArgs e)
+    private void ToolStripStatusLabel1_Click(object sender, EventArgs e)
     {
         Process.Start("explorer", "https://github.com/kubagp1/sekiro40v");
     }
@@ -197,11 +197,9 @@ public partial class Form1 : Form
             MessageBoxButtons.YesNoCancel,
             MessageBoxIcon.Question);
 
-        if (userSure == DialogResult.Yes)
-        {
-            _app.Config.RestoreDefaults();
-            Application.Restart();
-        }
+        if (userSure != DialogResult.Yes) return;
+        _app.Config.RestoreDefaults();
+        Application.Restart();
     }
 
     #endregion
@@ -214,7 +212,7 @@ public partial class Form1 : Form
         Invoke(new Action<string>(state => { GeneralStatusWebserverInput.Text = state; }), e.NewState.ToString());
     }
 
-    private void webServerPortInput_ValueChanged(object sender, EventArgs e)
+    private void WebServerPortInput_ValueChanged(object sender, EventArgs e)
     {
         _app.WebServerManager.Port = (int)webServerPortInput.Value;
     }
@@ -350,27 +348,27 @@ public partial class Form1 : Form
         Invoke(() => { currentHPInput.Text = _app.MemoryHook.CurrentHp.ToString(); });
     }
 
-    private void processNameInput_TextChanged(object sender, EventArgs e)
+    private void ProcessNameInput_TextChanged(object sender, EventArgs e)
     {
         _app.MemoryHook.ProcessName = Path.GetFileNameWithoutExtension(processNameInput.Text);
     }
 
-    private void maxHPInput_ValueChanged(object sender, EventArgs e)
+    private void MaxHPInput_ValueChanged(object sender, EventArgs e)
     {
         _app.MemoryHook.MaxHp = (int)maxHPInput.Value;
     }
 
-    private void maxReadsPerMinuteInput_ValueChanged(object sender, EventArgs e)
+    private void MaxReadsPerMinuteInput_ValueChanged(object sender, EventArgs e)
     {
         _app.MemoryHook.Config.MaxRpm = (int)maxReadsPerMinuteInput.Value;
     }
 
-    private void memoryOffsetInput_ValueChanged(object sender, EventArgs e)
+    private void MemoryOffsetInput_ValueChanged(object sender, EventArgs e)
     {
         _app.MemoryHook.Config.Offset = (int)memoryOffsetInput.Value;
     }
 
-    private void resetStatisticsButton_Click(object sender, EventArgs e)
+    private void ResetStatisticsButton_Click(object sender, EventArgs e)
     {
         var userSure = MessageBox.Show("Are you sure you want to reset all statistics of MemoryHook?", "Are you sure?",
             MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
@@ -384,12 +382,12 @@ public partial class Form1 : Form
         }
     }
 
-    private void totalDeathsInput_ValueChanged(object sender, EventArgs e)
+    private void TotalDeathsInput_ValueChanged(object sender, EventArgs e)
     {
         _app.StatisticsManager.Statistics.MemoryHook.TotalDeaths = (int)totalDeathsInput.Value;
     }
 
-    private void totalDamageInput_ValueChanged(object sender, EventArgs e)
+    private void TotalDamageInput_ValueChanged(object sender, EventArgs e)
     {
         _app.StatisticsManager.Statistics.MemoryHook.TotalDamage = (int)totalDamageInput.Value;
     }
@@ -447,7 +445,7 @@ public partial class Form1 : Form
         }
     }
 
-    private void painSenderManualShockButton_Click(object sender, EventArgs e)
+    private void PainSenderManualShockButton_Click(object sender, EventArgs e)
     {
         var strength = (int)painSenderManualShockStrength.Value;
         var duration = (int)painSenderManualShockDuration.Value;

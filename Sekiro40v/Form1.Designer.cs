@@ -178,7 +178,7 @@ namespace Sekiro40v
             toolStripStatusLabel1.Name = "toolStripStatusLabel1";
             toolStripStatusLabel1.Size = new System.Drawing.Size(115, 17);
             toolStripStatusLabel1.Text = "sekiro40v by kubagp";
-            toolStripStatusLabel1.Click += toolStripStatusLabel1_Click;
+            toolStripStatusLabel1.Click += ToolStripStatusLabel1_Click;
             // 
             // colorDialog1
             // 
@@ -245,7 +245,7 @@ namespace Sekiro40v
             painSenderManualShockButton.TabIndex = 1;
             painSenderManualShockButton.Text = "Shock";
             painSenderManualShockButton.UseVisualStyleBackColor = true;
-            painSenderManualShockButton.Click += painSenderManualShockButton_Click;
+            painSenderManualShockButton.Click += PainSenderManualShockButton_Click;
             // 
             // painSenderManualShockDuration
             // 
@@ -714,7 +714,7 @@ namespace Sekiro40v
             resetStatisticsButton.TabIndex = 2;
             resetStatisticsButton.Text = "Reset statistics";
             resetStatisticsButton.UseVisualStyleBackColor = true;
-            resetStatisticsButton.Click += resetStatisticsButton_Click;
+            resetStatisticsButton.Click += ResetStatisticsButton_Click;
             // 
             // totalDamageInput
             // 
@@ -723,7 +723,7 @@ namespace Sekiro40v
             totalDamageInput.Name = "totalDamageInput";
             totalDamageInput.Size = new System.Drawing.Size(100, 23);
             totalDamageInput.TabIndex = 1;
-            totalDamageInput.ValueChanged += totalDamageInput_ValueChanged;
+            totalDamageInput.ValueChanged += TotalDamageInput_ValueChanged;
             // 
             // totalDeathsInput
             // 
@@ -732,7 +732,7 @@ namespace Sekiro40v
             totalDeathsInput.Name = "totalDeathsInput";
             totalDeathsInput.Size = new System.Drawing.Size(100, 23);
             totalDeathsInput.TabIndex = 0;
-            totalDeathsInput.ValueChanged += totalDeathsInput_ValueChanged;
+            totalDeathsInput.ValueChanged += TotalDeathsInput_ValueChanged;
             // 
             // groupBox2
             // 
@@ -760,7 +760,7 @@ namespace Sekiro40v
             maxHPInput.Name = "maxHPInput";
             maxHPInput.Size = new System.Drawing.Size(100, 23);
             maxHPInput.TabIndex = 2;
-            maxHPInput.ValueChanged += maxHPInput_ValueChanged;
+            maxHPInput.ValueChanged += MaxHPInput_ValueChanged;
             // 
             // label6
             // 
@@ -854,7 +854,7 @@ namespace Sekiro40v
             memoryOffsetInput.Name = "memoryOffsetInput";
             memoryOffsetInput.Size = new System.Drawing.Size(100, 23);
             memoryOffsetInput.TabIndex = 2;
-            memoryOffsetInput.ValueChanged += memoryOffsetInput_ValueChanged;
+            memoryOffsetInput.ValueChanged += MemoryOffsetInput_ValueChanged;
             // 
             // maxReadsPerMinuteInput
             // 
@@ -863,7 +863,7 @@ namespace Sekiro40v
             maxReadsPerMinuteInput.Name = "maxReadsPerMinuteInput";
             maxReadsPerMinuteInput.Size = new System.Drawing.Size(100, 23);
             maxReadsPerMinuteInput.TabIndex = 2;
-            maxReadsPerMinuteInput.ValueChanged += maxReadsPerMinuteInput_ValueChanged;
+            maxReadsPerMinuteInput.ValueChanged += MaxReadsPerMinuteInput_ValueChanged;
             // 
             // processNameInput
             // 
@@ -871,7 +871,7 @@ namespace Sekiro40v
             processNameInput.Name = "processNameInput";
             processNameInput.Size = new System.Drawing.Size(100, 23);
             processNameInput.TabIndex = 1;
-            processNameInput.TextChanged += processNameInput_TextChanged;
+            processNameInput.TextChanged += ProcessNameInput_TextChanged;
             // 
             // label9
             // 
@@ -944,7 +944,7 @@ namespace Sekiro40v
             generalShockOnDamageMode.Name = "generalShockOnDamageMode";
             generalShockOnDamageMode.Size = new System.Drawing.Size(121, 23);
             generalShockOnDamageMode.TabIndex = 6;
-            generalShockOnDamageMode.SelectedIndexChanged += generalShockOnDamageMode_SelectedIndexChanged;
+            generalShockOnDamageMode.SelectedIndexChanged += GeneralShockOnDamageMode_SelectedIndexChanged;
             // 
             // generalShockOnDamageDurationLabel
             // 
@@ -986,7 +986,7 @@ namespace Sekiro40v
             generalShockOnDamageDurationInput.Name = "generalShockOnDamageDurationInput";
             generalShockOnDamageDurationInput.Size = new System.Drawing.Size(120, 23);
             generalShockOnDamageDurationInput.TabIndex = 2;
-            generalShockOnDamageDurationInput.ValueChanged += generalShockOnDamageDurationInput_ValueChanged;
+            generalShockOnDamageDurationInput.ValueChanged += GeneralShockOnDamageDurationInput_ValueChanged;
             // 
             // label27
             // 
@@ -1005,7 +1005,7 @@ namespace Sekiro40v
             generalShockOnDamageStrengthInput.Name = "generalShockOnDamageStrengthInput";
             generalShockOnDamageStrengthInput.Size = new System.Drawing.Size(120, 23);
             generalShockOnDamageStrengthInput.TabIndex = 1;
-            generalShockOnDamageStrengthInput.ValueChanged += generalShockOnDamageStrengthInput_ValueChanged;
+            generalShockOnDamageStrengthInput.ValueChanged += GeneralShockOnDamageStrengthInput_ValueChanged;
             // 
             // generalShockOnDeathDuration
             // 
@@ -1014,7 +1014,7 @@ namespace Sekiro40v
             generalShockOnDeathDuration.Name = "generalShockOnDeathDuration";
             generalShockOnDeathDuration.Size = new System.Drawing.Size(120, 23);
             generalShockOnDeathDuration.TabIndex = 2;
-            generalShockOnDeathDuration.ValueChanged += generalShockOnDeathDuration_ValueChanged;
+            generalShockOnDeathDuration.ValueChanged += GeneralShockOnDeathDuration_ValueChanged;
             // 
             // generalShockOnDeathStrength
             // 
@@ -1022,7 +1022,7 @@ namespace Sekiro40v
             generalShockOnDeathStrength.Name = "generalShockOnDeathStrength";
             generalShockOnDeathStrength.Size = new System.Drawing.Size(120, 23);
             generalShockOnDeathStrength.TabIndex = 1;
-            generalShockOnDeathStrength.ValueChanged += generalShockOnDeathStrength_ValueChanged;
+            generalShockOnDeathStrength.ValueChanged += GeneralShockOnDeathStrength_ValueChanged;
             // 
             // generalShockOnDeathCheckbox
             // 
@@ -1033,7 +1033,7 @@ namespace Sekiro40v
             generalShockOnDeathCheckbox.TabIndex = 0;
             generalShockOnDeathCheckbox.Text = "Shock on death";
             generalShockOnDeathCheckbox.UseVisualStyleBackColor = true;
-            generalShockOnDeathCheckbox.CheckedChanged += generalShockOnDeathCheckbox_CheckedChanged;
+            generalShockOnDeathCheckbox.CheckedChanged += GeneralShockOnDeathCheckbox_CheckedChanged;
             // 
             // generalShockOnDamageChcekbox
             // 
@@ -1044,7 +1044,7 @@ namespace Sekiro40v
             generalShockOnDamageChcekbox.TabIndex = 0;
             generalShockOnDamageChcekbox.Text = "Shock on damage";
             generalShockOnDamageChcekbox.UseVisualStyleBackColor = true;
-            generalShockOnDamageChcekbox.CheckedChanged += generalShockOnDamageCheckbox_CheckedChanged;
+            generalShockOnDamageChcekbox.CheckedChanged += GeneralShockOnDamageCheckbox_CheckedChanged;
             // 
             // GeneralEraseStatisticsButton
             // 
@@ -1153,7 +1153,7 @@ namespace Sekiro40v
             webServerPortInput.Size = new System.Drawing.Size(100, 23);
             webServerPortInput.TabIndex = 1;
             webServerPortInput.Value = new decimal(new int[] { 1, 0, 0, 0 });
-            webServerPortInput.ValueChanged += webServerPortInput_ValueChanged;
+            webServerPortInput.ValueChanged += WebServerPortInput_ValueChanged;
             // 
             // label11
             // 

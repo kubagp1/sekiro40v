@@ -31,17 +31,17 @@ public class DeathCounter
         Right
     }
 
-    public Config.DeathCounter Config;
+    private readonly Config.DeathCounter _config;
 
-    public CounterWebSocketModule Module;
-    public StatisticsManager.DeathCounter Statistics;
+    public readonly CounterWebSocketModule WebSocketModule;
+    private readonly StatisticsManager.DeathCounter _statistics;
 
     public DeathCounter(Config.DeathCounter config, StatisticsManager.DeathCounter statistics)
     {
-        Config = config;
-        Statistics = statistics;
+        _config = config;
+        _statistics = statistics;
 
-        Module = new CounterWebSocketModule("/counter/socket", this);
+        WebSocketModule = new CounterWebSocketModule("/counter/socket", this);
 
         CounterChangedEventHandler += DeathCounter_CounterChangedEventHandler;
     }
@@ -50,7 +50,7 @@ public class DeathCounter
 
     private void DeathCounter_CounterChangedEventHandler(object sender, CounterChangedEventArgs e)
     {
-        Module.BroadcastUpdate(new CounterUpdate
+        WebSocketModule.BroadcastUpdate(new CounterUpdate
         {
             Action = CounterUpdateAction.Counter,
             Value = Counter
@@ -150,115 +150,109 @@ public class DeathCounter
 
     public int Counter
     {
-        get => Statistics.Deaths;
+        get => _statistics.Deaths;
         set
         {
-            if (Statistics.Deaths != value)
-            {
-                Statistics.Deaths = value;
-                CounterChangedEventHandler?.Invoke(this, new CounterChangedEventArgs { Value = value });
-            }
+            if (_statistics.Deaths == value) return;
+            
+            _statistics.Deaths = value;
+            CounterChangedEventHandler?.Invoke(this, new CounterChangedEventArgs { Value = value });
         }
     }
 
     public string CounterFontFamily
     {
-        get => Config.CounterFontFamily;
+        get => _config.CounterFontFamily;
         set
         {
-            if (value != Config.CounterFontFamily)
-            {
-                Config.CounterFontFamily = value;
-                Module.BroadcastUpdate(new CounterUpdate
-                    { Action = CounterUpdateAction.FontFamily, Value = CounterFontFamily });
-            }
+            if (value == _config.CounterFontFamily) return;
+            
+            _config.CounterFontFamily = value;
+            WebSocketModule.BroadcastUpdate(new CounterUpdate
+                { Action = CounterUpdateAction.FontFamily, Value = CounterFontFamily });
         }
     }
 
     public string CounterColor
     {
-        get => Config.CounterColor;
+        get => _config.CounterColor;
         set
         {
-            var changed = value != Config.CounterColor;
-            Config.CounterColor = value;
+            // TODO: Why is this one using a 'checked' variable?
+            var changed = value != _config.CounterColor;
+            _config.CounterColor = value;
             if (changed)
-                Module.BroadcastUpdate(new CounterUpdate { Action = CounterUpdateAction.Color, Value = CounterColor });
+                WebSocketModule.BroadcastUpdate(new CounterUpdate { Action = CounterUpdateAction.Color, Value = CounterColor });
         }
     }
 
     public ECounterAlign CounterAlign
     {
-        get => Config.CounterAlign;
+        get => _config.CounterAlign;
         set
         {
-            if (value != Config.CounterAlign)
-            {
-                Config.CounterAlign = value;
-                Module.BroadcastUpdate(new CounterUpdate { Action = CounterUpdateAction.Align, Value = CounterAlign });
-            }
+            if (value == _config.CounterAlign) return;
+            
+            _config.CounterAlign = value;
+            WebSocketModule.BroadcastUpdate(new CounterUpdate { Action = CounterUpdateAction.Align, Value = CounterAlign });
         }
     }
 
     public ImageMode CounterImageMode
     {
-        get => Config.CounterImageMode;
+        get => _config.CounterImageMode;
         set
         {
-            if (Config.CounterImageMode != value)
-            {
-                Config.CounterImageMode = value;
-                Module.BroadcastUpdate(new CounterUpdate
-                    { Action = CounterUpdateAction.ImageMode, Value = CounterImageMode });
-            }
+            if (_config.CounterImageMode == value) return;
+            
+            _config.CounterImageMode = value;
+            WebSocketModule.BroadcastUpdate(new CounterUpdate
+                { Action = CounterUpdateAction.ImageMode, Value = CounterImageMode });
         }
     }
 
     public int CounterImageOffsetX
     {
-        get => Config.CounterImageOffsetX;
+        get => _config.CounterImageOffsetX;
         set
         {
-            if (Config.CounterImageOffsetX != value)
+            if (_config.CounterImageOffsetX == value) return;
+            
+            _config.CounterImageOffsetX = value;
+            WebSocketModule.BroadcastUpdate(new CounterUpdate
             {
-                Config.CounterImageOffsetX = value;
-                Module.BroadcastUpdate(new CounterUpdate
-                {
-                    Action = CounterUpdateAction.ImageOffset,
-                    Value = new ImageOffset { X = CounterImageOffsetX, Y = CounterImageOffsetY }
-                });
-            }
+                Action = CounterUpdateAction.ImageOffset,
+                Value = new ImageOffset { X = CounterImageOffsetX, Y = CounterImageOffsetY }
+            });
         }
     }
 
     public int CounterImageOffsetY
     {
-        get => Config.CounterImageOffsetY;
+        get => _config.CounterImageOffsetY;
         set
         {
-            if (Config.CounterImageOffsetY != value)
+            if (_config.CounterImageOffsetY == value) return;
+            
+            _config.CounterImageOffsetY = value;
+            WebSocketModule.BroadcastUpdate(new CounterUpdate
             {
-                Config.CounterImageOffsetY = value;
-                Module.BroadcastUpdate(new CounterUpdate
-                {
-                    Action = CounterUpdateAction.ImageOffset,
-                    Value = new ImageOffset { X = CounterImageOffsetX, Y = CounterImageOffsetY }
-                });
-            }
+                Action = CounterUpdateAction.ImageOffset,
+                Value = new ImageOffset { X = CounterImageOffsetX, Y = CounterImageOffsetY }
+            });
         }
     }
 
     public int CounterImageSize
     {
-        get => Config.CounterImageSize;
+        get => _config.CounterImageSize;
         set
         {
-            if (Config.CounterImageSize != value)
-            {
-                Config.CounterImageSize = value;
-                Module.BroadcastUpdate(new CounterUpdate
-                    { Action = CounterUpdateAction.ImageSize, Value = CounterImageSize });
-            }
+            if (_config.CounterImageSize == value) return;
+            
+            _config.CounterImageSize = value;
+            WebSocketModule.BroadcastUpdate(new CounterUpdate
+                { Action = CounterUpdateAction.ImageSize, Value = CounterImageSize });
         }
     }
 

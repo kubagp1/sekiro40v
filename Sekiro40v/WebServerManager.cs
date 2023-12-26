@@ -6,18 +6,18 @@ namespace Sekiro40v;
 
 public class WebServerManager
 {
-    public Config.General Config;
+    private readonly Config.General _config;
 
     private readonly DeathCounter.CounterWebSocketModule _counterModule;
     private CancellationTokenSource _cts = new();
 
-    private IWebServer _webServer;
+    private WebServer _webServer;
 
     private Task _webServerTask;
 
     public WebServerManager(Config.General config, DeathCounter.CounterWebSocketModule counterModule)
     {
-        Config = config;
+        this._config = config;
 
         this._counterModule = counterModule;
 
@@ -26,17 +26,17 @@ public class WebServerManager
 
     public int Port
     {
-        get => Config.WebServerPort;
+        get => _config.WebServerPort;
         set
         {
-            var changed = value != Config.WebServerPort;
-            Config.WebServerPort = value;
-            if (changed && _webServerTask is not null)
-            {
-                // Maybe this is not the most elegant solution but it gets the job done
-                _cts.Cancel();
-                StartWebServer();
-            }
+            var changed = value != _config.WebServerPort;
+            _config.WebServerPort = value;
+            
+            if (!changed || _webServerTask is null) return;
+            
+            // Maybe this is not the most elegant solution but it gets the job done
+            _cts.Cancel();
+            StartWebServer();
         }
     }
 
