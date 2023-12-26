@@ -1054,6 +1054,7 @@ namespace Sekiro40v
             GeneralEraseStatisticsButton.TabIndex = 3;
             GeneralEraseStatisticsButton.Text = "Erase all statistics";
             GeneralEraseStatisticsButton.UseVisualStyleBackColor = true;
+            GeneralEraseStatisticsButton.Click += GeneralEraseStatisticsButton_Click;
             // 
             // GeneralRestoreDefaultSettingsButton
             // 

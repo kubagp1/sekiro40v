@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
@@ -193,16 +192,31 @@ public partial class Form1 : Form
     {
         var userSure = MessageBox.Show(
             "Are you sure you want to reset all settings?\nApplication will restart!",
-            "Are you sure?",
+            "Reset all settings",
             MessageBoxButtons.YesNoCancel,
             MessageBoxIcon.Question);
 
         if (userSure != DialogResult.Yes) return;
+
         _app.Config.RestoreDefaults();
         Application.Restart();
     }
 
-    #endregion
+    private void GeneralEraseStatisticsButton_Click(object sender, EventArgs e)
+    {
+        var userSure = MessageBox.Show(
+            "Are you sure you want to erase all statistics?\nApplication will restart!",
+            "Reset all settings",
+            MessageBoxButtons.YesNoCancel,
+            MessageBoxIcon.Question);
+
+        if (userSure != DialogResult.Yes) return;
+
+        _app.StatisticsManager.EraseStatistics();
+        Application.Restart();
+    }
+
+    #endregion General
 
     #region WebServer Event Handler
 
