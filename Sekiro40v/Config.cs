@@ -5,6 +5,8 @@ namespace Sekiro40v;
 
 public class Config
 {
+    private const string Path = @"settings.json";
+
     private readonly DeathCounter _deathCounterDefaults = new()
     {
         CounterAlign = Sekiro40v.DeathCounter.ECounterAlign.Right,
@@ -19,11 +21,10 @@ public class Config
     private readonly MemoryHook _memoryHookDefaults = new()
     {
         ProcessName = "sekiro",
-        MaxRpm = 60,
+        MaxRps = 60,
         Offset = 62362212
     };
 
-    public string Path = @"settings.json";
     public SettingsSchema Settings;
 
     public Config()
@@ -114,7 +115,7 @@ public class Config
     public class MemoryHook
     {
         public string ProcessName { get; set; }
-        public int MaxRpm { get; set; }
+        public int MaxRps { get; set; }
         public int Offset { get; set; }
     }
 

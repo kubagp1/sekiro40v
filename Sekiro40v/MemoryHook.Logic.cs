@@ -17,7 +17,7 @@ public partial class MemoryHook
 
     public event EventHandler DeathEventHandler;
 
-    public void StartLoop()
+    private void StartLoop()
     {
         Task.Run(() =>
             {
@@ -65,9 +65,9 @@ public partial class MemoryHook
 
                     var executionTime = DateTime.Now - startTime;
 
-                    if (Config.MaxRpm <= 0)
-                        Config.MaxRpm = 1;
-                    var timeout = (int)(1000 / Config.MaxRpm - executionTime.TotalMilliseconds);
+                    if (Config.MaxRps <= 0)
+                        Config.MaxRps = 1;
+                    var timeout = (int)(1000 / Config.MaxRps - executionTime.TotalMilliseconds);
 
                     if (timeout >= 1)
                         Thread.Sleep(timeout);

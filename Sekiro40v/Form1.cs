@@ -21,7 +21,7 @@ public partial class Form1 : Form
         #region MemoryHook
 
         processNameInput.Text = app.MemoryHook.ProcessName;
-        maxReadsPerMinuteInput.Value = app.MemoryHook.Config.MaxRpm;
+        maxReadsPerMinuteInput.Value = app.MemoryHook.Config.MaxRps;
         memoryOffsetInput.Value = app.MemoryHook.Config.Offset;
 
         statusInput.Text = app.MemoryHook.Status.ToString();
@@ -257,13 +257,11 @@ public partial class Form1 : Form
 
     private void DeathCounterColorButton_Click(object sender, EventArgs e)
     {
-        if (colorDialog1.ShowDialog() == DialogResult.OK)
-        {
-            var hexColor = "#" + (colorDialog1.Color.ToArgb() & 0x00FFFFFF).ToString("X6"); // from stackOverflow
-            _app.DeathCounter.CounterColor = hexColor;
-            DeathCounterColorButton.BackColor = colorDialog1.Color;
-            DeathCounterColorButton.ForeColor = colorDialog1.Color.GetBrightness() < 0.5 ? Color.White : Color.Black;
-        }
+        if (colorDialog1.ShowDialog() != DialogResult.OK) return;
+        var hexColor = "#" + (colorDialog1.Color.ToArgb() & 0x00FFFFFF).ToString("X6"); // from stackOverflow
+        _app.DeathCounter.CounterColor = hexColor;
+        DeathCounterColorButton.BackColor = colorDialog1.Color;
+        DeathCounterColorButton.ForeColor = colorDialog1.Color.GetBrightness() < 0.5 ? Color.White : Color.Black;
     }
 
     private void DeathCounterImageInput_SelectedIndexChanged(object sender, EventArgs e)
@@ -388,7 +386,7 @@ public partial class Form1 : Form
 
     private void MaxReadsPerMinuteInput_ValueChanged(object sender, EventArgs e)
     {
-        _app.MemoryHook.Config.MaxRpm = (int)maxReadsPerMinuteInput.Value;
+        _app.MemoryHook.Config.MaxRps = (int)maxReadsPerMinuteInput.Value;
     }
 
     private void MemoryOffsetInput_ValueChanged(object sender, EventArgs e)
@@ -479,11 +477,9 @@ public partial class Form1 : Form
         var userSure = MessageBox.Show("Are you sure you want to reset all statistics of PainSender?", "Are you sure?",
             MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
 
-        if (userSure == DialogResult.Yes)
-        {
-            _app.StatisticsManager.Statistics.PainSender.Duration = 0;
-            PainSender_StatisticsUpdated(_app.PainSender, EventArgs.Empty);
-        }
+        if (userSure != DialogResult.Yes) return;
+        _app.StatisticsManager.Statistics.PainSender.Duration = 0;
+        PainSender_StatisticsUpdated(_app.PainSender, EventArgs.Empty);
     }
 
     private void PainSenderManualShockButton_Click(object sender, EventArgs e)
