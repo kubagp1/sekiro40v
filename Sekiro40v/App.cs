@@ -13,59 +13,59 @@ public enum ShockOnDamageMode
 public class App
 {
     public Config Config;
-    public DeathCounter deathCounter;
-    public MemoryHook memoryHook;
-    public PainSender painSender;
+    public DeathCounter DeathCounter;
+    public MemoryHook MemoryHook;
+    public PainSender PainSender;
 
-    public Config.General settings;
+    public Config.General Settings;
     public StatisticsManager StatisticsManager;
-    public WebServerManager webServerManager;
+    public WebServerManager WebServerManager;
 
     public App()
     {
         Config = new Config();
         StatisticsManager = new StatisticsManager();
 
-        settings = Config.settings.general;
+        Settings = Config.Settings.General;
 
-        memoryHook = new MemoryHook(Config.settings.memoryHook);
-        deathCounter = new DeathCounter(Config.settings.deathCounter, StatisticsManager.statistics.deathCounter);
-        webServerManager = new WebServerManager(Config.settings.general, deathCounter.Module);
-        painSender = new PainSender(Config.settings.painSender, StatisticsManager.statistics.painSender);
+        MemoryHook = new MemoryHook(Config.Settings.MemoryHook);
+        DeathCounter = new DeathCounter(Config.Settings.DeathCounter, StatisticsManager.Statistics.DeathCounter);
+        WebServerManager = new WebServerManager(Config.Settings.General, DeathCounter.Module);
+        PainSender = new PainSender(Config.Settings.PainSender, StatisticsManager.Statistics.PainSender);
 
-        memoryHook.DeathEventHandler += MemoryHook_DeathEventHandler;
-        memoryHook.DamageEventHandler += MemoryHook_DamageEventHandler;
+        MemoryHook.DeathEventHandler += MemoryHook_DeathEventHandler;
+        MemoryHook.DamageEventHandler += MemoryHook_DamageEventHandler;
     }
 
     private void MemoryHook_DamageEventHandler(object sender, MemoryHook.DamageEventHandlerEventArgs e)
     {
-        if (settings.shockOnDamage)
+        if (Settings.ShockOnDamage)
         {
-            var percentage = (double)e.damage / e.maxHP;
-            switch (settings.shockOnDamageMode)
+            var percentage = (double)e.Damage / e.MaxHp;
+            switch (Settings.ShockOnDamageMode)
             {
                 case ShockOnDamageMode.ScaleBoth:
-                    painSender.SendShock(
-                        (int)(settings.shockOnDamageStrength * percentage),
-                        (int)(settings.shockOnDamageDuration * percentage)
+                    PainSender.SendShock(
+                        (int)(Settings.ShockOnDamageStrength * percentage),
+                        (int)(Settings.ShockOnDamageDuration * percentage)
                     );
                     break;
                 case ShockOnDamageMode.ScaleDuration:
-                    painSender.SendShock(
-                        settings.shockOnDamageStrength,
-                        (int)(settings.shockOnDamageDuration * percentage)
+                    PainSender.SendShock(
+                        Settings.ShockOnDamageStrength,
+                        (int)(Settings.ShockOnDamageDuration * percentage)
                     );
                     break;
                 case ShockOnDamageMode.ScaleStrength:
-                    painSender.SendShock(
-                        (int)(settings.shockOnDamageStrength * percentage),
-                        settings.shockOnDamageDuration
+                    PainSender.SendShock(
+                        (int)(Settings.ShockOnDamageStrength * percentage),
+                        Settings.ShockOnDamageDuration
                     );
                     break;
                 case ShockOnDamageMode.StaticBoth:
-                    painSender.SendShock(
-                        settings.shockOnDamageStrength,
-                        settings.shockOnDamageDuration
+                    PainSender.SendShock(
+                        Settings.ShockOnDamageStrength,
+                        Settings.ShockOnDamageDuration
                     );
                     break;
             }
@@ -74,8 +74,8 @@ public class App
 
     private void MemoryHook_DeathEventHandler(object sender, EventArgs e)
     {
-        deathCounter.Counter++;
+        DeathCounter.Counter++;
 
-        if (settings.shockOnDeath) painSender.SendShock(settings.shockOnDeathStrength, settings.shockOnDeathDuration);
+        if (Settings.ShockOnDeath) PainSender.SendShock(Settings.ShockOnDeathStrength, Settings.ShockOnDeathDuration);
     }
 }

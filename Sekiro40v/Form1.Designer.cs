@@ -284,7 +284,7 @@ namespace Sekiro40v
             painSenderTotalDuration.Name = "painSenderTotalDuration";
             painSenderTotalDuration.Size = new System.Drawing.Size(100, 23);
             painSenderTotalDuration.TabIndex = 3;
-            painSenderTotalDuration.ValueChanged += painSenderTotalDuration_ValueChanged;
+            painSenderTotalDuration.ValueChanged += PainSenderTotalDuration_ValueChanged;
             // 
             // painSenderResetStatistics
             // 
@@ -295,7 +295,7 @@ namespace Sekiro40v
             painSenderResetStatistics.TabIndex = 2;
             painSenderResetStatistics.Text = "Reset statistics";
             painSenderResetStatistics.UseVisualStyleBackColor = true;
-            painSenderResetStatistics.Click += painSenderResetStatistics_Click;
+            painSenderResetStatistics.Click += PainSenderResetStatistics_Click;
             // 
             // label23
             // 
@@ -355,8 +355,8 @@ namespace Sekiro40v
             painSenderComboBox.Name = "painSenderComboBox";
             painSenderComboBox.Size = new System.Drawing.Size(100, 23);
             painSenderComboBox.TabIndex = 0;
-            painSenderComboBox.SelectionChangeCommitted += painSenderComboBox_SelectionChangeCommitted;
-            painSenderComboBox.TextUpdate += painSenderComboBox_TextUpdate;
+            painSenderComboBox.SelectionChangeCommitted += PainSenderComboBox_SelectionChangeCommitted;
+            painSenderComboBox.TextUpdate += PainSenderComboBox_TextUpdate;
             // 
             // label20
             // 
@@ -375,7 +375,7 @@ namespace Sekiro40v
             painSenderRefreshButton.TabIndex = 2;
             painSenderRefreshButton.Text = "Refresh list";
             painSenderRefreshButton.UseVisualStyleBackColor = true;
-            painSenderRefreshButton.Click += painSenderRefreshButton_Click;
+            painSenderRefreshButton.Click += PainSenderRefreshButton_Click;
             // 
             // painSenderPairButton
             // 
@@ -385,7 +385,7 @@ namespace Sekiro40v
             painSenderPairButton.TabIndex = 3;
             painSenderPairButton.Text = "Pair with collar";
             painSenderPairButton.UseVisualStyleBackColor = true;
-            painSenderPairButton.Click += painSenderPairButton_Click;
+            painSenderPairButton.Click += PainSenderPairButton_Click;
             // 
             // deathCounterTab
             // 
@@ -503,6 +503,7 @@ namespace Sekiro40v
             // 
             // DeathCounterImageSizeInput
             // 
+            DeathCounterImageSizeInput.BackColor = System.Drawing.SystemColors.Window;
             DeathCounterImageSizeInput.LargeChange = 1;
             DeathCounterImageSizeInput.Location = new System.Drawing.Point(167, 196);
             DeathCounterImageSizeInput.Maximum = 150;
@@ -516,6 +517,7 @@ namespace Sekiro40v
             // 
             // DeathCounterImageOffsetYInput
             // 
+            DeathCounterImageOffsetYInput.BackColor = System.Drawing.SystemColors.Window;
             DeathCounterImageOffsetYInput.LargeChange = 1;
             DeathCounterImageOffsetYInput.Location = new System.Drawing.Point(167, 166);
             DeathCounterImageOffsetYInput.Maximum = 50;
@@ -547,6 +549,7 @@ namespace Sekiro40v
             // 
             // DeathCounterImageOffsetXInput
             // 
+            DeathCounterImageOffsetXInput.BackColor = System.Drawing.SystemColors.Window;
             DeathCounterImageOffsetXInput.LargeChange = 1;
             DeathCounterImageOffsetXInput.Location = new System.Drawing.Point(167, 137);
             DeathCounterImageOffsetXInput.Maximum = 50;
@@ -1041,7 +1044,7 @@ namespace Sekiro40v
             generalShockOnDamageChcekbox.TabIndex = 0;
             generalShockOnDamageChcekbox.Text = "Shock on damage";
             generalShockOnDamageChcekbox.UseVisualStyleBackColor = true;
-            generalShockOnDamageChcekbox.CheckedChanged += generalShockOnDamageChcekbox_CheckedChanged;
+            generalShockOnDamageChcekbox.CheckedChanged += generalShockOnDamageCheckbox_CheckedChanged;
             // 
             // GeneralEraseStatisticsButton
             // 

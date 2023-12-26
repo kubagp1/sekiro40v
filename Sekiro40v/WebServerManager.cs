@@ -8,33 +8,33 @@ public class WebServerManager
 {
     public Config.General Config;
 
-    private readonly DeathCounter.CounterWebSocketModule counterModule;
-    private CancellationTokenSource cts = new();
+    private readonly DeathCounter.CounterWebSocketModule _counterModule;
+    private CancellationTokenSource _cts = new();
 
-    private IWebServer webServer;
+    private IWebServer _webServer;
 
-    private Task webServerTask;
+    private Task _webServerTask;
 
     public WebServerManager(Config.General config, DeathCounter.CounterWebSocketModule counterModule)
     {
         Config = config;
 
-        this.counterModule = counterModule;
+        this._counterModule = counterModule;
 
         StartWebServer();
     }
 
     public int Port
     {
-        get => Config.webServerPort;
+        get => Config.WebServerPort;
         set
         {
-            var changed = value != Config.webServerPort;
-            Config.webServerPort = value;
-            if (changed && webServerTask is not null)
+            var changed = value != Config.WebServerPort;
+            Config.WebServerPort = value;
+            if (changed && _webServerTask is not null)
             {
                 // Maybe this is not the most elegant solution but it gets the job done
-                cts.Cancel();
+                _cts.Cancel();
                 StartWebServer();
             }
         }
@@ -42,7 +42,7 @@ public class WebServerManager
 
     public WebServerState? GetWebServerState()
     {
-        return webServer?.State;
+        return _webServer?.State;
     }
 
     private WebServer ConfigureWebServer()
@@ -50,7 +50,7 @@ public class WebServerManager
         return new WebServer(o => o
                 .WithUrlPrefix($"http://127.0.0.1:{Port}/")
                 .WithMode(HttpListenerMode.Microsoft))
-            .WithModule(counterModule)
+            .WithModule(_counterModule)
             .WithStaticFolder("/", "webserver_static", false);
     }
 
@@ -58,18 +58,18 @@ public class WebServerManager
 
     private void StartWebServer()
     {
-        webServer = ConfigureWebServer();
+        _webServer = ConfigureWebServer();
 
-        webServer.StateChanged += WebServer_StateChanged;
+        _webServer.StateChanged += WebServer_StateChanged;
 
-        cts = new CancellationTokenSource();
+        _cts = new CancellationTokenSource();
 
-        webServerTask = webServer.RunAsync(cts.Token);
+        _webServerTask = _webServer.RunAsync(_cts.Token);
     }
 
     private void WebServer_StateChanged(object sender, WebServerStateChangedEventArgs e)
     {
-        if (sender == webServer) // Ignore state updates of old servers
+        if (sender == _webServer) // Ignore state updates of old servers
             WebServerStateChangedEventHandler?.Invoke(sender, e);
     }
 }

@@ -13,16 +13,16 @@ public enum PainSenderStatus
 
 public class PainSender
 {
-    private readonly Config.PainSender Config;
+    private readonly Config.PainSender _config;
 
-    private SerialPort serialPort;
+    private SerialPort _serialPort;
     public StatisticsManager.PainSender Statistics;
 
-    private PainSenderStatus status;
+    private PainSenderStatus _status;
 
     public PainSender(Config.PainSender config, StatisticsManager.PainSender statistics)
     {
-        Config = config;
+        _config = config;
         Statistics = statistics;
 
         Status = PainSenderStatus.Starting;
@@ -35,20 +35,20 @@ public class PainSender
     {
         set
         {
-            Config.port = value;
+            _config.Port = value;
             RestartSerialConnection();
         }
-        get => Config.port;
+        get => _config.Port;
     }
 
     public PainSenderStatus Status
     {
-        get => status;
+        get => _status;
         set
         {
             if (value != Status)
             {
-                status = value;
+                _status = value;
                 StatusChanged?.Invoke(this, EventArgs.Empty);
             }
         }
@@ -62,20 +62,20 @@ public class PainSender
     {
         try
         {
-            if (serialPort != null) serialPort.Close();
+            if (_serialPort != null) _serialPort.Close();
 
-            serialPort = new SerialPort(PortName, 115200);
-            serialPort.RtsEnable = true;
-            serialPort.DtrEnable = true;
-            serialPort.Open();
+            _serialPort = new SerialPort(PortName, 115200);
+            _serialPort.RtsEnable = true;
+            _serialPort.DtrEnable = true;
+            _serialPort.Open();
 
             Status = PainSenderStatus.Running;
         }
         catch
         {
             Status = PainSenderStatus.Error;
-            serialPort = null;
-            Config.port = "None"; // Changing via public property PortName would cause feedback loop
+            _serialPort = null;
+            _config.Port = "None"; // Changing via public property PortName would cause feedback loop
         }
     }
 
@@ -89,12 +89,12 @@ public class PainSender
     {
         Debug.WriteLine($"Strength: {strength}, duration: {duration}");
 
-        if (serialPort != null && serialPort.IsOpen)
+        if (_serialPort != null && _serialPort.IsOpen)
         {
-            serialPort.Write(GenerateCommand(strength, duration));
+            _serialPort.Write(GenerateCommand(strength, duration));
             if (strength > 0)
             {
-                Statistics.duration += duration;
+                Statistics.Duration += duration;
                 StatisticsUpdated?.Invoke(this, EventArgs.Empty);
             }
         }

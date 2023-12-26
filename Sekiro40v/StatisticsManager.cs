@@ -6,7 +6,7 @@ namespace Sekiro40v;
 public class StatisticsManager
 {
     public string Path = @"statistics.json";
-    public Statistics statistics;
+    public StatisticsSchema Statistics;
 
     public StatisticsManager()
     {
@@ -17,9 +17,9 @@ public class StatisticsManager
     {
         try
         {
-            statistics = JsonConvert.DeserializeObject<Statistics>(File.ReadAllText(Path));
+            Statistics = JsonConvert.DeserializeObject<StatisticsSchema>(File.ReadAllText(Path));
 
-            if (statistics == null) EraseStatistics();
+            if (Statistics == null) EraseStatistics();
         }
         catch
         {
@@ -31,20 +31,20 @@ public class StatisticsManager
 
     public void EraseStatistics()
     {
-        statistics = new Statistics
+        Statistics = new StatisticsSchema
         {
-            memoryHook = new MemoryHook
+            MemoryHook = new MemoryHook
             {
-                totalDeaths = 0,
-                totalDamage = 0
+                TotalDeaths = 0,
+                TotalDamage = 0
             },
-            deathCounter = new DeathCounter
+            DeathCounter = new DeathCounter
             {
-                deaths = 0
+                Deaths = 0
             },
-            painSender = new PainSender
+            PainSender = new PainSender
             {
-                duration = 0
+                Duration = 0
             }
         };
 
@@ -53,29 +53,29 @@ public class StatisticsManager
 
     public void SaveStatistics()
     {
-        File.WriteAllText(Path, JsonConvert.SerializeObject(statistics));
+        File.WriteAllText(Path, JsonConvert.SerializeObject(Statistics));
     }
 
     public class MemoryHook
     {
-        public int totalDeaths { get; set; }
-        public int totalDamage { get; set; }
+        public int TotalDeaths { get; set; }
+        public int TotalDamage { get; set; }
     }
 
     public class DeathCounter
     {
-        public int deaths { get; set; }
+        public int Deaths { get; set; }
     }
 
     public class PainSender
     {
-        public int duration { get; set; }
+        public int Duration { get; set; }
     }
 
-    public class Statistics
+    public class StatisticsSchema
     {
-        public MemoryHook memoryHook { get; set; }
-        public DeathCounter deathCounter { get; set; }
-        public PainSender painSender { get; set; }
+        public MemoryHook MemoryHook { get; set; }
+        public DeathCounter DeathCounter { get; set; }
+        public PainSender PainSender { get; set; }
     }
 }

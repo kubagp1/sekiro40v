@@ -6,12 +6,12 @@ namespace Sekiro40v;
 
 public partial class MemoryHook
 {
-    public int maxHP;
-    public int currentHP { get; private set; }
+    public int MaxHp;
+    public int CurrentHp { get; private set; }
 
-    public event EventHandler CurrentHPChanged;
+    public event EventHandler CurrentHpChanged;
 
-    public event EventHandler MaxHPChanged;
+    public event EventHandler MaxHpChanged;
 
     public event EventHandler<DamageEventHandlerEventArgs> DamageEventHandler;
 
@@ -21,7 +21,7 @@ public partial class MemoryHook
     {
         Task.Run(() =>
             {
-                var lastHP = 0;
+                var lastHp = 0;
 
                 while (true)
                 {
@@ -31,33 +31,33 @@ public partial class MemoryHook
                     {
                         var reading = ReadMemory();
 
-                        if (reading != lastHP)
+                        if (reading != lastHp)
                         {
-                            currentHP = reading.Value; // Exception will be thrown here if reading is null
-                            CurrentHPChanged?.Invoke(this, EventArgs.Empty);
+                            CurrentHp = reading.Value; // Exception will be thrown here if reading is null
+                            CurrentHpChanged?.Invoke(this, EventArgs.Empty);
 
-                            if (currentHP < lastHP)
+                            if (CurrentHp < lastHp)
                             {
                                 DamageEventHandler?.Invoke(this,
                                     new DamageEventHandlerEventArgs
-                                        { currentHP = currentHP, damage = lastHP - currentHP, maxHP = maxHP });
-                                if (currentHP == 0)
+                                        { CurrentHp = CurrentHp, Damage = lastHp - CurrentHp, MaxHp = MaxHp });
+                                if (CurrentHp == 0)
                                     DeathEventHandler?.Invoke(this, EventArgs.Empty);
                             }
 
-                            if (currentHP > maxHP)
+                            if (CurrentHp > MaxHp)
                             {
-                                maxHP = currentHP;
-                                MaxHPChanged?.Invoke(this, EventArgs.Empty);
+                                MaxHp = CurrentHp;
+                                MaxHpChanged?.Invoke(this, EventArgs.Empty);
                             }
                         }
 
-                        lastHP = currentHP;
+                        lastHp = CurrentHp;
                     }
                     catch
                     {
-                        maxHP = 0;
-                        lastHP = 0;
+                        MaxHp = 0;
+                        lastHp = 0;
 
                         Thread.Sleep(1000);
                         continue;
@@ -65,9 +65,9 @@ public partial class MemoryHook
 
                     var executionTime = DateTime.Now - startTime;
 
-                    if (Config.maxRPM <= 0)
-                        Config.maxRPM = 1;
-                    var timeout = (int)(1000 / Config.maxRPM - executionTime.TotalMilliseconds);
+                    if (Config.MaxRpm <= 0)
+                        Config.MaxRpm = 1;
+                    var timeout = (int)(1000 / Config.MaxRpm - executionTime.TotalMilliseconds);
 
                     if (timeout >= 1)
                         Thread.Sleep(timeout);
@@ -78,8 +78,8 @@ public partial class MemoryHook
 
     public class DamageEventHandlerEventArgs : EventArgs
     {
-        public int currentHP;
-        public int damage;
-        public int maxHP;
+        public int CurrentHp;
+        public int Damage;
+        public int MaxHp;
     }
 }

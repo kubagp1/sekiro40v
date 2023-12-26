@@ -37,27 +37,27 @@ class App {
         this.webscocket.addEventListener('message', (event) => {
             var e = JSON.parse(event.data);
 
-            switch (e.action) {
+            switch (e.Action) {
                 case Action.Counter:
-                    this.counter.innerText = e.value;
+                    this.counter.innerText = e.Value;
                     break;
                 case Action.FontFamily:
-                    this.counter.style.fontFamily = e.value;
+                    this.counter.style.fontFamily = e.Value;
 
                     WebFont.load({
                         google: {
-                            families: [e.value]
+                            families: [e.Value]
                         }
                     });
 
                     break;
 
                 case Action.Color:
-                    this.counter.style.color = e.value;
+                    this.counter.style.color = e.Value;
                     break;
 
                 case Action.Align:
-                    switch (e.value) {
+                    switch (e.Value) {
                         case CounterAlign.Left:
                             this.container.style.float = 'left';
                             break;
@@ -69,7 +69,7 @@ class App {
                     break;
 
                 case Action.ImageMode:
-                    switch (e.value) {
+                    switch (e.Value) {
                         case ImageMode.Hide:
                             this.image.style.display = 'none';
                             break;
@@ -88,11 +88,11 @@ class App {
                     break;
 
                 case Action.ImageOffset:
-                    this.image.style.transform = `translate(${e.value.x}%, ${e.value.y}%)`;
+                    this.image.style.transform = `translate(${e.Value.X}%, ${e.Value.Y}%)`;
                     break;
 
                 case Action.ImageSize:
-                    this.image.style.height = `${e.value}vh`;
+                    this.image.style.height = `${e.Value}vh`;
                     break;
             }
         });

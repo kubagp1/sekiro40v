@@ -16,40 +16,40 @@ public enum MemoryHookStatus
 public partial class MemoryHook
 {
     private MemoryHookStatus _status;
-    private nint baseAddress;
+    private nint _baseAddress;
     public Config.MemoryHook Config;
-    private Task currentSearchingTask;
-    private ExternalMemory externalMemory;
+    private Task _currentSearchingTask;
+    private ExternalMemory _externalMemory;
 
-    public Process process;
+    public Process Process;
 
     public MemoryHook(Config.MemoryHook config)
     {
         Config = config;
 
-        status = MemoryHookStatus.Starting;
+        Status = MemoryHookStatus.Starting;
 
         RestartSearchingTask();
         StartLoop();
     }
 
-    public string processName
+    public string ProcessName
     {
-        get => Config.processName;
+        get => Config.ProcessName;
         set
         {
-            if (Config.processName != value)
+            if (Config.ProcessName != value)
             {
-                Config.processName = value;
-                if (currentSearchingTask is not null &&
-                    currentSearchingTask
+                Config.ProcessName = value;
+                if (_currentSearchingTask is not null &&
+                    _currentSearchingTask
                         .IsCompleted) // the "is not null" part is here in case processName gets changed before any searching task is started
                     RestartSearchingTask();
             }
         }
     }
 
-    public MemoryHookStatus status
+    public MemoryHookStatus Status
     {
         get => _status;
         set
@@ -66,23 +66,23 @@ public partial class MemoryHook
     {
         try
         {
-            status = MemoryHookStatus.Searching;
+            Status = MemoryHookStatus.Searching;
 
             Process[] processes;
             do
             {
-                processes = Process.GetProcessesByName(processName);
+                processes = Process.GetProcessesByName(ProcessName);
                 if (processes.Length == 0)
                     Thread.Sleep(1000);
             } while (processes.Length < 1);
 
-            process = processes[0];
+            Process = processes[0];
 
-            baseAddress = process.MainModule.BaseAddress;
+            _baseAddress = Process.MainModule.BaseAddress;
 
-            externalMemory = new ExternalMemory(process);
+            _externalMemory = new ExternalMemory(Process);
 
-            status = MemoryHookStatus.Ready;
+            Status = MemoryHookStatus.Ready;
         }
         catch (Exception)
         {
@@ -94,12 +94,12 @@ public partial class MemoryHook
     {
         try
         {
-            externalMemory.Read(nint.Add(baseAddress, Config.offset), out int value);
+            _externalMemory.Read(nint.Add(_baseAddress, Config.Offset), out int value);
             return value;
         }
         catch (Exception)
         {
-            if (currentSearchingTask.IsCompleted) RestartSearchingTask();
+            if (_currentSearchingTask.IsCompleted) RestartSearchingTask();
 
             return null;
         }
@@ -108,10 +108,10 @@ public partial class MemoryHook
     private void RestartSearchingTask()
     {
         // we are nulling here because we don't want anything to read memory of old process before new one is found
-        process = null;
-        externalMemory = null;
+        Process = null;
+        _externalMemory = null;
         // baseAddress should technically be nulled here but who cares
 
-        currentSearchingTask = Task.Run(() => { WaitForProcess(); });
+        _currentSearchingTask = Task.Run(() => { WaitForProcess(); });
     }
 }
