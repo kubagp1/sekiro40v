@@ -11,20 +11,18 @@
         <RepositoryUrl>https://github.com/kubagp1/sekiro40v</RepositoryUrl>
         <RepositoryType />
         <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-        <ApplicationIcon>image.ico</ApplicationIcon>
+        <ApplicationIcon>Resources\image.ico</ApplicationIcon>
         <DebugType>portable</DebugType>
         <SignAssembly>False</SignAssembly>
         <Description>Set of tools for made for streaming Sekiro with Shock Collar.</Description>
         <Copyright>GNU GENERAL PUBLIC LICENSE</Copyright>
         <PackageIcon>image.png</PackageIcon>
+        <LangVersion>11</LangVersion>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
         <DebugType>none</DebugType>
         <DebugSymbols>false</DebugSymbols>
     </PropertyGroup>
-    <ItemGroup>
-        <Content Include="image.ico" />
-    </ItemGroup>
     <ItemGroup>
         <PackageReference Include="EmbedIO" Version="3.4.3" />
         <PackageReference Include="Reloaded.Memory" Version="4.1.3" />
