@@ -16,9 +16,9 @@ public class PainSender
     private readonly Config.PainSender _config;
 
     private SerialPort _serialPort;
-    public StatisticsManager.PainSender Statistics;
 
     private PainSenderStatus _status;
+    public StatisticsManager.PainSender Statistics;
 
     public PainSender(Config.PainSender config, StatisticsManager.PainSender statistics)
     {

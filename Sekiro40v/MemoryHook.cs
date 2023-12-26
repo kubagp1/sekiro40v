@@ -15,11 +15,11 @@ public enum MemoryHookStatus
 
 public partial class MemoryHook
 {
-    private MemoryHookStatus _status;
-    private nint _baseAddress;
     public readonly Config.MemoryHook Config;
+    private nint _baseAddress;
     private Task _currentSearchingTask;
     private ExternalMemory _externalMemory;
+    private MemoryHookStatus _status;
 
     public Process Process;
 

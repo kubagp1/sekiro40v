@@ -32,7 +32,7 @@ namespace Sekiro40v
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             statusStrip1 = new System.Windows.Forms.StatusStrip();
             toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
-            colorDialog1 = new System.Windows.Forms.ColorDialog();
+            deathCounterColorDialog = new System.Windows.Forms.ColorDialog();
             painSenderTab = new System.Windows.Forms.TabPage();
             groupBox10 = new System.Windows.Forms.GroupBox();
             label25 = new System.Windows.Forms.Label();
@@ -79,6 +79,7 @@ namespace Sekiro40v
             DeathCounterIncrementButton = new System.Windows.Forms.Button();
             memoryHookTab = new System.Windows.Forms.TabPage();
             groupBox3 = new System.Windows.Forms.GroupBox();
+            restoreDefaultMemoryHookSettings = new System.Windows.Forms.Button();
             label10 = new System.Windows.Forms.Label();
             label8 = new System.Windows.Forms.Label();
             resetStatisticsButton = new System.Windows.Forms.Button();
@@ -127,7 +128,6 @@ namespace Sekiro40v
             webServerPortInput = new System.Windows.Forms.NumericUpDown();
             label11 = new System.Windows.Forms.Label();
             tabControl1 = new System.Windows.Forms.TabControl();
-            restoreDefaultMemoryHookSettings = new System.Windows.Forms.Button();
             statusStrip1.SuspendLayout();
             painSenderTab.SuspendLayout();
             groupBox10.SuspendLayout();
@@ -182,9 +182,9 @@ namespace Sekiro40v
             toolStripStatusLabel1.Text = "sekiro40v by kubagp";
             toolStripStatusLabel1.Click += ToolStripStatusLabel1_Click;
             // 
-            // colorDialog1
+            // deathCounterColorDialog
             // 
-            colorDialog1.AnyColor = true;
+            deathCounterColorDialog.AnyColor = true;
             // 
             // painSenderTab
             // 
@@ -511,7 +511,6 @@ namespace Sekiro40v
             DeathCounterImageInput.Name = "DeathCounterImageInput";
             DeathCounterImageInput.Size = new System.Drawing.Size(100, 23);
             DeathCounterImageInput.TabIndex = 7;
-            DeathCounterImageInput.SelectedIndexChanged += DeathCounterImageInput_SelectedIndexChanged;
             // 
             // DeathCounterImageSizeInput
             // 
@@ -525,7 +524,6 @@ namespace Sekiro40v
             DeathCounterImageSizeInput.TabIndex = 6;
             DeathCounterImageSizeInput.TickStyle = System.Windows.Forms.TickStyle.None;
             DeathCounterImageSizeInput.Value = 1;
-            DeathCounterImageSizeInput.Scroll += DeathCounterImageSizeInput_Scroll;
             // 
             // DeathCounterImageOffsetYInput
             // 
@@ -538,7 +536,6 @@ namespace Sekiro40v
             DeathCounterImageOffsetYInput.Size = new System.Drawing.Size(104, 45);
             DeathCounterImageOffsetYInput.TabIndex = 6;
             DeathCounterImageOffsetYInput.TickStyle = System.Windows.Forms.TickStyle.None;
-            DeathCounterImageOffsetYInput.Scroll += DeathCounterImageOffsetYInput_Scroll;
             // 
             // DeathCounterColorButton
             // 
@@ -557,7 +554,6 @@ namespace Sekiro40v
             DeathCounterFontFamilyInput.Name = "DeathCounterFontFamilyInput";
             DeathCounterFontFamilyInput.Size = new System.Drawing.Size(100, 23);
             DeathCounterFontFamilyInput.TabIndex = 4;
-            DeathCounterFontFamilyInput.TextChanged += DeathCounterFontFamilyInput_TextChanged;
             // 
             // DeathCounterImageOffsetXInput
             // 
@@ -570,7 +566,6 @@ namespace Sekiro40v
             DeathCounterImageOffsetXInput.Size = new System.Drawing.Size(104, 45);
             DeathCounterImageOffsetXInput.TabIndex = 6;
             DeathCounterImageOffsetXInput.TickStyle = System.Windows.Forms.TickStyle.None;
-            DeathCounterImageOffsetXInput.Scroll += DeathCounterImageOffsetXInput_Scroll;
             // 
             // label18
             // 
@@ -627,7 +622,6 @@ namespace Sekiro40v
             DeathCounterAlignToRightRadio.TabStop = true;
             DeathCounterAlignToRightRadio.Text = "Align to right";
             DeathCounterAlignToRightRadio.UseVisualStyleBackColor = true;
-            DeathCounterAlignToRightRadio.CheckedChanged += DeathCounterAlignToRightRadio_CheckedChanged;
             // 
             // DeathCounterAlignToLeftRadio
             // 
@@ -639,7 +633,6 @@ namespace Sekiro40v
             DeathCounterAlignToLeftRadio.TabStop = true;
             DeathCounterAlignToLeftRadio.Text = "Align to left";
             DeathCounterAlignToLeftRadio.UseVisualStyleBackColor = true;
-            DeathCounterAlignToLeftRadio.CheckedChanged += DeathCounterAlignToLeftRadio_CheckedChanged;
             // 
             // DeathCounterCounterInput
             // 
@@ -649,7 +642,6 @@ namespace Sekiro40v
             DeathCounterCounterInput.Name = "DeathCounterCounterInput";
             DeathCounterCounterInput.Size = new System.Drawing.Size(116, 23);
             DeathCounterCounterInput.TabIndex = 1;
-            DeathCounterCounterInput.ValueChanged += DeathCounterCounterInput_ValueChanged;
             // 
             // DeathCounterDecrementButton
             // 
@@ -699,6 +691,17 @@ namespace Sekiro40v
             groupBox3.TabIndex = 2;
             groupBox3.TabStop = false;
             groupBox3.Text = "Statistics";
+            // 
+            // restoreDefaultMemoryHookSettings
+            // 
+            restoreDefaultMemoryHookSettings.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right;
+            restoreDefaultMemoryHookSettings.Location = new System.Drawing.Point(139, 88);
+            restoreDefaultMemoryHookSettings.Name = "restoreDefaultMemoryHookSettings";
+            restoreDefaultMemoryHookSettings.Size = new System.Drawing.Size(139, 23);
+            restoreDefaultMemoryHookSettings.TabIndex = 5;
+            restoreDefaultMemoryHookSettings.Text = "Restore default settings";
+            restoreDefaultMemoryHookSettings.UseVisualStyleBackColor = true;
+            restoreDefaultMemoryHookSettings.Click += RestoreDefaultMemoryHookSettings_Click;
             // 
             // label10
             // 
@@ -1191,17 +1194,6 @@ namespace Sekiro40v
             tabControl1.Size = new System.Drawing.Size(298, 409);
             tabControl1.TabIndex = 0;
             // 
-            // restoreDefaultMemoryHookSettings
-            // 
-            restoreDefaultMemoryHookSettings.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right;
-            restoreDefaultMemoryHookSettings.Location = new System.Drawing.Point(139, 88);
-            restoreDefaultMemoryHookSettings.Name = "restoreDefaultMemoryHookSettings";
-            restoreDefaultMemoryHookSettings.Size = new System.Drawing.Size(139, 23);
-            restoreDefaultMemoryHookSettings.TabIndex = 5;
-            restoreDefaultMemoryHookSettings.Text = "Restore default settings";
-            restoreDefaultMemoryHookSettings.UseVisualStyleBackColor = true;
-            restoreDefaultMemoryHookSettings.Click += RestoreDefaultMemoryHookSettings_Click;
-            // 
             // Form1
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -1269,7 +1261,7 @@ namespace Sekiro40v
         #endregion
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
-        private System.Windows.Forms.ColorDialog colorDialog1;
+        private System.Windows.Forms.ColorDialog deathCounterColorDialog;
         private System.Windows.Forms.TabPage painSenderTab;
         private System.Windows.Forms.GroupBox groupBox10;
         private System.Windows.Forms.Label label25;

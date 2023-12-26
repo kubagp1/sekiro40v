@@ -1,11 +1,12 @@
 const Action = {
-    Counter: 0,
+    Value: 0,
     FontFamily: 1,
     Color: 2,
     Align: 3,
     ImageMode: 4,
-    ImageOffset: 5,
-    ImageSize: 6,
+    ImageOffsetX: 5,
+    ImageOffsetY: 6,
+    ImageSize: 7,
 }
 
 const ImageMode = {
@@ -38,7 +39,7 @@ class App {
             var e = JSON.parse(event.data);
 
             switch (e.Action) {
-                case Action.Counter:
+                case Action.Value:
                     this.counter.innerText = e.Value;
                     break;
                 case Action.FontFamily:
@@ -87,8 +88,12 @@ class App {
 
                     break;
 
-                case Action.ImageOffset:
-                    this.image.style.transform = `translate(${e.Value.X}%, ${e.Value.Y}%)`;
+                case Action.ImageOffsetX:
+                    this.image.style.transform = `translateX(${e.Value}%)`;
+                    break;
+
+                case Action.ImageOffsetY:
+                    this.image.style.transform = `translateY(${e.Value}%)`;
                     break;
 
                 case Action.ImageSize:

@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using EmbedIO;
+using Sekiro40v.DeathCounter;
 
 namespace Sekiro40v;
 
@@ -46,43 +47,67 @@ public partial class Form1 : Form
 
         #region DeathCounter
 
-        DeathCounterCounterInput.Value = app.DeathCounter.Counter;
+        DeathCounterCounterInput.DataBindings.Add(new Binding("Text", _app.DeathCounter,
+            nameof(_app.DeathCounter.CounterValue), false, DataSourceUpdateMode.OnPropertyChanged));
+        // Using `Text` instead of `Value` because `Value` doesn't update on each keypress
 
-        var color = ColorTranslator.FromHtml(app.DeathCounter.CounterColor);
-
-        colorDialog1.Color = color;
-
-        DeathCounterColorButton.BackColor = color;
-
-        DeathCounterColorButton.ForeColor = color.GetBrightness() < 0.5 ? Color.White : Color.Black;
-
-        DeathCounterFontFamilyInput.Text = app.DeathCounter.CounterFontFamily;
-
-        switch (app.DeathCounter.CounterAlign)
+        Binding RadioCheckedBinding<T>(object dataSource, string dataMember, T trueValue)
         {
-            case DeathCounter.ECounterAlign.Left:
-                DeathCounterAlignToLeftRadio.Checked = true;
-                break;
-
-            case DeathCounter.ECounterAlign.Right:
-                DeathCounterAlignToRightRadio.Checked = true;
-                break;
+            var binding = new Binding("Checked", dataSource, dataMember, true,
+                DataSourceUpdateMode.OnPropertyChanged);
+            binding.Format += (s, args) => args.Value = args.Value != null && ((T)args.Value).Equals(trueValue);
+            binding.Parse += (s, args) =>
+            {
+                if (args.Value != null && (bool)args.Value) args.Value = trueValue;
+            };
+            return binding;
         }
 
-        DeathCounterImageInput.SelectedIndex = (int)app.DeathCounter.CounterImageMode;
+        DeathCounterAlignToLeftRadio.DataBindings.Add(RadioCheckedBinding(_app.DeathCounter,
+            nameof(_app.DeathCounter.CounterAlign), CounterAlign.Left));
+        DeathCounterAlignToRightRadio.DataBindings.Add(RadioCheckedBinding(_app.DeathCounter,
+            nameof(_app.DeathCounter.CounterAlign), CounterAlign.Right));
 
-        DeathCounterImageOffsetXInput.Value = app.DeathCounter.CounterImageOffsetX;
-        DeathCounterImageOffsetXLabel.Text = app.DeathCounter.CounterImageOffsetX.ToString();
+        DeathCounterFontFamilyInput.DataBindings.Add(new Binding("Text", _app.DeathCounter,
+            nameof(_app.DeathCounter.CounterFontFamily), false, DataSourceUpdateMode.OnPropertyChanged));
 
-        DeathCounterImageOffsetYInput.Value = app.DeathCounter.CounterImageOffsetY;
-        DeathCounterImageOffsetYLabel.Text = app.DeathCounter.CounterImageOffsetY.ToString();
+        void StyleColorButtonAndDialog()
+        {
+            var color = ColorTranslator.FromHtml(_app.DeathCounter.CounterColor);
+            DeathCounterColorButton.BackColor = color;
+            DeathCounterColorButton.ForeColor = color.GetBrightness() < 0.5 ? Color.White : Color.Black;
+            deathCounterColorDialog.Color = color;
+        }
 
-        DeathCounterImageSizeInput.Value = app.DeathCounter.CounterImageSize;
-        DeathCounterImageSizeLabel.Text = app.DeathCounter.CounterImageSize.ToString();
+        _app.DeathCounter.PropertyChanged += (sender, args) =>
+        {
+            if (args.PropertyName != nameof(_app.DeathCounter.CounterColor)) return;
 
-        // Event handlers below
+            StyleColorButtonAndDialog();
+        };
 
-        app.DeathCounter.CounterChangedEventHandler += DeathCounter_CounterChangedEventHandler;
+        Load += (o, args) => StyleColorButtonAndDialog();
+
+        var deathCounterImageModeBinding = new Binding("SelectedIndex", _app.DeathCounter,
+            nameof(_app.DeathCounter.CounterImageMode), false, DataSourceUpdateMode.OnPropertyChanged);
+        deathCounterImageModeBinding.Format += (s, args) =>
+        {
+            if (args.Value != null) args.Value = (int)args.Value;
+        };
+        deathCounterImageModeBinding.Parse += (s, args) =>
+        {
+            if (args.Value != null) args.Value = (ImageMode)args.Value;
+        };
+        DeathCounterImageInput.DataBindings.Add(deathCounterImageModeBinding);
+
+        DeathCounterImageOffsetXInput.DataBindings.Add(new Binding("Value", _app.DeathCounter,
+            nameof(_app.DeathCounter.CounterImageOffsetX), false, DataSourceUpdateMode.OnPropertyChanged));
+
+        DeathCounterImageOffsetYInput.DataBindings.Add(new Binding("Value", _app.DeathCounter,
+            nameof(_app.DeathCounter.CounterImageOffsetY), false, DataSourceUpdateMode.OnPropertyChanged));
+
+        DeathCounterImageSizeInput.DataBindings.Add(new Binding("Value", _app.DeathCounter,
+            nameof(_app.DeathCounter.CounterImageSize), false, DataSourceUpdateMode.OnPropertyChanged));
 
         #endregion
 
@@ -119,6 +144,19 @@ public partial class Form1 : Form
 
         #endregion
     }
+
+    private void ToolStripStatusLabel1_Click(object sender, EventArgs e)
+    {
+        Process.Start("explorer", "https://github.com/kubagp1/sekiro40v");
+    }
+
+    private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+    {
+        _app.Config.SaveSettings();
+        _app.StatisticsManager.SaveStatistics();
+    }
+
+    #region General
 
     private void GeneralShockOnDamageCheckbox_CheckedChanged(object sender, EventArgs e)
     {
@@ -175,19 +213,6 @@ public partial class Form1 : Form
         _app.GeneralSettings.ShockOnDeathDuration = (int)generalShockOnDeathDuration.Value;
     }
 
-    #region General
-
-    private void ToolStripStatusLabel1_Click(object sender, EventArgs e)
-    {
-        Process.Start("explorer", "https://github.com/kubagp1/sekiro40v");
-    }
-
-    private void Form1_FormClosing(object sender, FormClosingEventArgs e)
-    {
-        _app.Config.SaveSettings();
-        _app.StatisticsManager.SaveStatistics();
-    }
-
     private void GeneralRestoreDefaultSettingsButton_Click(object sender, EventArgs e)
     {
         var userSure = MessageBox.Show(
@@ -235,71 +260,22 @@ public partial class Form1 : Form
 
     #region DeathCounter Event Handlers
 
-    private void DeathCounter_CounterChangedEventHandler(object sender, DeathCounter.CounterChangedEventArgs e)
-    {
-        Invoke(() => { DeathCounterCounterInput.Value = e.Value; });
-    }
-
     private void DeathCounterIncrementButton_Click(object sender, EventArgs e)
     {
-        _app.DeathCounter.Counter++;
+        _app.DeathCounter.CounterValue++;
     }
 
     private void DeathCounterDecrementButton_Click(object sender, EventArgs e)
     {
-        _app.DeathCounter.Counter--;
-    }
-
-    private void DeathCounterCounterInput_ValueChanged(object sender, EventArgs e)
-    {
-        _app.DeathCounter.Counter = (int)DeathCounterCounterInput.Value;
+        _app.DeathCounter.CounterValue--;
     }
 
     private void DeathCounterColorButton_Click(object sender, EventArgs e)
     {
-        if (colorDialog1.ShowDialog() != DialogResult.OK) return;
-        var hexColor = "#" + (colorDialog1.Color.ToArgb() & 0x00FFFFFF).ToString("X6"); // from stackOverflow
+        if (deathCounterColorDialog.ShowDialog() != DialogResult.OK) return;
+        var hexColor =
+            "#" + (deathCounterColorDialog.Color.ToArgb() & 0x00FFFFFF).ToString("X6"); // from stackOverflow
         _app.DeathCounter.CounterColor = hexColor;
-        DeathCounterColorButton.BackColor = colorDialog1.Color;
-        DeathCounterColorButton.ForeColor = colorDialog1.Color.GetBrightness() < 0.5 ? Color.White : Color.Black;
-    }
-
-    private void DeathCounterImageInput_SelectedIndexChanged(object sender, EventArgs e)
-    {
-        _app.DeathCounter.CounterImageMode = (DeathCounter.ImageMode)DeathCounterImageInput.SelectedIndex;
-    }
-
-    private void DeathCounterImageOffsetXInput_Scroll(object sender, EventArgs e)
-    {
-        _app.DeathCounter.CounterImageOffsetX = DeathCounterImageOffsetXInput.Value;
-        DeathCounterImageOffsetXLabel.Text = DeathCounterImageOffsetXInput.Value.ToString();
-    }
-
-    private void DeathCounterImageOffsetYInput_Scroll(object sender, EventArgs e)
-    {
-        _app.DeathCounter.CounterImageOffsetY = DeathCounterImageOffsetYInput.Value;
-        DeathCounterImageOffsetYLabel.Text = DeathCounterImageOffsetYInput.Value.ToString();
-    }
-
-    private void DeathCounterImageSizeInput_Scroll(object sender, EventArgs e)
-    {
-        _app.DeathCounter.CounterImageSize = DeathCounterImageSizeInput.Value;
-        DeathCounterImageSizeLabel.Text = DeathCounterImageSizeInput.Value.ToString();
-    }
-
-    private void DeathCounterFontFamilyInput_TextChanged(object sender, EventArgs e)
-    {
-        _app.DeathCounter.CounterFontFamily = DeathCounterFontFamilyInput.Text;
-    }
-
-    private void DeathCounterAlignToLeftRadio_CheckedChanged(object sender, EventArgs e)
-    {
-        _app.DeathCounter.CounterAlign = DeathCounter.ECounterAlign.Left;
-    }
-
-    private void DeathCounterAlignToRightRadio_CheckedChanged(object sender, EventArgs e)
-    {
-        _app.DeathCounter.CounterAlign = DeathCounter.ECounterAlign.Right;
     }
 
     private void DeathCounterCopyUrlButton_Click(object sender, EventArgs e)
@@ -310,15 +286,14 @@ public partial class Form1 : Form
     private void DeathCounterRestoreDefaultsButton_Click(object sender, EventArgs e)
     {
         var userSure = MessageBox.Show(
-            "Are you sure you want to restore default DeathCounter settings?\nApplication will restart!",
+            "Are you sure you want to restore default DeathCounter settings?",
             "Reset all DeathCounter settings",
             MessageBoxButtons.YesNoCancel,
             MessageBoxIcon.Question);
 
         if (userSure != DialogResult.Yes) return;
 
-        _app.Config.RestoreDeathCounterDefaults();
-        Application.Restart();
+        _app.DeathCounter.RestoreDefaultSettings();
     }
 
     #endregion DeathCounter Event Handlers

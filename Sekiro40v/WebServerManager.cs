@@ -1,6 +1,7 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
 using EmbedIO;
+using Sekiro40v.DeathCounter;
 
 namespace Sekiro40v;
 
@@ -8,18 +9,18 @@ public class WebServerManager
 {
     private readonly Config.General _config;
 
-    private readonly DeathCounter.CounterWebSocketModule _counterModule;
+    private readonly DeathCounterWebSocketModule _deathCounterModule;
     private CancellationTokenSource _cts = new();
 
     private WebServer _webServer;
 
     private Task _webServerTask;
 
-    public WebServerManager(Config.General config, DeathCounter.CounterWebSocketModule counterModule)
+    public WebServerManager(Config.General config, DeathCounterWebSocketModule deathCounterModule)
     {
-        this._config = config;
+        _config = config;
 
-        this._counterModule = counterModule;
+        _deathCounterModule = deathCounterModule;
 
         StartWebServer();
     }
@@ -31,9 +32,9 @@ public class WebServerManager
         {
             var changed = value != _config.WebServerPort;
             _config.WebServerPort = value;
-            
+
             if (!changed || _webServerTask is null) return;
-            
+
             // Maybe this is not the most elegant solution but it gets the job done
             _cts.Cancel();
             StartWebServer();
@@ -50,7 +51,7 @@ public class WebServerManager
         return new WebServer(o => o
                 .WithUrlPrefix($"http://127.0.0.1:{Port}/")
                 .WithMode(HttpListenerMode.Microsoft))
-            .WithModule(_counterModule)
+            .WithModule(_deathCounterModule)
             .WithStaticFolder("/", "webserver_static", false);
     }
 

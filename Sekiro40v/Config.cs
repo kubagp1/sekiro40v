@@ -1,5 +1,6 @@
 ﻿using System.IO;
 using Newtonsoft.Json;
+using Sekiro40v.DeathCounter;
 
 namespace Sekiro40v;
 
@@ -7,15 +8,15 @@ public class Config
 {
     private const string Path = @"settings.json";
 
-    private readonly DeathCounter _deathCounterDefaults = new()
+    public static readonly DeathCounter DeathCounterDefaults = new()
     {
-        CounterAlign = Sekiro40v.DeathCounter.ECounterAlign.Right,
+        CounterAlign = CounterAlign.Right,
         CounterColor = "#CB0000",
         CounterFontFamily = "Architects Daughter",
         CounterImageOffsetX = 8,
         CounterImageOffsetY = 3,
         CounterImageSize = 59,
-        CounterImageMode = Sekiro40v.DeathCounter.ImageMode.Right
+        CounterImageMode = ImageMode.Right
     };
 
     private readonly MemoryHook _memoryHookDefaults = new()
@@ -48,19 +49,12 @@ public class Config
                 ShockOnDeathStrength = 100
             },
             MemoryHook = _memoryHookDefaults,
-            DeathCounter = _deathCounterDefaults,
+            DeathCounter = DeathCounterDefaults,
             PainSender = new PainSender
             {
                 Port = "COM4"
             }
         };
-
-        SaveSettings();
-    }
-
-    public void RestoreDeathCounterDefaults()
-    {
-        Settings.DeathCounter = _deathCounterDefaults;
 
         SaveSettings();
     }
@@ -121,13 +115,13 @@ public class Config
 
     public class DeathCounter
     {
-        public Sekiro40v.DeathCounter.ECounterAlign CounterAlign { get; set; }
+        public CounterAlign CounterAlign { get; set; }
         public string CounterColor { get; set; }
         public string CounterFontFamily { get; set; }
         public int CounterImageOffsetX { get; set; }
         public int CounterImageOffsetY { get; set; }
         public int CounterImageSize { get; set; }
-        public Sekiro40v.DeathCounter.ImageMode CounterImageMode { get; set; }
+        public ImageMode CounterImageMode { get; set; }
     }
 
     public class PainSender

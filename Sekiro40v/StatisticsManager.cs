@@ -5,7 +5,7 @@ namespace Sekiro40v;
 
 public class StatisticsManager
 {
-    public string Path = @"statistics.json";
+    private const string Path = @"statistics.json";
     public StatisticsSchema Statistics;
 
     public StatisticsManager()
@@ -13,7 +13,7 @@ public class StatisticsManager
         LoadStatistics();
     }
 
-    public void LoadStatistics()
+    private void LoadStatistics()
     {
         try
         {

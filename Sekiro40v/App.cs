@@ -1,4 +1,5 @@
 ﻿using System;
+using Sekiro40v.DeathCounter;
 
 namespace Sekiro40v;
 
@@ -13,11 +14,11 @@ public enum ShockOnDamageMode
 public class App
 {
     public readonly Config Config;
-    public readonly DeathCounter DeathCounter;
-    public readonly MemoryHook MemoryHook;
-    public readonly PainSender PainSender;
+    public readonly Module DeathCounter;
 
     public readonly Config.General GeneralSettings;
+    public readonly MemoryHook MemoryHook;
+    public readonly PainSender PainSender;
     public readonly StatisticsManager StatisticsManager;
     public readonly WebServerManager WebServerManager;
 
@@ -29,7 +30,7 @@ public class App
         GeneralSettings = Config.Settings.General;
 
         MemoryHook = new MemoryHook(Config.Settings.MemoryHook);
-        DeathCounter = new DeathCounter(Config.Settings.DeathCounter, StatisticsManager.Statistics.DeathCounter);
+        DeathCounter = new Module(Config.Settings.DeathCounter, StatisticsManager.Statistics.DeathCounter);
         WebServerManager = new WebServerManager(Config.Settings.General, DeathCounter.WebSocketModule);
         PainSender = new PainSender(Config.Settings.PainSender, StatisticsManager.Statistics.PainSender);
 
@@ -40,7 +41,7 @@ public class App
     private void MemoryHook_DamageEventHandler(object sender, MemoryHook.DamageEventHandlerEventArgs e)
     {
         if (!GeneralSettings.ShockOnDamage) return;
-        
+
         var percentage = (double)e.Damage / e.MaxHp;
         switch (GeneralSettings.ShockOnDamageMode)
         {
@@ -73,8 +74,9 @@ public class App
 
     private void MemoryHook_DeathEventHandler(object sender, EventArgs e)
     {
-        DeathCounter.Counter++;
+        DeathCounter.CounterValue++;
 
-        if (GeneralSettings.ShockOnDeath) PainSender.SendShock(GeneralSettings.ShockOnDeathStrength, GeneralSettings.ShockOnDeathDuration);
+        if (GeneralSettings.ShockOnDeath)
+            PainSender.SendShock(GeneralSettings.ShockOnDeathStrength, GeneralSettings.ShockOnDeathDuration);
     }
 }
