@@ -5,6 +5,24 @@ namespace Sekiro40v;
 
 public class Config
 {
+    private readonly DeathCounter _deathCounterDefaults = new()
+    {
+        CounterAlign = Sekiro40v.DeathCounter.ECounterAlign.Right,
+        CounterColor = "#CB0000",
+        CounterFontFamily = "Architects Daughter",
+        CounterImageOffsetX = 8,
+        CounterImageOffsetY = 3,
+        CounterImageSize = 59,
+        CounterImageMode = Sekiro40v.DeathCounter.ImageMode.Right
+    };
+
+    private readonly MemoryHook _memoryHookDefaults = new()
+    {
+        ProcessName = "sekiro",
+        MaxRpm = 60,
+        Offset = 62362212
+    };
+
     public string Path = @"settings.json";
     public SettingsSchema Settings;
 
@@ -28,27 +46,27 @@ public class Config
                 ShockOnDeathDuration = 300,
                 ShockOnDeathStrength = 100
             },
-            MemoryHook = new MemoryHook
-            {
-                ProcessName = "sekiro",
-                MaxRpm = 60,
-                Offset = 62362212
-            },
-            DeathCounter = new DeathCounter
-            {
-                CounterAlign = Sekiro40v.DeathCounter.ECounterAlign.Right,
-                CounterColor = "#CB0000",
-                CounterFontFamily = "Architects Daughter",
-                CounterImageOffsetX = 8,
-                CounterImageOffsetY = 3,
-                CounterImageSize = 59,
-                CounterImageMode = Sekiro40v.DeathCounter.ImageMode.Right
-            },
+            MemoryHook = _memoryHookDefaults,
+            DeathCounter = _deathCounterDefaults,
             PainSender = new PainSender
             {
                 Port = "COM4"
             }
         };
+
+        SaveSettings();
+    }
+
+    public void RestoreDeathCounterDefaults()
+    {
+        Settings.DeathCounter = _deathCounterDefaults;
+
+        SaveSettings();
+    }
+
+    public void RestoreMemoryHookDefaults()
+    {
+        Settings.MemoryHook = _memoryHookDefaults;
 
         SaveSettings();
     }
