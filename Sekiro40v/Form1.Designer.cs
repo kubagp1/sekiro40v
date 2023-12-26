@@ -55,6 +55,7 @@ namespace Sekiro40v
             deathCounterTab = new System.Windows.Forms.TabPage();
             DeathCounterCopyUrlButton = new System.Windows.Forms.Button();
             groupBox6 = new System.Windows.Forms.GroupBox();
+            DeathCounterRestoreDefaultsButton = new System.Windows.Forms.Button();
             label22 = new System.Windows.Forms.Label();
             DeathCounterImageSizeLabel = new System.Windows.Forms.Label();
             DeathCounterImageOffsetYLabel = new System.Windows.Forms.Label();
@@ -126,6 +127,7 @@ namespace Sekiro40v
             webServerPortInput = new System.Windows.Forms.NumericUpDown();
             label11 = new System.Windows.Forms.Label();
             tabControl1 = new System.Windows.Forms.TabControl();
+            restoreDefaultMemoryHookSettings = new System.Windows.Forms.Button();
             statusStrip1.SuspendLayout();
             painSenderTab.SuspendLayout();
             groupBox10.SuspendLayout();
@@ -293,7 +295,7 @@ namespace Sekiro40v
             painSenderResetStatistics.Name = "painSenderResetStatistics";
             painSenderResetStatistics.Size = new System.Drawing.Size(101, 23);
             painSenderResetStatistics.TabIndex = 2;
-            painSenderResetStatistics.Text = "Reset statistics";
+            painSenderResetStatistics.Text = "Erase statistics";
             painSenderResetStatistics.UseVisualStyleBackColor = true;
             painSenderResetStatistics.Click += PainSenderResetStatistics_Click;
             // 
@@ -415,6 +417,7 @@ namespace Sekiro40v
             // 
             // groupBox6
             // 
+            groupBox6.Controls.Add(DeathCounterRestoreDefaultsButton);
             groupBox6.Controls.Add(label22);
             groupBox6.Controls.Add(DeathCounterImageSizeLabel);
             groupBox6.Controls.Add(DeathCounterImageOffsetYLabel);
@@ -435,10 +438,20 @@ namespace Sekiro40v
             groupBox6.Controls.Add(DeathCounterAlignToLeftRadio);
             groupBox6.Location = new System.Drawing.Point(7, 36);
             groupBox6.Name = "groupBox6";
-            groupBox6.Size = new System.Drawing.Size(277, 259);
+            groupBox6.Size = new System.Drawing.Size(277, 291);
             groupBox6.TabIndex = 2;
             groupBox6.TabStop = false;
             groupBox6.Text = "Appearance";
+            // 
+            // DeathCounterRestoreDefaultsButton
+            // 
+            DeathCounterRestoreDefaultsButton.Location = new System.Drawing.Point(6, 261);
+            DeathCounterRestoreDefaultsButton.Name = "DeathCounterRestoreDefaultsButton";
+            DeathCounterRestoreDefaultsButton.Size = new System.Drawing.Size(142, 23);
+            DeathCounterRestoreDefaultsButton.TabIndex = 10;
+            DeathCounterRestoreDefaultsButton.Text = "Restore default settings";
+            DeathCounterRestoreDefaultsButton.UseVisualStyleBackColor = true;
+            DeathCounterRestoreDefaultsButton.Click += DeathCounterRestoreDefaultsButton_Click;
             // 
             // label22
             // 
@@ -481,9 +494,8 @@ namespace Sekiro40v
             // 
             // label16
             // 
-            label16.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
             label16.ForeColor = System.Drawing.SystemColors.GrayText;
-            label16.Location = new System.Drawing.Point(6, 222);
+            label16.Location = new System.Drawing.Point(6, 224);
             label16.Name = "label16";
             label16.Size = new System.Drawing.Size(265, 34);
             label16.TabIndex = 4;
@@ -674,6 +686,7 @@ namespace Sekiro40v
             // 
             // groupBox3
             // 
+            groupBox3.Controls.Add(restoreDefaultMemoryHookSettings);
             groupBox3.Controls.Add(label10);
             groupBox3.Controls.Add(label8);
             groupBox3.Controls.Add(resetStatisticsButton);
@@ -712,7 +725,7 @@ namespace Sekiro40v
             resetStatisticsButton.Name = "resetStatisticsButton";
             resetStatisticsButton.Size = new System.Drawing.Size(100, 23);
             resetStatisticsButton.TabIndex = 2;
-            resetStatisticsButton.Text = "Reset statistics";
+            resetStatisticsButton.Text = "Erase statistics";
             resetStatisticsButton.UseVisualStyleBackColor = true;
             resetStatisticsButton.Click += ResetStatisticsButton_Click;
             // 
@@ -1062,7 +1075,7 @@ namespace Sekiro40v
             GeneralRestoreDefaultSettingsButton.Name = "GeneralRestoreDefaultSettingsButton";
             GeneralRestoreDefaultSettingsButton.Size = new System.Drawing.Size(159, 23);
             GeneralRestoreDefaultSettingsButton.TabIndex = 2;
-            GeneralRestoreDefaultSettingsButton.Text = "Restore default settings";
+            GeneralRestoreDefaultSettingsButton.Text = "Restore all default settings";
             GeneralRestoreDefaultSettingsButton.UseVisualStyleBackColor = true;
             GeneralRestoreDefaultSettingsButton.Click += GeneralRestoreDefaultSettingsButton_Click;
             // 
@@ -1177,6 +1190,17 @@ namespace Sekiro40v
             tabControl1.SelectedIndex = 0;
             tabControl1.Size = new System.Drawing.Size(298, 409);
             tabControl1.TabIndex = 0;
+            // 
+            // restoreDefaultMemoryHookSettings
+            // 
+            restoreDefaultMemoryHookSettings.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right;
+            restoreDefaultMemoryHookSettings.Location = new System.Drawing.Point(139, 88);
+            restoreDefaultMemoryHookSettings.Name = "restoreDefaultMemoryHookSettings";
+            restoreDefaultMemoryHookSettings.Size = new System.Drawing.Size(139, 23);
+            restoreDefaultMemoryHookSettings.TabIndex = 5;
+            restoreDefaultMemoryHookSettings.Text = "Restore default settings";
+            restoreDefaultMemoryHookSettings.UseVisualStyleBackColor = true;
+            restoreDefaultMemoryHookSettings.Click += RestoreDefaultMemoryHookSettings_Click;
             // 
             // Form1
             // 
@@ -1339,6 +1363,8 @@ namespace Sekiro40v
         private System.Windows.Forms.NumericUpDown generalShockOnDeathStrength;
         private System.Windows.Forms.CheckBox generalShockOnDeathCheckbox;
         private System.Windows.Forms.CheckBox generalShockOnDamageChcekbox;
+        private System.Windows.Forms.Button DeathCounterRestoreDefaultsButton;
+        private System.Windows.Forms.Button restoreDefaultMemoryHookSettings;
     }
 }
 

@@ -14,7 +14,7 @@ public partial class Form1 : Form
 
     public Form1(App app)
     {
-        this._app = app;
+        _app = app;
 
         InitializeComponent();
 
@@ -309,6 +309,20 @@ public partial class Form1 : Form
         Clipboard.SetText($"http://127.0.0.1:{_app.WebServerManager.Port}/counter/counter.html");
     }
 
+    private void DeathCounterRestoreDefaultsButton_Click(object sender, EventArgs e)
+    {
+        var userSure = MessageBox.Show(
+            "Are you sure you want to restore default DeathCounter settings?\nApplication will restart!",
+            "Reset all DeathCounter settings",
+            MessageBoxButtons.YesNoCancel,
+            MessageBoxIcon.Question);
+
+        if (userSure != DialogResult.Yes) return;
+
+        _app.Config.RestoreDeathCounterDefaults();
+        Application.Restart();
+    }
+
     #endregion DeathCounter Event Handlers
 
     #region MemoryHook Event Handlers
@@ -387,13 +401,26 @@ public partial class Form1 : Form
         var userSure = MessageBox.Show("Are you sure you want to reset all statistics of MemoryHook?", "Are you sure?",
             MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
 
-        if (userSure == DialogResult.Yes)
-        {
-            totalDamageInput.Value = 0;
-            _app.StatisticsManager.Statistics.MemoryHook.TotalDamage = 0;
-            totalDeathsInput.Value = 0;
-            _app.StatisticsManager.Statistics.MemoryHook.TotalDeaths = 0;
-        }
+        if (userSure != DialogResult.Yes) return;
+
+        totalDamageInput.Value = 0;
+        _app.StatisticsManager.Statistics.MemoryHook.TotalDamage = 0;
+        totalDeathsInput.Value = 0;
+        _app.StatisticsManager.Statistics.MemoryHook.TotalDeaths = 0;
+    }
+
+    private void RestoreDefaultMemoryHookSettings_Click(object sender, EventArgs e)
+    {
+        var userSure = MessageBox.Show(
+            "Are you sure you want to restore default MemoryHook settings?\nApplication will restart!",
+            "Reset all MemoryHook settings",
+            MessageBoxButtons.YesNoCancel,
+            MessageBoxIcon.Question);
+
+        if (userSure != DialogResult.Yes) return;
+
+        _app.Config.RestoreMemoryHookDefaults();
+        Application.Restart();
     }
 
     private void TotalDeathsInput_ValueChanged(object sender, EventArgs e)
@@ -412,7 +439,7 @@ public partial class Form1 : Form
 
     private void RefreshPortList()
     {
-        var portList = new string[] { "None" }.Concat(_app.PainSender.PortList).ToArray();
+        var portList = new[] { "None" }.Concat(_app.PainSender.PortList).ToArray();
 
         painSenderComboBox.Items.Clear();
         painSenderComboBox.Items.AddRange(portList);
