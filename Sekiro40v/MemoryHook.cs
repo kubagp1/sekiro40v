@@ -40,8 +40,8 @@ public partial class MemoryHook
             if (Config.ProcessName == value) return;
             Config.ProcessName = value;
             if (_currentSearchingTask is not null &&
-                _currentSearchingTask
-                    .IsCompleted) // the "is not null" part is here in case processName gets changed before any searching task is started
+                _currentSearchingTask.IsCompleted)
+                // the "is not null" part is here in case ProcessName gets changed before any searching task is started
                 RestartSearchingTask();
         }
     }
@@ -74,7 +74,6 @@ public partial class MemoryHook
             } while (processes.Length < 1);
 
             Process = processes[0];
-
             _externalMemory = new ExternalMemory(Process);
 
             Status = MemoryHookStatus.Ready;
@@ -89,7 +88,7 @@ public partial class MemoryHook
     {
         try
         {
-            if (Process.MainModule is null) return null;
+            if (Process.MainModule is null) throw new Exception("MainModule is null");
 
             _externalMemory.Read(nint.Add(Process.MainModule.BaseAddress, Config.Offset), out int value);
             return value;

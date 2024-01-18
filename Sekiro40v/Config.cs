@@ -71,7 +71,7 @@ public class Config
         File.WriteAllText(Path, JsonConvert.SerializeObject(Settings));
     }
 
-    public void LoadSettings()
+    private void LoadSettings()
     {
         try
         {

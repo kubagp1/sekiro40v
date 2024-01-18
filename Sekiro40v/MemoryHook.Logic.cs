@@ -40,7 +40,9 @@ public partial class MemoryHook
                             {
                                 DamageEventHandler?.Invoke(this,
                                     new DamageEventHandlerEventArgs
-                                        { CurrentHp = CurrentHp, Damage = lastHp - CurrentHp, MaxHp = MaxHp });
+                                    {
+                                        Damage = lastHp - CurrentHp, MaxHp = MaxHp
+                                    });
                                 if (CurrentHp == 0)
                                     DeathEventHandler?.Invoke(this, EventArgs.Empty);
                             }
@@ -78,7 +80,6 @@ public partial class MemoryHook
 
     public class DamageEventHandlerEventArgs : EventArgs
     {
-        public int CurrentHp;
         public int Damage;
         public int MaxHp;
     }

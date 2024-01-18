@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO.Ports;
 
@@ -29,7 +30,7 @@ public class PainSender
         RestartSerialConnection();
     }
 
-    public string[] PortList => SerialPort.GetPortNames();
+    public static IEnumerable<string> PortList => SerialPort.GetPortNames();
 
     public string PortName
     {
@@ -46,11 +47,9 @@ public class PainSender
         get => _status;
         set
         {
-            if (value != Status)
-            {
-                _status = value;
-                StatusChanged?.Invoke(this, EventArgs.Empty);
-            }
+            if (value == Status) return;
+            _status = value;
+            StatusChanged?.Invoke(this, EventArgs.Empty);
         }
     }
 
@@ -79,7 +78,7 @@ public class PainSender
         }
     }
 
-    private string GenerateCommand(int strength, int duration)
+    private static string GenerateCommand(int strength, int duration)
     {
         return $"1 {strength} {duration}\n";
         ;
@@ -92,11 +91,9 @@ public class PainSender
         if (_serialPort != null && _serialPort.IsOpen)
         {
             _serialPort.Write(GenerateCommand(strength, duration));
-            if (strength > 0)
-            {
-                Statistics.Duration += duration;
-                StatisticsUpdated?.Invoke(this, EventArgs.Empty);
-            }
+            if (strength <= 0) return;
+            Statistics.Duration += duration;
+            StatisticsUpdated?.Invoke(this, EventArgs.Empty);
         }
         else
         {

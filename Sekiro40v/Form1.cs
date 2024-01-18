@@ -412,7 +412,7 @@ public partial class Form1 : Form
 
     private void RefreshPortList()
     {
-        var portList = new[] { "None" }.Concat(_app.PainSender.PortList).ToArray();
+        var portList = PainSender.PortList.Prepend("None").ToArray();
 
         painSenderComboBox.Items.Clear();
         painSenderComboBox.Items.AddRange(portList);
